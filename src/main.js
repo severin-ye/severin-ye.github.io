@@ -1,6 +1,11 @@
 import './style.css'
 
 document.querySelector('#app').innerHTML = `
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+    <span class="icon">🌙</span>
+  </button>
+
   <!-- Background Gradient Orbs -->
   <div class="bg-gradient">
     <div class="orb orb-1"></div>
@@ -422,4 +427,69 @@ document.addEventListener('mousemove', (e) => {
     const speed = (index + 1) * 20
     orb.style.transform = 'translate(' + (x * speed) + 'px, ' + (y * speed) + 'px)'
   })
+})
+
+// ============================================
+// Theme Toggle Functionality
+// ============================================
+
+// Get the current theme from localStorage or system preference
+function getPreferredTheme() {
+  const savedTheme = localStorage.getItem('theme')
+  if (savedTheme) {
+    return savedTheme
+  }
+  // Check system preference
+  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+}
+
+// Apply theme to document
+function applyTheme(theme) {
+  const root = document.documentElement
+  const toggleIcon = document.querySelector('#theme-toggle .icon')
+  
+  if (theme === 'light') {
+    root.setAttribute('data-theme', 'light')
+    if (toggleIcon) toggleIcon.textContent = '☀️'
+  } else {
+    root.setAttribute('data-theme', 'dark')
+    if (toggleIcon) toggleIcon.textContent = '🌙'
+  }
+}
+
+// Initialize theme on page load
+function initTheme() {
+  const theme = getPreferredTheme()
+  applyTheme(theme)
+}
+
+// Toggle theme
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme')
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light'
+  
+  localStorage.setItem('theme', newTheme)
+  applyTheme(newTheme)
+}
+
+// Initialize theme immediately
+initTheme()
+
+// Set up theme toggle button
+document.addEventListener('DOMContentLoaded', () => {
+  const themeToggle = document.getElementById('theme-toggle')
+  if (themeToggle) {
+    themeToggle.addEventListener('click', toggleTheme)
+  }
+  
+  // Re-apply theme after DOM is ready (in case icon wasn't ready)
+  applyTheme(getPreferredTheme())
+})
+
+// Listen for system theme changes
+window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+  // Only auto-switch if user hasn't set a preference
+  if (!localStorage.getItem('theme')) {
+    applyTheme(e.matches ? 'light' : 'dark')
+  }
 })
