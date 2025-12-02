@@ -105,6 +105,12 @@ document.querySelector('#app').innerHTML = `
         </div>
       </div>
     </div>
+    
+    <!-- Leadership Quote -->
+    <div class="bento-item glass span-12 quote-block" style="margin-top: var(--space-lg);">
+      A true leader is not a commander, but a designer of order and an amplifier of collective energy.
+      <span class="author">— My philosophy on leadership</span>
+    </div>
   </section>
 
   <!-- Projects Section -->
@@ -237,12 +243,6 @@ document.querySelector('#app').innerHTML = `
           <em class="highlight-green">Opportunities hide one step beyond your hesitation.</em>
         </p>
       </div>
-    </div>
-    
-    <!-- Quote -->
-    <div class="bento-item glass span-12 quote-block" style="margin-top: var(--space-lg);">
-      A true leader is not a commander, but a designer of order and an amplifier of collective energy.
-      <span class="author">— My philosophy on leadership</span>
     </div>
   </section>
 
