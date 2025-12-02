@@ -305,10 +305,6 @@ document.querySelector('#app').innerHTML = `
             <span class="skill-icon">⛓️</span>
             Blockchain
           </div>
-          <div class="skill-item glass">
-            <span class="skill-icon">🔗</span>
-            APIs
-          </div>
         </div>
       </div>
       <div class="bento-item glass span-4">
@@ -357,14 +353,6 @@ document.querySelector('#app').innerHTML = `
       <a href="https://github.com/severin-ye" target="_blank" class="contact-item glass">
         <span class="contact-icon">💻</span>
         <span>GitHub</span>
-      </a>
-      <a href="#" class="contact-item glass">
-        <span class="contact-icon">💼</span>
-        <span>LinkedIn</span>
-      </a>
-      <a href="#" class="contact-item glass">
-        <span class="contact-icon">🐦</span>
-        <span>Twitter</span>
       </a>
     </div>
     
