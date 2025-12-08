@@ -122,58 +122,59 @@ document.querySelector('#app').innerHTML = `
     <div class="bento-grid">
       <div class="bento-item glass span-6 project-card">
         <div class="project-meta">
+          <span>🔬 Ongoing Research</span>
+          <span>•</span>
+          <span>2025</span>
+          <a href="https://github.com/severin-ye/CuraView" target="_blank" class="github-link">GitHub →</a>
+        </div>
+        <h4>CuraView - Medical AI Hallucination Detection & Correction</h4>
+        <p>
+          A multi-agent research platform for detecting, classifying, and correcting hallucinations in medical 
+          LLMs. Built with GraphRAG knowledge graphs, Qwen-30B models, and MS-Swift fine-tuning framework. 
+          Processed 46,998 MIMIC-IV patient records with automated error synthesis and intelligent correction.
+        </p>
+        <div class="tags">
+          <span class="tag accent-blue">GraphRAG</span>
+          <span class="tag accent-purple">Qwen3-30B</span>
+          <span class="tag accent-green">Multi-Agent</span>
+          <span class="tag">Medical AI</span>
+        </div>
+      </div>
+      <div class="bento-item glass span-6 project-card">
+        <div class="project-meta">
+          <span>📖 Digital Humanities</span>
+          <span>•</span>
+          <span>2024</span>
+          <a href="https://github.com/severin-ye/LingMap" target="_blank" class="github-link">GitHub →</a>
+        </div>
+        <h4>LingMap - Causal Event Knowledge Graph for Narratives</h4>
+        <p>
+          AI-powered system analyzing novels to extract key events, identify causal relationships, and generate 
+          visualized knowledge graphs. Features microservice architecture with GPT-4o/DeepSeek integration, 
+          hallucination refinement, and Mermaid flowchart generation. Production-ready with 125 test cases.
+        </p>
+        <div class="tags">
+          <span class="tag accent-green">GPT-4o</span>
+          <span class="tag accent-blue">Knowledge Graph</span>
+          <span class="tag accent-purple">Mermaid</span>
+        </div>
+      </div>
+      <div class="bento-item glass span-4 project-card">
+        <div class="project-meta">
           <span>🍽️ AI Application</span>
           <span>•</span>
           <span>2025</span>
           <a href="https://github.com/severin-ye/NutriFlow---AI" target="_blank" class="github-link">GitHub →</a>
         </div>
-        <h4>NutriFlow · AI - Intelligent Nutrition Analysis System</h4>
+        <h4>NutriFlow AI - Intelligent Nutrition Analysis</h4>
         <p>
-          Built with LangChain 1.0 + LangGraph, using Alibaba Qwen multimodal models for meal image 
-          recognition, nutritional analysis, health scoring, and personalized recommendations. 
-          Features 12 collaborative tools with strict workflow orchestration.
+          LangChain + LangGraph nutrition system with Qwen multimodal models for meal image recognition, 
+          health scoring, and personalized recommendations. 12 collaborative tools with strict orchestration.
         </p>
         <div class="tags">
           <span class="tag accent-green">LangChain</span>
           <span class="tag accent-purple">Qwen-VL</span>
-          <span class="tag accent-blue">Multi-Agent</span>
           <span class="tag">Health AI</span>
-        </div>
-      </div>
-      <div class="bento-item glass span-6 project-card">
-        <div class="project-meta">
-          <span>🔬 Ongoing Research</span>
-          <span>•</span>
-          <span>2025</span>
-        </div>
-        <h4>Unsupervised Preference Alignment (UPA)</h4>
-        <p>
-          Developing methods for Medical Multi-turn Dialogue Models — automatically extracting 
-          high-quality preference samples without costly human annotations. Introducing Solution 
-          Routing and Dual-level Preference Ranking.
-        </p>
-        <div class="tags">
-          <span class="tag accent-blue">GRPO</span>
-          <span class="tag accent-purple">Qwen3-32B</span>
-          <span class="tag accent-green">H100 GPU</span>
-        </div>
-      </div>
-      <div class="bento-item glass span-6 project-card">
-        <div class="project-meta">
-          <span>🏆 Competition</span>
-          <span>•</span>
-          <span>EY ESG Challenge</span>
-        </div>
-        <h4>Team Leadership & Notion Workflow</h4>
-        <p>
-          Led a diverse team by building a complete project management system in Notion — 
-          with topic selection, data collection, draft writing, and final presentation phases. 
-          Judges praised our logical clarity and organizational rigor.
-        </p>
-        <div class="tags">
-          <span class="tag accent-orange">Leadership</span>
-          <span class="tag">System Design</span>
-          <span class="tag">ESG</span>
         </div>
       </div>
       <div class="bento-item glass span-4 project-card">
@@ -181,14 +182,17 @@ document.querySelector('#app').innerHTML = `
           <span>💼 Contract Work</span>
           <span>•</span>
           <span>2023</span>
+          <a href="https://github.com/severin-ye/AI-Review-win" target="_blank" class="github-link">GitHub →</a>
         </div>
-        <h4>Medical Journal AI Integration</h4>
+        <h4>AI Review Assistant - Medical Document Processing</h4>
         <p>
-          First professional engineering contract — introduced AI products to a medical journal company.
+          First professional contract — Windows desktop app with medical RAG system, batch document processing, 
+          and multi-model support (GPT-4o, Qwen). Features intelligent error detection and fact checking.
         </p>
         <div class="tags">
-          <span class="tag accent-blue">AI Products</span>
-          <span class="tag">Medical</span>
+          <span class="tag accent-blue">RAG</span>
+          <span class="tag accent-purple">GPT-4o</span>
+          <span class="tag">Desktop App</span>
         </div>
       </div>
       <div class="bento-item glass span-4 project-card">
@@ -196,28 +200,34 @@ document.querySelector('#app').innerHTML = `
           <span>🎯 Startup Collab</span>
           <span>•</span>
           <span>2025</span>
+          <a href="https://github.com/severin-ye/GReSy" target="_blank" class="github-link">GitHub →</a>
         </div>
-        <h4>Recommendation System</h4>
+        <h4>GReSy - Game Player Matching System</h4>
         <p>
-          Built a lightweight recommendation system demo for Imperial College London graduates' startup. 
-          Received equity offer (politely declined).
+          Built intelligent recommendation system for Imperial College graduates' startup. Multi-dimensional 
+          matching algorithm analyzing game preferences, personality (MBTI), and gaming habits. Equity offered.
         </p>
         <div class="tags">
           <span class="tag accent-purple">RecSys</span>
+          <span class="tag accent-blue">Matching</span>
           <span class="tag">ML</span>
         </div>
       </div>
       <div class="bento-item glass span-4 project-card">
         <div class="project-meta">
-          <span>📖 Digital Humanities</span>
+          <span>🏆 Competition</span>
+          <span>•</span>
+          <span>EY ESG Challenge</span>
         </div>
-        <h4>Causal Graph System</h4>
+        <h4>Team Leadership - Notion Workflow System</h4>
         <p>
-          Developed systems to analyze event logic and causal relationships in long-form narratives.
+          Led diverse team with complete Notion-based project management system covering topic selection, 
+          data collection, draft writing, and presentation. Judges praised logical clarity and rigor.
         </p>
         <div class="tags">
-          <span class="tag accent-green">NLP</span>
-          <span class="tag">Visualization</span>
+          <span class="tag accent-orange">Leadership</span>
+          <span class="tag">System Design</span>
+          <span class="tag">ESG</span>
         </div>
       </div>
     </div>
