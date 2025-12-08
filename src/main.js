@@ -291,6 +291,18 @@ document.querySelector('#app').innerHTML = `
             LLMs
           </div>
           <div class="skill-item glass">
+            <span class="skill-icon">🕸️</span>
+            GraphRAG
+          </div>
+          <div class="skill-item glass">
+            <span class="skill-icon">🔗</span>
+            LangChain
+          </div>
+          <div class="skill-item glass">
+            <span class="skill-icon">👥</span>
+            Multi-Agent
+          </div>
+          <div class="skill-item glass">
             <span class="skill-icon">🔧</span>
             LoRA/QLoRA
           </div>
@@ -310,6 +322,10 @@ document.querySelector('#app').innerHTML = `
             <span class="skill-icon">💬</span>
             Prompt Eng
           </div>
+          <div class="skill-item glass">
+            <span class="skill-icon">🧪</span>
+            Fine-tuning
+          </div>
         </div>
       </div>
       <div class="bento-item glass span-6">
@@ -328,24 +344,31 @@ document.querySelector('#app').innerHTML = `
             Web Dev
           </div>
           <div class="skill-item glass">
-            <span class="skill-icon">📱</span>
-            Cross-platform
+            <span class="skill-icon">🏗️</span>
+            Microservices
           </div>
           <div class="skill-item glass">
-            <span class="skill-icon">⛓️</span>
-            Blockchain
+            <span class="skill-icon">📱</span>
+            Desktop Apps
+          </div>
+          <div class="skill-item glass">
+            <span class="skill-icon">🔄</span>
+            CI/CD
           </div>
         </div>
       </div>
       <div class="bento-item glass span-4">
-        <h3><span class="icon">🎨</span> Tools & Systems</h3>
+        <h3><span class="icon">🎨</span> Tools & Frameworks</h3>
         <div class="tags">
+          <span class="tag">PyTorch</span>
+          <span class="tag">HuggingFace</span>
+          <span class="tag">MS-Swift</span>
+          <span class="tag">Ollama</span>
+          <span class="tag">LanceDB</span>
           <span class="tag">Notion</span>
           <span class="tag">Git</span>
           <span class="tag">Linux</span>
           <span class="tag">Docker</span>
-          <span class="tag">HuggingFace</span>
-          <span class="tag">PyTorch</span>
         </div>
       </div>
       <div class="bento-item glass span-4">
