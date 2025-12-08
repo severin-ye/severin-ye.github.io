@@ -122,6 +122,26 @@ document.querySelector('#app').innerHTML = `
     <div class="bento-grid">
       <div class="bento-item glass span-6 project-card">
         <div class="project-meta">
+          <span>🍽️ AI Application</span>
+          <span>•</span>
+          <span>2025</span>
+          <a href="https://github.com/severin-ye/NutriFlow---AI" target="_blank" class="github-link">GitHub →</a>
+        </div>
+        <h4>NutriFlow · AI - Intelligent Nutrition Analysis System</h4>
+        <p>
+          Built with LangChain 1.0 + LangGraph, using Alibaba Qwen multimodal models for meal image 
+          recognition, nutritional analysis, health scoring, and personalized recommendations. 
+          Features 12 collaborative tools with strict workflow orchestration.
+        </p>
+        <div class="tags">
+          <span class="tag accent-green">LangChain</span>
+          <span class="tag accent-purple">Qwen-VL</span>
+          <span class="tag accent-blue">Multi-Agent</span>
+          <span class="tag">Health AI</span>
+        </div>
+      </div>
+      <div class="bento-item glass span-6 project-card">
+        <div class="project-meta">
           <span>🔬 Ongoing Research</span>
           <span>•</span>
           <span>2025</span>

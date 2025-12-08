@@ -451,6 +451,20 @@ section {
   color: var(--text-tertiary);
 }
 
+.project-card .project-meta .github-link {
+  margin-left: auto;
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+
+.project-card .project-meta .github-link:hover {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
 .project-card h4 {
   font-size: 1rem;
   font-weight: 600;
