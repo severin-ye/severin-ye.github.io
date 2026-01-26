@@ -23,6 +23,7 @@
   --accent-green: #30D158;
   --accent-orange: #FF9500;
   --accent-pink: #FF375F;
+  --accent-red: #FF3B30;
   
   /* Orb colors */
   --orb-purple: var(--accent-purple);
@@ -72,6 +73,7 @@
   --accent-green: #28A745;
   --accent-orange: #E67300;
   --accent-pink: #E6004C;
+  --accent-red: #CC2900;
   
   /* Orb colors - softer for light mode */
   --orb-purple: #D4A5FF;
@@ -435,6 +437,7 @@ section {
 .tag.accent-purple { color: var(--accent-purple); background: rgba(175, 82, 222, 0.1); }
 .tag.accent-green { color: var(--accent-green); background: rgba(48, 209, 88, 0.1); }
 .tag.accent-orange { color: var(--accent-orange); background: rgba(255, 149, 0, 0.1); }
+.tag.accent-red { color: var(--accent-red); background: rgba(255, 59, 48, 0.1); }
 
 /* Project Cards */
 .project-card {

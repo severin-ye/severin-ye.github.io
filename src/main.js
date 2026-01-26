@@ -159,6 +159,46 @@ document.querySelector('#app').innerHTML = `
           <span class="tag accent-purple">Mermaid</span>
         </div>
       </div>
+      <div class="bento-item glass span-6 project-card">
+        <div class="project-meta">
+          <span>🛡️ Security Research</span>
+          <span>•</span>
+          <span>2026</span>
+          <a href="https://github.com/severin-ye/Security-Tax" target="_blank" class="github-link">GitHub →</a>
+        </div>
+        <h4>Security-Tax - Multi-Agent Security Defense System</h4>
+        <p>
+          Complete LangChain 1.0 reproduction of multi-agent security tax system. Features 7 collaborative agents 
+          with dual-layer defense (Instruction + Vaccine), 12 jailbreak attack prompts, and comprehensive evaluation 
+          framework. Includes interactive HTML flow visualization and batch experiment comparison tools.
+        </p>
+        <div class="tags">
+          <span class="tag accent-red">Security</span>
+          <span class="tag accent-blue">Multi-Agent</span>
+          <span class="tag accent-purple">LangChain</span>
+          <span class="tag">Defense AI</span>
+        </div>
+      </div>
+      <div class="bento-item glass span-6 project-card">
+        <div class="project-meta">
+          <span>⚡ Energy AI</span>
+          <span>•</span>
+          <span>2026</span>
+          <a href="https://github.com/severin-ye/energy-demand-prediction" target="_blank" class="github-link">GitHub →</a>
+        </div>
+        <h4>Energy Demand Prediction - Causal Explainable AI</h4>
+        <p>
+          CNN-LSTM-Attention architecture achieving 34.84% improvement over serial models. Combines Bayesian Networks 
+          with Deep Learning Parameters for stable causal explanation (0.999+ cosine similarity). Features beautiful 
+          10-step HTML visualization and actionable energy-saving recommendations.
+        </p>
+        <div class="tags">
+          <span class="tag accent-green">Deep Learning</span>
+          <span class="tag accent-blue">Bayesian Network</span>
+          <span class="tag accent-purple">XAI</span>
+          <span class="tag">Energy</span>
+        </div>
+      </div>
       <div class="bento-item glass span-4 project-card">
         <div class="project-meta">
           <span>🍽️ AI Application</span>
@@ -326,6 +366,18 @@ document.querySelector('#app').innerHTML = `
             <span class="skill-icon">🧪</span>
             Fine-tuning
           </div>
+          <div class="skill-item glass">
+            <span class="skill-icon">🔍</span>
+            XAI
+          </div>
+          <div class="skill-item glass">
+            <span class="skill-icon">🧠</span>
+            Bayesian Net
+          </div>
+          <div class="skill-item glass">
+            <span class="skill-icon">🛡️</span>
+            Security AI
+          </div>
         </div>
       </div>
       <div class="bento-item glass span-6">
@@ -361,6 +413,7 @@ document.querySelector('#app').innerHTML = `
         <h3><span class="icon">🎨</span> Tools & Frameworks</h3>
         <div class="tags">
           <span class="tag">PyTorch</span>
+          <span class="tag">TensorFlow</span>
           <span class="tag">HuggingFace</span>
           <span class="tag">MS-Swift</span>
           <span class="tag">Ollama</span>
