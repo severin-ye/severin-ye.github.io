@@ -475,9 +475,6 @@ document.querySelector('#app').innerHTML = `
 
   <!-- Footer -->
   <footer>
-    <p>
-      Designed & Built by <a href="https://github.com/severin-ye">Ye Botao</a> · 2025
-    </p>
   </footer>
 `
 
