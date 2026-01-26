@@ -478,9 +478,6 @@ document.querySelector('#app').innerHTML = `
     <p>
       Designed & Built by <a href="https://github.com/severin-ye">Ye Botao</a> · 2025
     </p>
-    <p style="margin-top: var(--space-sm);">
-      Built with Vite · Inspired by Apple's Design Language
-    </p>
   </footer>
 `
 
