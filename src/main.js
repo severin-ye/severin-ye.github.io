@@ -149,14 +149,14 @@ document.querySelector('#app').innerHTML = `
         </div>
         <h4>Narrative-Causal-Graph - Causal Event Network for Stories</h4>
         <p>
-          Advanced narrative analysis system that extracts events from literary texts and constructs causal networks 
-          to visualize story structure. Uses LLM-powered event extraction with relationship inference to create 
-          interactive graph visualizations. Enables deep understanding of plot mechanisms and narrative causality.
+          Converts raw novels into structured causal event graphs with characters, scenes, and thematic links, then 
+          exports the results to Neo4j, CSV, and JSON-LD for downstream analysis. A full run on Great Expectations 
+          extracts around 4,700 events and 3,200 causal links while preserving a valid DAG narrative structure.
         </p>
         <div class="tags">
-          <span class="tag accent-green">LLM</span>
-          <span class="tag accent-blue">Causal Graph</span>
-          <span class="tag accent-purple">NLP</span>
+          <span class="tag accent-blue">Story Graph</span>
+          <span class="tag accent-green">Neo4j Export</span>
+          <span class="tag accent-purple">Digital Humanities</span>
         </div>
       </div>
       <div class="bento-item glass span-4 project-card">
@@ -168,13 +168,14 @@ document.querySelector('#app').innerHTML = `
         </div>
         <h4>OpenStock Analyst - Intelligent Stock Analysis Platform</h4>
         <p>
-          Open-source stock market analysis tool leveraging AI for financial data processing and investment insights. 
-          Automated data collection, trend analysis, and market sentiment evaluation with interactive dashboards.
+          Generates structured investment reports for US stocks, Hong Kong stocks, and crypto assets using a four-layer 
+          ranking framework for valuation, profitability, safety, and growth. Each report includes ranking tables, 
+          upside-downside scenarios, F-Score breakdowns, and cross-validated market data in shareable HTML output.
         </p>
         <div class="tags">
-          <span class="tag accent-blue">FinTech</span>
-          <span class="tag accent-green">Data Analysis</span>
-          <span class="tag">AI</span>
+          <span class="tag accent-blue">Investment Reports</span>
+          <span class="tag accent-green">Cross-Market</span>
+          <span class="tag">Ranking Engine</span>
         </div>
       </div>
       <div class="bento-item glass span-4 project-card">
@@ -186,13 +187,14 @@ document.querySelector('#app').innerHTML = `
         </div>
         <h4>Decathlon VOC Analyzer - Voice of Customer Intelligence</h4>
         <p>
-          Sentiment analysis system for Decathlon customer feedback. Processes user reviews with NLP techniques 
-          to extract insights, identify pain points, and generate actionable business intelligence reports.
+          Turns product text, images, and customer reviews into evidence-backed VOC reports that highlight strengths, 
+          weaknesses, controversies, and actionable suggestions. The system also outputs claim-level citations, HTML 
+          reports, replay artifacts, and evaluation manifests for auditable multimodal customer insight analysis.
         </p>
         <div class="tags">
-          <span class="tag accent-purple">NLP</span>
-          <span class="tag accent-orange">Sentiment Analysis</span>
-          <span class="tag">VOC</span>
+          <span class="tag accent-purple">Multimodal VOC</span>
+          <span class="tag accent-orange">Evidence Reports</span>
+          <span class="tag">Attribution</span>
         </div>
       </div>
       <div class="bento-item glass span-6 project-card">
