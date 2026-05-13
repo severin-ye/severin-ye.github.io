@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Layout Options</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0c11;
+      --panel: rgba(255,255,255,0.04);
+      --panel-2: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.1);
+      --text: #f4f5f7;
+      --muted: #a8acb8;
+      --blue: #4b8dff;
+      --green: #41d98a;
+      --orange: #ffb347;
+      --red: #ff6a4d;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "SF Pro Display", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 15% 85%, rgba(57, 104, 255, 0.18), transparent 30%),
+        radial-gradient(circle at 85% 15%, rgba(157, 76, 221, 0.18), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      padding: 32px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+    }
+
+    .subtitle {
+      margin: 0 0 28px;
+      color: var(--muted);
+      max-width: 900px;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .option {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 20px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    }
+
+    .option.recommended {
+      outline: 2px solid rgba(75, 141, 255, 0.65);
+      box-shadow: 0 0 0 6px rgba(75, 141, 255, 0.08), 0 20px 60px rgba(0,0,0,0.28);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 12px;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .recommended .badge { background: rgba(75, 141, 255, 0.18); color: #bcd2ff; }
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: 22px;
+    }
+
+    .desc {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 66px;
+      margin-bottom: 18px;
+    }
+
+    .mockup {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 14px;
+      min-height: 330px;
+      margin-bottom: 18px;
+    }
+
+    .mock-grid-2,
+    .mock-grid-3,
+    .masonry {
+      display: grid;
+      gap: 12px;
+      height: 100%;
+    }
+
+    .mock-grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .mock-grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .masonry {
+      grid-template-columns: 1.3fr 1.3fr 1fr 1fr;
+      grid-auto-rows: 22px;
+      grid-auto-flow: dense;
+    }
+
+    .tile {
+      background: var(--panel-2);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tile::after {
+      content: '';
+      position: absolute;
+      inset: auto -20% -40% auto;
+      width: 120px;
+      height: 120px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(91, 157, 255, 0.22), transparent 70%);
+    }
+
+    .tile strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .tile span {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .h-s { min-height: 84px; }
+    .h-m { min-height: 118px; }
+    .h-l { min-height: 160px; }
+    .span-2 { grid-column: span 2; }
+    .span-r4 { grid-row: span 4; }
+    .span-r5 { grid-row: span 5; }
+    .span-r6 { grid-row: span 6; }
+    .span-r7 { grid-row: span 7; }
+
+    ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .good { color: var(--green); }
+    .warn { color: var(--orange); }
+    .bad { color: var(--red); }
+
+    .foot {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 1100px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <h1>项目区自动布局方案</h1>
+  <p class="subtitle">你的目标是 <strong>优先填满空白</strong>。所以这次不是继续手调每张卡片宽度，而是建立一套可以随着项目数量自动重排的规则。下面 3 个方案里，B 是我推荐的方向。</p>
+
+  <div class="grid">
+    <section class="option">
+      <div class="badge">方案 A</div>
+      <h2>统一卡片墙</h2>
+      <p class="desc">所有项目自动等宽，标题和文案长度通过裁切控制。最整齐，但对“填满空白”帮助有限，本质上是规整，不是紧凑。</p>
+      <div class="mockup">
+        <div class="mock-grid-3">
+          <div class="tile h-m"><strong>CuraView</strong><span>统一宽高卡片</span></div>
+          <div class="tile h-m"><strong>Narrative</strong><span>统一宽高卡片</span></div>
+          <div class="tile h-m"><strong>OpenStock</strong><span>统一宽高卡片</span></div>
+          <div class="tile h-m"><strong>Decathlon VOC</strong><span>统一宽高卡片</span></div>
+          <div class="tile h-m"><strong>Security-Tax</strong><span>统一宽高卡片</span></div>
+          <div class="tile h-m"><strong>Energy AI</strong><span>统一宽高卡片</span></div>
+        </div>
+      </div>
+      <ul>
+        <li><span class="good">优点：</span> 最稳，最容易长期维护</li>
+        <li><span class="warn">代价：</span> 重要项目不会更突出</li>
+        <li><span class="bad">问题：</span> 留白主要转移成卡片内部空白</li>
+      </ul>
+    </section>
+
+    <section class="option recommended">
+      <div class="badge">推荐方案 B</div>
+      <h2>密排自适应拼贴</h2>
+      <p class="desc">保留少数重点项目的大卡，其余项目用固定的 2 到 3 种尺寸，交给 dense auto-placement 自动补洞。视觉上有层次，又能自动填空。</p>
+      <div class="mockup">
+        <div class="masonry">
+          <div class="tile span-2 span-r6"><strong>CuraView</strong><span>主项目大卡</span></div>
+          <div class="tile span-2 span-r6"><strong>Narrative</strong><span>次主项目大卡</span></div>
+          <div class="tile span-r5"><strong>OpenStock</strong><span>中卡自动补位</span></div>
+          <div class="tile span-r5"><strong>Decathlon VOC</strong><span>中卡自动补位</span></div>
+          <div class="tile span-2 span-r6"><strong>Security-Tax</strong><span>下一行自动接续</span></div>
+          <div class="tile span-2 span-r6"><strong>Energy AI</strong><span>下一行自动接续</span></div>
+        </div>
+      </div>
+      <ul>
+        <li><span class="good">优点：</span> 最接近“自动和谐”，新项目加入时不容易出现大空洞</li>
+        <li><span class="good">优点：</span> 能保留项目主次层级</li>
+        <li><span class="warn">代价：</span> 需要把卡片尺寸抽象成 few presets，而不是随便写 span</li>
+      </ul>
+    </section>
+
+    <section class="option">
+      <div class="badge">方案 C</div>
+      <h2>瀑布流 Masonry</h2>
+      <p class="desc">完全按内容高度自然流动，空白最少，但会削弱横向对齐和你现在这种 Apple 风格的克制秩序感。</p>
+      <div class="mockup">
+        <div style="column-count: 2; column-gap: 12px;">
+          <div class="tile h-l" style="break-inside: avoid; margin-bottom: 12px;"><strong>CuraView</strong><span>高卡</span></div>
+          <div class="tile h-s" style="break-inside: avoid; margin-bottom: 12px;"><strong>OpenStock</strong><span>短卡</span></div>
+          <div class="tile h-m" style="break-inside: avoid; margin-bottom: 12px;"><strong>Narrative</strong><span>中卡</span></div>
+          <div class="tile h-l" style="break-inside: avoid; margin-bottom: 12px;"><strong>Decathlon VOC</strong><span>高卡</span></div>
+          <div class="tile h-s" style="break-inside: avoid; margin-bottom: 12px;"><strong>Security-Tax</strong><span>短卡</span></div>
+          <div class="tile h-m" style="break-inside: avoid; margin-bottom: 12px;"><strong>Energy AI</strong><span>中卡</span></div>
+        </div>
+      </div>
+      <ul>
+        <li><span class="good">优点：</span> 填空能力最强</li>
+        <li><span class="bad">问题：</span> 左右阅读节奏会变乱，项目比较像 feed</li>
+        <li><span class="bad">问题：</span> 标题长短差异会进一步放大不稳定感</li>
+      </ul>
+    </section>
+  </div>
+
+  <p class="foot">建议：选 B。它不是完全自由瀑布流，而是“有限尺寸 + 自动密排”，更适合你的作品集。</p>
+</body>
+</html>

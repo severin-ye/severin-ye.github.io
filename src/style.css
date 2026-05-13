@@ -440,14 +440,34 @@ section {
 .tag.accent-red { color: var(--accent-red); background: rgba(255, 59, 48, 0.1); }
 
 /* Project Cards */
+.projects-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.project-row {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+.project-span-12 { grid-column: span 12; }
+.project-span-6 { grid-column: span 6; }
+.project-span-4 { grid-column: span 4; }
+
 .project-card {
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 .project-card .project-meta {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--space-sm);
   margin-bottom: var(--space-sm);
   font-size: 0.7rem;
@@ -471,13 +491,29 @@ section {
 .project-card h4 {
   font-size: 1rem;
   font-weight: 600;
+  line-height: 1.4;
   margin-bottom: var(--space-sm);
+  min-height: calc(1.4em * 2);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .project-card p {
   font-size: 0.8rem;
   color: var(--text-secondary);
   line-height: 1.6;
+  margin-bottom: var(--space-md);
+  flex: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+}
+
+.project-card .tags {
+  margin-top: auto;
 }
 
 /* Timeline */
@@ -744,6 +780,16 @@ footer a:hover {
   .bento-item.span-6,
   .bento-item.span-4,
   .bento-item.span-3 {
+    grid-column: span 1;
+  }
+
+  .project-row {
+    grid-template-columns: 1fr;
+  }
+
+  .project-span-12,
+  .project-span-6,
+  .project-span-4 {
     grid-column: span 1;
   }
   
