@@ -144,19 +144,55 @@ document.querySelector('#app').innerHTML = `
         <div class="project-meta">
           <span>📖 Digital Humanities</span>
           <span>•</span>
-          <span>2024</span>
-          <a href="https://github.com/severin-ye/LingMap" target="_blank" class="github-link">GitHub →</a>
+          <span>2025</span>
+          <a href="https://github.com/Xynovitch/Narrative-Causal-Graph" target="_blank" class="github-link">GitHub →</a>
         </div>
-        <h4>LingMap - Causal Event Knowledge Graph for Narratives</h4>
+        <h4>Narrative-Causal-Graph - Causal Event Network for Stories</h4>
         <p>
-          AI-powered system analyzing novels to extract key events, identify causal relationships, and generate 
-          visualized knowledge graphs. Features microservice architecture with GPT-4o/DeepSeek integration, 
-          hallucination refinement, and Mermaid flowchart generation. Production-ready with 125 test cases.
+          Advanced narrative analysis system that extracts events from literary texts and constructs causal networks 
+          to visualize story structure. Uses LLM-powered event extraction with relationship inference to create 
+          interactive graph visualizations. Enables deep understanding of plot mechanisms and narrative causality.
         </p>
         <div class="tags">
-          <span class="tag accent-green">GPT-4o</span>
-          <span class="tag accent-blue">Knowledge Graph</span>
-          <span class="tag accent-purple">Mermaid</span>
+          <span class="tag accent-green">LLM</span>
+          <span class="tag accent-blue">Causal Graph</span>
+          <span class="tag accent-purple">NLP</span>
+        </div>
+      </div>
+      <div class="bento-item glass span-4 project-card">
+        <div class="project-meta">
+          <span>📊 Business Analytics</span>
+          <span>•</span>
+          <span>2026</span>
+          <a href="https://github.com/severin-ye/OpenStock--Analyst" target="_blank" class="github-link">GitHub →</a>
+        </div>
+        <h4>OpenStock Analyst - Intelligent Stock Analysis Platform</h4>
+        <p>
+          Open-source stock market analysis tool leveraging AI for financial data processing and investment insights. 
+          Automated data collection, trend analysis, and market sentiment evaluation with interactive dashboards.
+        </p>
+        <div class="tags">
+          <span class="tag accent-blue">FinTech</span>
+          <span class="tag accent-green">Data Analysis</span>
+          <span class="tag">AI</span>
+        </div>
+      </div>
+      <div class="bento-item glass span-4 project-card">
+        <div class="project-meta">
+          <span>🎯 Customer Analytics</span>
+          <span>•</span>
+          <span>2026</span>
+          <a href="https://github.com/severin-ye/Decathlon_VOC_Analyzer" target="_blank" class="github-link">GitHub →</a>
+        </div>
+        <h4>Decathlon VOC Analyzer - Voice of Customer Intelligence</h4>
+        <p>
+          Sentiment analysis system for Decathlon customer feedback. Processes user reviews with NLP techniques 
+          to extract insights, identify pain points, and generate actionable business intelligence reports.
+        </p>
+        <div class="tags">
+          <span class="tag accent-purple">NLP</span>
+          <span class="tag accent-orange">Sentiment Analysis</span>
+          <span class="tag">VOC</span>
         </div>
       </div>
       <div class="bento-item glass span-6 project-card">
