@@ -320,7 +320,7 @@ document.querySelector('#app').innerHTML = `
       <div class="line"></div>
     </div>
     <div class="contact-grid">
-      <a href="mailto:yebotao@example.com" class="contact-item glass">
+      <a href="mailto:6severin9@gmail.com" class="contact-item glass">
         <span class="contact-icon">📧</span>
         <span data-i18n="contact.email">Email</span>
       </a>
