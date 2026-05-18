@@ -1,10 +1,16 @@
 import './style.css'
-import { renderProjectsMarkup } from './projectLayout.js'
+import { renderProjectsMarkup, updateProjectsLanguage } from './projectLayout.js'
+import { i18n } from './i18n.js'
 
 document.querySelector('#app').innerHTML = `
   <!-- Theme Toggle Button -->
   <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
     <span class="icon">🌙</span>
+  </button>
+
+  <!-- Language Toggle Button -->
+  <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language">
+    <span class="lang-text">EN</span>
   </button>
 
   <!-- Background Gradient Orbs -->
@@ -16,24 +22,26 @@ document.querySelector('#app').innerHTML = `
 
   <!-- Navigation -->
   <nav class="glass">
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#stories">Stories</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
+    <a href="#about" data-i18n="nav.about">About</a>
+    <a href="#projects" data-i18n="nav.projects">Projects</a>
+    <a href="#stories" data-i18n="nav.stories">Stories</a>
+    <a href="#skills" data-i18n="nav.skills">Skills</a>
+    <a href="#contact" data-i18n="nav.contact">Contact</a>
   </nav>
 
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
       <div class="hero-text">
-        <div class="status-badge glass">Open to opportunities</div>
+        <div class="status-badge glass" data-i18n="hero.status">Open to opportunities</div>
         <h1>Ye Botao</h1>
-        <p class="tagline">
-          Builder who turns <span>ideas into reality</span>.<br>
+        <p class="tagline" data-i18n="hero.tagline1">
+          Builder who turns <span>ideas into reality</span>.
+        </p>
+        <p class="tagline" data-i18n="hero.tagline2">
           AI Researcher exploring the frontiers of Medical AI & LLMs.
         </p>
-        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: var(--space-lg);">
+        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: var(--space-lg);" data-i18n="hero.belief">
           I believe the world needs people who can stay clear-headed amid complexity — 
           those who create order from chaos and new value from uncertainty.
         </p>
@@ -41,15 +49,15 @@ document.querySelector('#app').innerHTML = `
       <div class="quick-stats">
         <div class="stat-item glass">
           <span class="stat-value">3+</span>
-          <span class="stat-label">Research Projects</span>
+          <span class="stat-label" data-i18n="hero.stat1">Research Projects</span>
         </div>
         <div class="stat-item glass">
           <span class="stat-value">5+</span>
-          <span class="stat-label">Tech Stacks</span>
+          <span class="stat-label" data-i18n="hero.stat2">Tech Stacks</span>
         </div>
         <div class="stat-item glass">
           <span class="stat-value">∞</span>
-          <span class="stat-label">Curiosity</span>
+          <span class="stat-label" data-i18n="hero.stat3">Curiosity</span>
         </div>
       </div>
     </div>
@@ -58,13 +66,13 @@ document.querySelector('#app').innerHTML = `
   <!-- About Section -->
   <section id="about">
     <div class="section-header">
-      <h2>🧬 Who I Am</h2>
+      <h2>🧬 <span data-i18n="about.title">Who I Am</span></h2>
       <div class="line"></div>
     </div>
     <div class="bento-grid">
       <div class="bento-item glass span-8">
-        <h3><span class="icon">🎯</span> Current Focus</h3>
-        <p>
+        <h3><span class="icon">🎯</span> <span data-i18n="about.focus.title">Current Focus</span></h3>
+        <p data-i18n="about.focus.desc">
           Leading research on <strong>Hallucination Detection in Medical Text Summarization</strong> — 
           building systems that make AI more trustworthy in healthcare. From finding supervisors to 
           assembling teams and coordinating progress, I initiated and managed the entire process.
@@ -77,22 +85,22 @@ document.querySelector('#app').innerHTML = `
         </div>
       </div>
       <div class="bento-item glass span-4">
-        <h3><span class="icon">💡</span> Philosophy</h3>
-        <p>
+        <h3><span class="icon">💡</span> <span data-i18n="about.philosophy.title">Philosophy</span></h3>
+        <p data-i18n="about.philosophy.desc">
           I believe in the <strong>Compounding Effect</strong> — investing time where growth becomes exponential. 
           True resilience isn't dependence on rules, but understanding their logic.
         </p>
       </div>
       <div class="bento-item glass span-4">
-        <h3><span class="icon">🔮</span> Future Vision</h3>
-        <p>
+        <h3><span class="icon">🔮</span> <span data-i18n="about.vision.title">Future Vision</span></h3>
+        <p data-i18n="about.vision.desc">
           Aspiring entrepreneur since high school. I value the <strong>freedom to create</strong> above all else — 
           the courage to venture into the unknown and build what doesn't exist yet.
         </p>
       </div>
       <div class="bento-item glass span-8">
-        <h3><span class="icon">📚</span> Self-Directed Learning</h3>
-        <p>
+        <h3><span class="icon">📚</span> <span data-i18n="about.learning.title">Self-Directed Learning</span></h3>
+        <p data-i18n="about.learning.desc">
           I refuse to be a prisoner of the curriculum. Beyond core courses, I actively explore:
         </p>
         <div class="tags" style="margin-top: var(--space-sm);">
@@ -108,59 +116,59 @@ document.querySelector('#app').innerHTML = `
     </div>
     
     <!-- Leadership Quote -->
-    <div class="bento-item glass span-12 quote-block" style="margin-top: var(--space-lg);">
-      A true leader is not a commander, but a designer of order and an amplifier of collective energy.
-      <span class="author">— My philosophy on leadership</span>
+    <div class="bento-item glass span-12 quote-block" style="margin-top: var(--space-lg);" data-i18n="about.quote">
+      Opportunities exist where the concepts have not yet been invented.
+      <span class="author" data-i18n="about.quote.author">— My philosophy on leadership</span>
     </div>
   </section>
 
   <!-- Projects Section -->
   <section id="projects">
     <div class="section-header">
-      <h2>🚀 Research & Projects</h2>
+      <h2>🚀 <span data-i18n="projects.title">Research & Projects</span></h2>
       <div class="line"></div>
     </div>
-    ${renderProjectsMarkup()}
+    ${renderProjectsMarkup(i18n.currentLang)}
   </section>
 
   <!-- Stories Section -->
   <section id="stories">
     <div class="section-header">
-      <h2>✨ Stories That Shaped Me</h2>
+      <h2>✨ <span data-i18n="stories.title">Stories That Shaped Me</span></h2>
       <div class="line"></div>
     </div>
     <div class="bento-grid">
       <div class="bento-item glass span-4 story-card">
         <div class="emoji">🚄</div>
-        <h4>The High-Speed Train Encounter</h4>
-        <p>
+        <h4 data-i18n="stories.train.title">The High-Speed Train Encounter</h4>
+        <p data-i18n="stories.train.desc">
           Summer 2023: Met an elderly gentleman interested in AI on a train. 
           He turned out to be a medical journal editor-in-chief. I prepared a needs analysis, 
           technical feasibility study, and business framework. Walked away with my first engineering contract.
           <br><br>
-          <em class="highlight">Initiative itself is the strongest generator of opportunity.</em>
+          <em class="highlight" data-i18n="stories.train.highlight">Initiative itself is the strongest generator of opportunity.</em>
         </p>
       </div>
       <div class="bento-item glass span-4 story-card">
         <div class="emoji">🏸</div>
-        <h4>Badminton Court Deal</h4>
-        <p>
+        <h4 data-i18n="stories.badminton.title">Badminton Court Deal</h4>
+        <p data-i18n="stories.badminton.desc">
           Met two Imperial College graduates while playing badminton. They needed a recommendation system. 
           I said "Give me two weeks" — despite having just finished my ML course. 
           Two weeks later: a working demo. One month later: system delivered + equity offer.
           <br><br>
-          <em class="highlight-purple">The ability to learn rapidly is my most reliable asset.</em>
+          <em class="highlight-purple" data-i18n="stories.badminton.highlight">The ability to learn rapidly is my most reliable asset.</em>
         </p>
       </div>
       <div class="bento-item glass span-4 story-card">
         <div class="emoji">🚪</div>
-        <h4>Knocking on the Professor's Door</h4>
-        <p>
+        <h4 data-i18n="stories.door.title">Knocking on the Professor's Door</h4>
+        <p data-i18n="stories.door.desc">
           Sent multiple emails to a professor — no reply. Asked a Korean friend to locate his office. 
           One day, I just showed up. Expressed my research interests face-to-face. 
           Got invited to join his lab.
           <br><br>
-          <em class="highlight-green">Opportunities hide one step beyond your hesitation.</em>
+          <em class="highlight-green" data-i18n="stories.door.highlight">Opportunities hide one step beyond your hesitation.</em>
         </p>
       </div>
     </div>
@@ -169,12 +177,12 @@ document.querySelector('#app').innerHTML = `
   <!-- Skills Section -->
   <section id="skills">
     <div class="section-header">
-      <h2>🛠 Tech Stack & Skills</h2>
+      <h2>🛠 <span data-i18n="skills.title">Tech Stack & Skills</span></h2>
       <div class="line"></div>
     </div>
     <div class="bento-grid">
       <div class="bento-item glass span-6">
-        <h3><span class="icon">🤖</span> AI & Machine Learning</h3>
+        <h3><span class="icon">🤖</span> <span data-i18n="skills.ai.title">AI & Machine Learning</span></h3>
         <div class="skills-grid">
           <div class="skill-item glass">
             <span class="skill-icon">🧠</span>
@@ -231,7 +239,7 @@ document.querySelector('#app').innerHTML = `
         </div>
       </div>
       <div class="bento-item glass span-6">
-        <h3><span class="icon">💻</span> Development</h3>
+        <h3><span class="icon">💻</span> <span data-i18n="skills.dev.title">Development</span></h3>
         <div class="skills-grid">
           <div class="skill-item glass">
             <span class="skill-icon">🐍</span>
@@ -260,7 +268,7 @@ document.querySelector('#app').innerHTML = `
         </div>
       </div>
       <div class="bento-item glass span-4">
-        <h3><span class="icon">🎨</span> Tools & Frameworks</h3>
+        <h3><span class="icon">🎨</span> <span data-i18n="skills.tools.title">Tools & Frameworks</span></h3>
         <div class="tags">
           <span class="tag">PyTorch</span>
           <span class="tag">TensorFlow</span>
@@ -275,7 +283,7 @@ document.querySelector('#app').innerHTML = `
         </div>
       </div>
       <div class="bento-item glass span-4">
-        <h3><span class="icon">🗣</span> Languages</h3>
+        <h3><span class="icon">🗣</span> <span data-i18n="skills.languages.title">Languages</span></h3>
         <div class="tags">
           <span class="tag accent-blue">Chinese (Native)</span>
           <span class="tag accent-purple">English (Fluent)</span>
@@ -283,7 +291,7 @@ document.querySelector('#app').innerHTML = `
         </div>
       </div>
       <div class="bento-item glass span-4">
-        <h3><span class="icon">✨</span> Soft Skills</h3>
+        <h3><span class="icon">✨</span> <span data-i18n="skills.soft.title">Soft Skills</span></h3>
         <div class="tags">
           <span class="tag accent-orange">Leadership</span>
           <span class="tag">Team Building</span>
@@ -298,26 +306,26 @@ document.querySelector('#app').innerHTML = `
   <!-- Contact Section -->
   <section id="contact">
     <div class="section-header">
-      <h2>📬 Let's Connect</h2>
+      <h2>📬 <span data-i18n="contact.title">Let's Connect</span></h2>
       <div class="line"></div>
     </div>
     <div class="contact-grid">
       <a href="mailto:yebotao@example.com" class="contact-item glass">
         <span class="contact-icon">📧</span>
-        <span>Email</span>
+        <span data-i18n="contact.email">Email</span>
       </a>
       <a href="https://github.com/severin-ye" target="_blank" class="contact-item glass">
         <span class="contact-icon">💻</span>
-        <span>GitHub</span>
+        <span data-i18n="contact.github">GitHub</span>
       </a>
     </div>
     
     <div class="bento-item glass span-12" style="margin-top: var(--space-xl); text-align: center; padding: var(--space-xl);">
-      <p style="font-size: 1.1rem; margin-bottom: var(--space-md);">
+      <p style="font-size: 1.1rem; margin-bottom: var(--space-md);" data-i18n="contact.quote1">
         I don't aim to be the smartest person in the room —<br>
-        <strong>I aim to be the one who dares to act.</strong>
+        <strong data-i18n="contact.quote2">I aim to be the one who dares to act.</strong>
       </p>
-      <p style="color: var(--text-tertiary); font-size: 0.85rem;">
+      <p style="color: var(--text-tertiary); font-size: 0.85rem;" data-i18n="contact.quote3">
         To keep learning, keep moving forward, and keep creating in a complex and ever-changing world.
       </p>
     </div>
@@ -327,6 +335,9 @@ document.querySelector('#app').innerHTML = `
   <footer>
   </footer>
 `
+
+// Initialize i18n
+i18n.updatePage();
 
 // Smooth reveal animation on scroll
 const observerOptions = {
@@ -365,6 +376,39 @@ document.addEventListener('mousemove', (e) => {
     const speed = (index + 1) * 20
     orb.style.transform = 'translate(' + (x * speed) + 'px, ' + (y * speed) + 'px)'
   })
+})
+
+// ============================================
+// Language Toggle Functionality
+// ============================================
+
+function updateLangToggleButton() {
+  const langToggle = document.getElementById('lang-toggle')
+  if (langToggle) {
+    const langText = langToggle.querySelector('.lang-text')
+    if (langText) {
+      langText.textContent = i18n.currentLang === 'en' ? '中' : 'EN'
+    }
+  }
+}
+
+function initLangToggle() {
+  const langToggle = document.getElementById('lang-toggle')
+  if (langToggle) {
+    langToggle.addEventListener('click', () => {
+      i18n.toggle()
+      updateLangToggleButton()
+    })
+  }
+  updateLangToggleButton()
+}
+
+// Initialize language toggle immediately
+initLangToggle()
+
+// Update projects when language changes
+i18n.onChange((lang) => {
+  updateProjectsLanguage(lang)
 })
 
 // ============================================
