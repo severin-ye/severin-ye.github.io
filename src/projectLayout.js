@@ -3,9 +3,11 @@ const projectData = [
     category: '🔬 Ongoing Research',
     year: '2025',
     githubUrl: 'https://github.com/severin-ye/CuraView',
+    paperUrl: '/papers/CuraView.pdf',
     title: 'CuraView - Medical AI Hallucination Detection & Correction',
     description: 'A multi-agent research platform for detecting, classifying, and correcting hallucinations in medical LLMs. Built with GraphRAG knowledge graphs, Qwen-30B models, and MS-Swift fine-tuning framework. Processed 46,998 MIMIC-IV patient records with automated error synthesis and intelligent correction.',
     tags: [
+      { label: '论文项目', tone: 'accent-red' },
       { label: 'GraphRAG', tone: 'accent-blue' },
       { label: 'Qwen3-30B', tone: 'accent-purple' },
       { label: 'Multi-Agent', tone: 'accent-green' },
@@ -17,9 +19,11 @@ const projectData = [
     category: '📖 Digital Humanities',
     year: '2025',
     githubUrl: 'https://github.com/Xynovitch/Narrative-Causal-Graph',
+    paperUrl: '/papers/Craft-in-the-Loop.pdf',
     title: 'Narrative-Causal-Graph - Causal Event Network for Stories',
     description: 'Converts raw novels into structured causal event graphs with characters, scenes, and thematic links, then exports the results to Neo4j, CSV, and JSON-LD for downstream analysis. A full run on Great Expectations extracts around 4,700 events and 3,200 causal links while preserving a valid DAG narrative structure.',
     tags: [
+      { label: '论文项目', tone: 'accent-red' },
       { label: 'Story Graph', tone: 'accent-blue' },
       { label: 'Neo4j Export', tone: 'accent-green' },
       { label: 'Digital Humanities', tone: 'accent-purple' }
@@ -42,9 +46,11 @@ const projectData = [
     category: '🎯 Customer Analytics',
     year: '2026',
     githubUrl: 'https://github.com/severin-ye/Decathlon_VOC_Analyzer',
+    paperUrl: '/papers/Decathlon_VOC_Analyzer.pdf',
     title: 'Decathlon VOC Analyzer - Voice of Customer Intelligence',
     description: 'Turns product text, images, and customer reviews into evidence-backed VOC reports that highlight strengths, weaknesses, controversies, and actionable suggestions. The system also outputs claim-level citations, HTML reports, replay artifacts, and evaluation manifests for auditable multimodal customer insight analysis.',
     tags: [
+      { label: '论文项目', tone: 'accent-red' },
       { label: 'Multimodal VOC', tone: 'accent-purple' },
       { label: 'Evidence Reports', tone: 'accent-orange' },
       { label: 'Attribution' }
@@ -213,6 +219,10 @@ function renderProjectCard(project, span) {
     ? `<a href="${project.githubUrl}" target="_blank" class="github-link">GitHub →</a>`
     : ''
 
+  const paperLink = project.paperUrl
+    ? `<a href="${project.paperUrl}" target="_blank" class="paper-link">📄 Read Paper</a>`
+    : ''
+
   return `
     <article class="bento-item glass project-card project-span-${span}">
       <div class="project-meta">
@@ -223,6 +233,9 @@ function renderProjectCard(project, span) {
       </div>
       <h4>${project.title}</h4>
       <p>${project.description}</p>
+      <div class="project-actions">
+        ${paperLink}
+      </div>
       <div class="tags">
         ${renderTags(project.tags)}
       </div>
