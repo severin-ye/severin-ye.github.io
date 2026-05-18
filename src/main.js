@@ -142,33 +142,43 @@ document.querySelector('#app').innerHTML = `
         <div class="emoji">🚄</div>
         <h4 data-i18n="stories.train.title">The High-Speed Train Encounter</h4>
         <p data-i18n="stories.train.desc">
-          Summer 2023: Met an elderly gentleman interested in AI on a train. 
-          He turned out to be a medical journal editor-in-chief. I prepared a needs analysis, 
-          technical feasibility study, and business framework. Walked away with my first engineering contract.
+          My first engineering contract came from a chance encounter on a high-speed train.
           <br><br>
-          <em class="highlight" data-i18n="stories.train.highlight">Initiative itself is the strongest generator of opportunity.</em>
+          In the summer of 2023, I met a medical journal editor-in-chief who was interested in AI. That conversation wasn't just a casual chat about technology—it was my first exposure to real needs in the medical publishing world: how to use AI to improve content processing efficiency, how to assess whether a system is truly feasible, and how to turn a vague idea into an executable engineering plan.
+          <br><br>
+          Afterward, I completed a needs analysis, technical feasibility study, and business framework design around this requirement, and landed my first engineering contract.
+          <br><br>
+          <em class="highlight" data-i18n="stories.train.highlight">This experience made me realize that opportunities don't always appear in the form of "projects." They might start as just a conversation, a pain point, or a problem that hasn't yet been clearly defined. What truly matters is whether you can identify it and break it down into a deliverable system.</em>
         </p>
       </div>
       <div class="bento-item glass span-4 story-card">
         <div class="emoji">🏸</div>
         <h4 data-i18n="stories.badminton.title">Badminton Court Deal</h4>
         <p data-i18n="stories.badminton.desc">
-          Met two Imperial College graduates while playing badminton. They needed a recommendation system. 
-          I said "Give me two weeks" — despite having just finished my ML course. 
-          Two weeks later: a working demo. One month later: system delivered + equity offer.
+          My first recommendation system project came from a badminton game.
           <br><br>
-          <em class="highlight-purple" data-i18n="stories.badminton.highlight">The ability to learn rapidly is my most reliable asset.</em>
+          At the time, I met two Imperial College graduates while playing badminton. They were looking for a recommendation system solution, and I had just finished my machine learning course. Faced with this opportunity, I didn't limit myself to the identity of a "student." Instead, I treated the problem as a system delivery task.
+          <br><br>
+          I said: "Give me two weeks."
+          <br><br>
+          Over the next two weeks, I broke the requirement down into several specific questions: what should the system recommend, what are the user inputs, how to select the model, how to present the results, and how to validate the prototype. Two weeks later, I completed a working demo. One month later, the system entered formal delivery and received an equity offer.
+          <br><br>
+          <em class="highlight-purple" data-i18n="stories.badminton.highlight">This experience confirmed for me that the value of learning isn't just mastering concepts—it's whether you can quickly transform newly acquired knowledge into something that others truly need and can actually use.</em>
         </p>
       </div>
       <div class="bento-item glass span-4 story-card">
         <div class="emoji">🚪</div>
         <h4 data-i18n="stories.door.title">Knocking on the Professor's Door</h4>
         <p data-i18n="stories.door.desc">
-          Sent multiple emails to a professor — no reply. Asked a Korean friend to locate his office. 
-          One day, I just showed up. Expressed my research interests face-to-face. 
-          Got invited to join his lab.
+          My opportunity to enter a research lab didn't come from a successful email.
           <br><br>
-          <em class="highlight-green" data-i18n="stories.door.highlight">Opportunities hide one step beyond your hesitation.</em>
+          At the time, I had sent multiple emails to a professor expressing my research interests, but never received a response. Later, I realized that if I just kept waiting, things probably wouldn't change. So I asked a Korean friend to confirm the professor's office and decided to visit directly.
+          <br><br>
+          During that face-to-face conversation, I introduced my project experience, research interests, and reasons for wanting systematic research training. Compared to email, face-to-face communication gave me the chance to express myself more clearly: I didn't just want to "join a lab," but hoped to transform the problem-awareness I had developed through engineering projects into more long-term, systematic research capabilities.
+          <br><br>
+          Ultimately, I was offered the opportunity to join the lab.
+          <br><br>
+          <em class="highlight-green" data-i18n="stories.door.highlight">This taught me that research opportunities, like entrepreneurial opportunities, require active pursuit. Often, opportunities don't appear automatically—you have to put yourself in front of the problem and the people first, then prove yourself through clear expression and genuine action.</em>
         </p>
       </div>
     </div>

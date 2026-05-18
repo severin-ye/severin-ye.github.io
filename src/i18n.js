@@ -38,15 +38,15 @@ const translations = {
 
     // Stories
     'stories.title': 'Stories That Shaped Me',
-    'stories.train.title': 'The High-Speed Train Encounter',
-    'stories.train.desc': 'Summer 2023: Met an elderly gentleman interested in AI on a train. He turned out to be a medical journal editor-in-chief. I prepared a needs analysis, technical feasibility study, and business framework. Walked away with my first engineering contract.',
-    'stories.train.highlight': 'Initiative itself is the strongest generator of opportunity.',
-    'stories.badminton.title': 'Badminton Court Deal',
-    'stories.badminton.desc': 'Met two Imperial College graduates while playing badminton. They needed a recommendation system. I said "Give me two weeks" — despite having just finished my ML course. Two weeks later: a working demo. One month later: system delivered + equity offer.',
-    'stories.badminton.highlight': 'The ability to learn rapidly is my most reliable asset.',
-    'stories.door.title': 'Knocking on the Professor\'s Door',
-    'stories.door.desc': 'Sent multiple emails to a professor — no reply. Asked a Korean friend to locate his office. One day, I just showed up. Expressed my research interests face-to-face. Got invited to join his lab.',
-    'stories.door.highlight': 'Opportunities hide one step beyond your hesitation.',
+    'stories.train.title': 'A Chance That Would Have Passed Me By',
+    'stories.train.desc': "My first engineering contract came from a chance encounter on a high-speed train. In the summer of 2023, I met a medical journal editor-in-chief who was interested in AI. That conversation wasn't just a casual chat about technology—it was my first exposure to real needs in the medical publishing world: how to use AI to improve content processing efficiency, how to assess whether a system is truly feasible, and how to turn a vague idea into an executable engineering plan. Afterward, I completed a needs analysis, technical feasibility study, and business framework design around this requirement, and landed my first engineering contract.",
+    'stories.train.highlight': "This experience made me realize that opportunities don't always appear in the form of \"projects.\" They might start as just a conversation, a pain point, or a problem that hasn't yet been clearly defined. What truly matters is whether you can identify it and break it down into a deliverable system.",
+    'stories.badminton.title': 'Catch It, Learn It, Deliver It',
+    'stories.badminton.desc': "My first recommendation system project came from a badminton game. At the time, I met two Imperial College graduates while playing badminton. They were looking for a recommendation system solution, and I had just finished my machine learning course. Faced with this opportunity, I didn't limit myself to the identity of a \"student.\" Instead, I treated the problem as a system delivery task. I said: \"Give me two weeks.\" Over the next two weeks, I broke the requirement down into several specific questions: what should the system recommend, what are the user inputs, how to select the model, how to present the results, and how to validate the prototype. Two weeks later, I completed a working demo. One month later, the system entered formal delivery and received an equity offer.",
+    'stories.badminton.highlight': "This experience confirmed for me that the value of learning isn't just mastering concepts—it's whether you can quickly transform newly acquired knowledge into something that others truly need and can actually use.",
+    'stories.door.title': 'No Reply? Knock on the Door',
+    'stories.door.desc': "My opportunity to enter a research lab didn't come from a successful email. At the time, I had sent multiple emails to a professor expressing my research interests, but never received a response. Later, I realized that if I just kept waiting, things probably wouldn't change. So I asked a Korean friend to confirm the professor's office and decided to visit directly. During that face-to-face conversation, I introduced my project experience, research interests, and reasons for wanting systematic research training. Compared to email, face-to-face communication gave me the chance to express myself more clearly: I didn't just want to \"join a lab,\" but hoped to transform the problem-awareness I had developed through engineering projects into more long-term, systematic research capabilities. Ultimately, I was offered the opportunity to join the lab.",
+    'stories.door.highlight': "This taught me that research opportunities, like entrepreneurial opportunities, require active pursuit. Often, opportunities don't appear automatically—you have to put yourself in front of the problem and the people first, then prove yourself through clear expression and genuine action.",
     
     // Skills
     'skills.title': 'Tech Stack & Skills',
@@ -99,15 +99,15 @@ const translations = {
 
     // Stories
     'stories.title': '塑造我的故事',
-    'stories.train.title': '高铁奇遇',
-    'stories.train.desc': '2023年夏天：在高铁上遇到一位对AI感兴趣的老人家。原来是医学期刊主编。我准备了需求分析、技术可行性研究和商业框架。拿到了我的第一份工程合同。',
-    'stories.train.highlight': '主动性本身就是最强的机会生成器。',
-    'stories.badminton.title': '羽毛球场的交易',
-    'stories.badminton.desc': '打羽毛球时遇到两位帝国理工毕业生。他们需要推荐系统。我说"给我两周"——尽管刚上完ML课。两周后：工作demo。一个月后：系统交付+股权邀约。',
-    'stories.badminton.highlight': '快速学习的能力是我最可靠的资产。',
-    'stories.door.title': '敲开教授的门',
-    'stories.door.desc': '给教授发了多封邮件——没有回复。请韩国朋友帮忙找到他的办公室。有一天，我直接上门。面对面表达了研究兴趣。被邀请加入他的实验室。',
-    'stories.door.highlight': '机会就藏在犹豫之外的一步。',
+    'stories.train.title': '本来会略过我的机会',
+    'stories.train.desc': '我的第一份工程合同，来自一次高铁上的偶然交流。2023年夏天，我在高铁上遇到了一位对AI感兴趣的医学期刊主编。那次交流让我第一次接触到医学出版场景中的真实需求：如何用AI提升内容处理效率，如何判断系统是否真的可行，以及如何把一个模糊想法转化为可以执行的工程方案。之后，我完成了需求分析、技术可行性研究和商业框架设计，并拿到了自己的第一份工程合同。',
+    'stories.train.highlight': '这段经历让我第一次意识到，机会往往并不是以"项目"的形式出现的。它最开始可能只是一段对话、一个痛点，或者一个尚未被清楚定义的问题。真正重要的是，能否把它识别出来，并进一步拆解成可以落地的系统。',
+    'stories.badminton.title': '先接住，再学会，再交付',
+    'stories.badminton.desc': '我的第一个推荐系统项目，来自一次羽毛球活动。当时，我在打羽毛球时认识了两位帝国理工学院的毕业生。他们正在寻找一个推荐系统方案，而我刚刚完成机器学习课程。面对这个机会，我没有把自己限制在"学生"身份里，而是直接把问题当成一个需要交付的系统任务来处理。我提出："给我两周。"接下来的两周里，我把需求拆成几个具体问题。两周后，我完成了一个可以运行的demo。一个月后，系统进入正式交付阶段，并获得了股权邀约。',
+    'stories.badminton.highlight': '这段经历让我确认，学习的价值不只是掌握概念，而是能否把刚学到的知识快速转化为别人真正需要、真正能用的东西。',
+    'stories.door.title': '没有回复，就去敲门',
+    'stories.door.desc': '我进入实验室的机会，并不是通过一封成功的邮件获得的。当时，我给一位教授发送了多封邮件，希望表达自己的研究兴趣，但一直没有收到回复。后来，我意识到，如果只是继续等待，事情很可能不会发生变化。于是，我请韩国朋友帮忙确认了教授的办公室，并决定直接上门拜访。那次面对面交流中，我介绍了自己的项目经历、研究兴趣，以及希望接受系统性科研训练的原因。最终，我获得了加入其实验室的机会。',
+    'stories.door.highlight': '这件事让我明白，研究机会和创业机会一样，都需要主动争取。很多时候，机会不会自动出现，你必须先把自己带到问题和人面前，然后用清晰的表达和真实的行动证明自己。',
     
     // Skills
     'skills.title': '技术栈与技能',
