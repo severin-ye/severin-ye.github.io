@@ -24,4 +24,8 @@ dist-ssr
 *.sw?
 
 # Personal documents
-港科/
+personal/港科/
+personal/我的论文/
+
+# Generated output
+output/

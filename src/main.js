@@ -1,6 +1,6 @@
 import './style.css'
-import { renderProjectsMarkup, updateProjectsLanguage } from './projectLayout.js'
-import { i18n } from './i18n.js'
+import { renderProjectsMarkup, updateProjectsLanguage } from './data/projectLayout.js'
+import { i18n } from './data/i18n.js'
 
 document.querySelector('#app').innerHTML = `
   <!-- Theme Toggle Button -->
