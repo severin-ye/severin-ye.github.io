@@ -417,22 +417,37 @@ document.addEventListener('DOMContentLoaded', () => {
         gloss.className = 'card-gloss'
         card.appendChild(gloss)
 
+        card.addEventListener('mouseenter', () => {
+          card._tilt = null
+        })
+
         card.addEventListener('mousemove', (e) => {
-          card.style.transition = 'none'
           const rect = card.getBoundingClientRect()
           const x = e.clientX - rect.left
           const y = e.clientY - rect.top
           const centerX = rect.width / 2
           const centerY = rect.height / 2
-          const deltaX = (x - centerX) / centerX
-          const deltaY = (y - centerY) / centerY
+          let deltaX = (x - centerX) / (centerX * 1.8)
+          let deltaY = (y - centerY) / (centerY * 1.8)
 
-          card.style.transform = `perspective(800px) rotateX(${deltaY * -6}deg) rotateY(${deltaX * 6}deg) translateY(-2px)`
+          const isFirst = !card._tilt
+          const cooling = card._cooldown && (Date.now() - card._cooldown) < 200
+          if (!isFirst) {
+            const dz = cooling ? 0.10 : 0
+            if (Math.abs(deltaX - card._tilt.dx) < dz && Math.abs(deltaY - card._tilt.dy) < dz) return
+          }
+          card._tilt = { dx: deltaX, dy: deltaY }
+          card._cooldown = Date.now()
+
+          card.style.transition = isFirst ? 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)' : 'none'
+          card.style.transform = `perspective(800px) rotateX(${deltaY * -3}deg) rotateY(${deltaX * 3}deg) translateY(-2px)`
           card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`)
           card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`)
         })
 
         card.addEventListener('mouseleave', () => {
+          card._tilt = null
+          card._cooldown = null
           card.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
           card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px)'
         })
@@ -499,7 +514,6 @@ document.addEventListener('DOMContentLoaded', () => {
       delete nav.dataset.locked
       delete nav.dataset.dragged
       nav.classList.add('dragging')
-      document.body.style.cursor = 'grabbing'
 
       const startY = e.clientY
 
@@ -536,7 +550,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       function onUp() {
         nav.classList.remove('dragging')
-        document.body.style.cursor = ''
         document.removeEventListener('mousemove', onMove)
         document.removeEventListener('touchmove', onMove)
         document.removeEventListener('mouseup', onUp)
@@ -698,6 +711,43 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
+  // ---- Custom Cursor ----
+  function initCursor() {
+    if (window.matchMedia('(pointer: coarse)').matches) return
+
+    const ring = document.createElement('div')
+    ring.className = 'cursor-ring'
+    const dot = document.createElement('div')
+    dot.className = 'cursor-dot'
+    document.body.appendChild(ring)
+    document.body.appendChild(dot)
+
+    const ringX = gsap.quickTo(ring, 'x', { duration: 0.2, ease: 'power2.out' })
+    const ringY = gsap.quickTo(ring, 'y', { duration: 0.2, ease: 'power2.out' })
+    const dotX = gsap.quickTo(dot, 'x', { duration: 0.06, ease: 'none' })
+    const dotY = gsap.quickTo(dot, 'y', { duration: 0.06, ease: 'none' })
+
+    document.addEventListener('mousemove', (e) => {
+      const interactive = e.target.closest('a, button, .nav-dot')
+      ring.classList.toggle('cursor-hover', !!interactive)
+
+      const ringSize = ring.classList.contains('cursor-hover') ? 42 : 28
+      ringX(e.clientX - ringSize / 2)
+      ringY(e.clientY - ringSize / 2)
+      dotX(e.clientX - 3)
+      dotY(e.clientY - 3)
+    })
+
+    document.addEventListener('mouseleave', () => {
+      ring.style.opacity = '0'
+      dot.style.opacity = '0'
+    })
+    document.addEventListener('mouseenter', () => {
+      ring.style.opacity = '1'
+      dot.style.opacity = '1'
+    })
+  }
+
   // Execute all
   animateHeroTitle()
   initCardTilt()
@@ -707,6 +757,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initRipple()
   initTimelineProgress()
   animateHeaderButtons()
+  initCursor()
 })
 
 // Enhanced orb parallax with GSAP quickTo for smooth mouse follow

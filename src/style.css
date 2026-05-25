@@ -272,12 +272,10 @@ nav a:hover {
   border: none;
   border-radius: 0;
   box-shadow: none;
-  cursor: grab;
   user-select: none;
 }
 
 .section-nav:active {
-  cursor: grabbing;
 }
 
 .nav-track {
@@ -952,14 +950,59 @@ section[id] {
    Enhanced Animations & Interactions
    ============================================ */
 
-/* Navigation scroll state */
-nav.scrolled {
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--blur-amount));
-  -webkit-backdrop-filter: blur(var(--blur-amount));
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
-  transform: scale(0.95);
-  border-radius: 16px;
+/* Custom Cursor */
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  box-shadow: 0 0 20px var(--nav-glow), inset 0 0 8px var(--glass-highlight);
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-blue);
+  pointer-events: none;
+  z-index: 10000;
+  will-change: transform;
+  box-shadow: 0 0 8px var(--nav-glow);
+}
+
+.cursor-ring.cursor-hover {
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="light"] .cursor-ring {
+  background: rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 20px var(--nav-glow), inset 0 0 8px rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="light"] .cursor-ring.cursor-hover {
+  background: rgba(0, 0, 0, 0.18);
+  border-color: rgba(0, 0, 0, 0.35);
+}
+
+/* Hide system cursor on desktop */
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
 }
 
 /* Card lift on hover (for cards with clickable children) */
