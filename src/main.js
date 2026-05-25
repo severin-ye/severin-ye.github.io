@@ -1,6 +1,10 @@
 import './style.css'
 import { renderProjectsMarkup, updateProjectsLanguage } from './data/projectLayout.js'
 import { i18n } from './data/i18n.js'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 document.querySelector('#app').innerHTML = `
   <!-- Theme Toggle Button -->
@@ -349,42 +353,232 @@ document.querySelector('#app').innerHTML = `
 // Initialize i18n
 i18n.updatePage();
 
-// Smooth reveal animation on scroll
-const observerOptions = {
-  root: null,
-  rootMargin: '0px',
-  threshold: 0.1
-}
+// ============================================
+// Animation System (GSAP + ScrollTrigger)
+// ============================================
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1'
-      entry.target.style.transform = 'translateY(0)'
-    }
-  })
-}, observerOptions)
-
-// Add initial styles and observe elements
 document.addEventListener('DOMContentLoaded', () => {
-  const animatedElements = document.querySelectorAll('.bento-item, .stat-item, .contact-item')
-  animatedElements.forEach((el, index) => {
-    el.style.opacity = '0'
-    el.style.transform = 'translateY(20px)'
-    el.style.transition = 'opacity 0.6s ease ' + (index * 0.05) + 's, transform 0.6s ease ' + (index * 0.05) + 's'
-    observer.observe(el)
+
+  // ---- Hero Title Character Animation ----
+  function animateHeroTitle() {
+    const h1 = document.querySelector('.hero-text h1')
+    if (!h1) return
+    const text = h1.textContent.trim()
+    h1.textContent = ''
+    const chars = [...text]
+    chars.forEach((char, i) => {
+      const span = document.createElement('span')
+      span.textContent = char === ' ' ? '\u00A0' : char
+      span.className = 'char-animate'
+      span.style.animationDelay = `${0.3 + i * 0.05}s`
+      h1.appendChild(span)
+    })
+  }
+
+  // ---- Card 3D Tilt Effect (desktop only) ----
+  function initCardTilt() {
+    if (window.matchMedia('(pointer: coarse)').matches) return
+
+    const cards = document.querySelectorAll('.bento-item.glass, .project-card, .stat-item.glass')
+    cards.forEach(card => {
+      const children = Array.from(card.childNodes)
+      const inner = document.createElement('div')
+      inner.className = 'tilt-card-inner'
+      children.forEach(c => inner.appendChild(c))
+      card.appendChild(inner)
+
+      const gloss = document.createElement('div')
+      gloss.className = 'card-gloss'
+      card.appendChild(gloss)
+
+      card.classList.add('tilt-card')
+
+      card.addEventListener('mousemove', (e) => {
+        card.style.transition = 'transform 0s'
+        const rect = card.getBoundingClientRect()
+        const x = e.clientX - rect.left
+        const y = e.clientY - rect.top
+        const centerX = rect.width / 2
+        const centerY = rect.height / 2
+        const deltaX = (x - centerX) / centerX
+        const deltaY = (y - centerY) / centerY
+
+        card.style.transform = `perspective(800px) rotateX(${deltaY * -6}deg) rotateY(${deltaX * 6}deg) translateY(-2px)`
+        card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`)
+        card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`)
+      })
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transition = ''
+        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px)'
+      })
+    })
+  }
+
+  // ---- Navigation Scroll State ----
+  function initNavScroll() {
+    const nav = document.querySelector('nav')
+    if (!nav) return
+
+    const updateNav = () => {
+      if (window.scrollY > 80) nav.classList.add('scrolled')
+      else nav.classList.remove('scrolled')
+    }
+
+    window.addEventListener('scroll', updateNav, { passive: true })
+    updateNav()
+  }
+
+  // ---- ScrollTrigger Entrance Animations ----
+  function initScrollTriggers() {
+    // Section entrance (exclude hero)
+    document.querySelectorAll('section').forEach(section => {
+      if (section.classList.contains('hero')) return
+      gsap.fromTo(section,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: section, start: 'top 82%', toggleActions: 'play none none none' }
+        }
+      )
+    })
+
+    // Bento items — directional stagger
+    document.querySelectorAll('.bento-item').forEach((item, i) => {
+      const mod = i % 4
+      let fromX = 0, fromY = 30, fromScale = 1
+      if (mod === 0)      { fromX = -40; fromY = 20 }
+      else if (mod === 1) { fromX = 40; fromY = 20 }
+      else if (mod === 2) { fromY = 50; fromScale = 0.92 }
+      else                { fromY = 30; fromScale = 0.95 }
+
+      gsap.fromTo(item,
+        { opacity: 0, x: fromX, y: fromY, scale: fromScale },
+        {
+          opacity: 1, x: 0, y: 0, scale: 1, duration: 0.8, delay: i * 0.06, ease: 'power2.out',
+          scrollTrigger: { trigger: item.parentElement, start: 'top 85%', toggleActions: 'play none none none' }
+        }
+      )
+    })
+
+    // Project cards — bounce stagger
+    document.querySelectorAll('.project-card').forEach((card, i) => {
+      gsap.fromTo(card,
+        { opacity: 0, y: 60, scale: 0.92 },
+        {
+          opacity: 1, y: 0, scale: 1, duration: 0.8, delay: i * 0.08, ease: 'back.out(1.4)',
+          scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none none' }
+        }
+      )
+    })
+
+    // Stat items — elastic
+    document.querySelectorAll('.stat-item').forEach((item, i) => {
+      gsap.fromTo(item,
+        { opacity: 0, y: 40, scale: 0.8 },
+        {
+          opacity: 1, y: 0, scale: 1, duration: 0.7, delay: i * 0.12, ease: 'elastic.out(1, 0.5)',
+          scrollTrigger: { trigger: item.parentElement, start: 'top 88%', toggleActions: 'play none none none' }
+        }
+      )
+    })
+
+    // Contact items
+    document.querySelectorAll('.contact-item').forEach((item, i) => {
+      gsap.fromTo(item,
+        { opacity: 0, y: 25 },
+        {
+          opacity: 1, y: 0, duration: 0.5, delay: i * 0.1, ease: 'power3.out',
+          scrollTrigger: { trigger: item.parentElement, start: 'top 90%', toggleActions: 'play none none none' }
+        }
+      )
+    })
+
+    // Story cards
+    document.querySelectorAll('.story-card').forEach((card, i) => {
+      gsap.fromTo(card,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1, y: 0, duration: 0.7, delay: i * 0.15, ease: 'power3.out',
+          scrollTrigger: { trigger: card, start: 'top 85%', toggleActions: 'play none none none' }
+        }
+      )
+    })
+  }
+
+  // ---- Ripple Effect ----
+  function initRipple() {
+    document.querySelectorAll('.tag, .skill-item, .contact-item, .stat-item').forEach(el => {
+      el.classList.add('ripple-container')
+      el.addEventListener('click', function(e) {
+        const existing = el.querySelector('.ripple-effect')
+        if (existing) existing.remove()
+        const ripple = document.createElement('span')
+        ripple.className = 'ripple-effect'
+        const rect = el.getBoundingClientRect()
+        const size = Math.max(rect.width, rect.height) * 2
+        ripple.style.width = ripple.style.height = `${size}px`
+        ripple.style.left = `${e.clientX - rect.left - size / 2}px`
+        ripple.style.top = `${e.clientY - rect.top - size / 2}px`
+        el.appendChild(ripple)
+      })
+    })
+  }
+
+  // ---- Timeline Progress ----
+  function initTimelineProgress() {
+    document.querySelectorAll('.timeline').forEach(timeline => {
+      const progress = document.createElement('div')
+      progress.className = 'timeline-progress'
+      timeline.insertBefore(progress, timeline.firstChild)
+      gsap.fromTo(progress,
+        { scaleY: 0 },
+        {
+          scaleY: 1, ease: 'none',
+          scrollTrigger: { trigger: timeline, start: 'top 70%', end: 'bottom 30%', scrub: 0.5 }
+        }
+      )
+    })
+  }
+
+  // ---- Theme & Lang Buttons Entrance ----
+  function animateHeaderButtons() {
+    gsap.fromTo('.theme-toggle',
+      { opacity: 0, scale: 0.5, rotation: -30 },
+      { opacity: 1, scale: 1, rotation: 0, duration: 0.6, delay: 0.5, ease: 'back.out(1.7)' }
+    )
+    gsap.fromTo('.lang-toggle',
+      { opacity: 0, scale: 0.5, rotation: 30 },
+      { opacity: 1, scale: 1, rotation: 0, duration: 0.6, delay: 0.6, ease: 'back.out(1.7)' }
+    )
+  }
+
+  // Execute all
+  animateHeroTitle()
+  initCardTilt()
+  initNavScroll()
+  initScrollTriggers()
+  initRipple()
+  initTimelineProgress()
+  animateHeaderButtons()
+})
+
+// Enhanced orb parallax with GSAP quickTo for smooth mouse follow
+const orbQuickTos = []
+document.querySelectorAll('.orb').forEach((orb, i) => {
+  orbQuickTos.push({
+    x: gsap.quickTo(orb, 'x', { duration: 0.6, ease: 'power2.out' }),
+    y: gsap.quickTo(orb, 'y', { duration: 0.6, ease: 'power2.out' })
   })
 })
 
-// Parallax effect for orbs
 document.addEventListener('mousemove', (e) => {
-  const orbs = document.querySelectorAll('.orb')
   const x = e.clientX / window.innerWidth
   const y = e.clientY / window.innerHeight
-  
-  orbs.forEach((orb, index) => {
-    const speed = (index + 1) * 20
-    orb.style.transform = 'translate(' + (x * speed) + 'px, ' + (y * speed) + 'px)'
+  orbQuickTos.forEach((qt, i) => {
+    const speed = (i + 1) * 28
+    qt.x((x - 0.5) * speed)
+    qt.y((y - 0.5) * speed)
   })
 })
 
