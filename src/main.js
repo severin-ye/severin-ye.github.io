@@ -3,8 +3,9 @@ import { renderProjectsMarkup, updateProjectsLanguage } from './data/projectLayo
 import { i18n } from './data/i18n.js'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
 document.querySelector('#app').innerHTML = `
   <!-- Theme Toggle Button -->
@@ -24,13 +25,24 @@ document.querySelector('#app').innerHTML = `
     <div class="orb orb-3"></div>
   </div>
 
-  <!-- Navigation -->
-  <nav class="glass">
-    <a href="#about" data-i18n="nav.about">About</a>
-    <a href="#projects" data-i18n="nav.projects">Projects</a>
-    <a href="#stories" data-i18n="nav.stories">Stories</a>
-    <a href="#skills" data-i18n="nav.skills">Skills</a>
-    <a href="#contact" data-i18n="nav.contact">Contact</a>
+  <!-- Section Side Navigation -->
+  <nav class="section-nav">
+    <div class="nav-track"></div>
+    <button class="nav-dot" data-target="about" aria-label="About">
+      <span class="nav-label" data-i18n="nav.about">About</span>
+    </button>
+    <button class="nav-dot" data-target="projects" aria-label="Projects">
+      <span class="nav-label" data-i18n="nav.projects">Projects</span>
+    </button>
+    <button class="nav-dot" data-target="stories" aria-label="Stories">
+      <span class="nav-label" data-i18n="nav.stories">Stories</span>
+    </button>
+    <button class="nav-dot" data-target="skills" aria-label="Skills">
+      <span class="nav-label" data-i18n="nav.skills">Skills</span>
+    </button>
+    <button class="nav-dot" data-target="contact" aria-label="Contact">
+      <span class="nav-label" data-i18n="nav.contact">Contact</span>
+    </button>
   </nav>
 
   <!-- Hero Section -->
@@ -428,18 +440,121 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  // ---- Navigation Scroll State ----
-  function initNavScroll() {
-    const nav = document.querySelector('nav')
-    if (!nav) return
+  // ---- Section Side Navigation ----
+  function initSectionNav() {
+    const nav = document.querySelector('.section-nav')
+    const dots = document.querySelectorAll('.nav-dot')
+    const sections = document.querySelectorAll('section[id]')
+    if (!nav || dots.length === 0) return
 
-    const updateNav = () => {
-      if (window.scrollY > 80) nav.classList.add('scrolled')
-      else nav.classList.remove('scrolled')
+    // Active section tracking via scroll
+    function updateActiveDot() {
+      // If locked to a target (click-to-jump in progress), show that dot
+      if (nav.dataset.locked) {
+        dots.forEach(d => d.classList.remove('active'))
+        const locked = nav.querySelector(`[data-target="${nav.dataset.locked}"]`)
+        if (locked) locked.classList.add('active')
+        return
+      }
+      // Normal scroll-based tracking
+      let current = sections[0].id
+      const viewTop = window.scrollY + 120
+      sections.forEach(s => {
+        if (s.offsetTop <= viewTop) current = s.id
+      })
+      dots.forEach(d => d.classList.remove('active'))
+      const dot = nav.querySelector(`[data-target="${current}"]`)
+      if (dot) dot.classList.add('active')
     }
 
-    window.addEventListener('scroll', updateNav, { passive: true })
-    updateNav()
+    // Unlock after scrolling settles (click-to-jump completed)
+    let scrollTimer = null
+    window.addEventListener('scroll', () => {
+      if (!nav.dataset.locked) return
+      clearTimeout(scrollTimer)
+      scrollTimer = setTimeout(() => {
+        delete nav.dataset.locked
+        updateActiveDot()
+      }, 400)
+    }, { passive: true })
+
+    window.addEventListener('scroll', updateActiveDot, { passive: true })
+    updateActiveDot()
+
+    // Click-to-jump — lock active dot immediately
+    dots.forEach(dot => {
+      dot.addEventListener('click', (e) => {
+        if (nav.dataset.dragged === 'true') return
+        const targetId = dot.dataset.target
+        nav.dataset.locked = targetId
+        updateActiveDot()
+        const target = document.getElementById(targetId)
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      })
+    })
+
+    // Drag to scrub — snap to nearest dot's section
+    nav.addEventListener('mousedown', (e) => {
+      e.preventDefault()
+      delete nav.dataset.locked
+      delete nav.dataset.dragged
+      nav.classList.add('dragging')
+      document.body.style.cursor = 'grabbing'
+
+      const startY = e.clientY
+
+      // Pre-compute each dot's section scroll position (clamped)
+      const maxScroll = document.body.scrollHeight - window.innerHeight
+      const targets = Array.from(dots).map(d => {
+        const s = document.getElementById(d.dataset.target)
+        return { dot: d, top: s ? Math.min(s.getBoundingClientRect().top + window.scrollY, maxScroll) : 0 }
+      })
+
+      let moved = false
+      let prevTarget = null
+
+      function onMove(ev) {
+        const y = ev.touches ? ev.touches[0].clientY : ev.clientY
+        if (Math.abs(y - startY) > 5) moved = true
+        if (moved) nav.dataset.dragged = 'true'
+
+        // Find two nearest dots for interpolation
+        let best = targets[0]
+        let bestDist = Math.abs(y - best.dot.getBoundingClientRect().top - 18)
+
+        for (let i = 1; i < targets.length; i++) {
+          const center = targets[i].dot.getBoundingClientRect().top + 18
+          const dist = Math.abs(y - center)
+          if (dist < bestDist) { bestDist = dist; best = targets[i] }
+        }
+
+        if (best !== prevTarget) {
+          prevTarget = best
+          window.scrollTo(0, best.top)
+        }
+      }
+
+      function onUp() {
+        nav.classList.remove('dragging')
+        document.body.style.cursor = ''
+        document.removeEventListener('mousemove', onMove)
+        document.removeEventListener('touchmove', onMove)
+        document.removeEventListener('mouseup', onUp)
+        document.removeEventListener('touchend', onUp)
+        setTimeout(() => delete nav.dataset.dragged, 100)
+      }
+
+      document.addEventListener('mousemove', onMove)
+      document.addEventListener('touchmove', onMove, { passive: true })
+      document.addEventListener('mouseup', onUp)
+      document.addEventListener('touchend', onUp)
+    })
+
+    nav.addEventListener('touchstart', (e) => {
+      const t = e.touches[0]
+      const me = new MouseEvent('mousedown', { clientX: t.clientX, clientY: t.clientY })
+      nav.dispatchEvent(me)
+    }, { passive: true })
   }
 
   // ---- ScrollTrigger Entrance Animations ----
@@ -566,11 +681,29 @@ document.addEventListener('DOMContentLoaded', () => {
     )
   }
 
+  // ---- Scroll-away: subtle upward suction at viewport edge ----
+  function initScrollAway() {
+    document.querySelectorAll('section').forEach(section => {
+      if (section.classList.contains('hero')) return
+      gsap.to(section, {
+        y: -50,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 0%',
+          end: 'top -40%',
+          scrub: 0.3
+        }
+      })
+    })
+  }
+
   // Execute all
   animateHeroTitle()
   initCardTilt()
-  initNavScroll()
+  initSectionNav()
   initScrollTriggers()
+  initScrollAway()
   initRipple()
   initTimelineProgress()
   animateHeaderButtons()
