@@ -385,8 +385,6 @@ section {
   background: linear-gradient(90deg, transparent, var(--glass-highlight), transparent);
   opacity: 0;
   transition: opacity 0.3s;
-  z-index: 3;
-  pointer-events: none;
 }
 
 .bento-item:hover::before {
@@ -1027,14 +1025,13 @@ nav.scrolled {
   border-radius: 16px;
 }
 
-/* Card 3D Tilt */
+/* Card lift on hover (for cards with clickable children) */
 .tilt-card {
-  transform-style: preserve-3d;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s ease;
 }
 
 .tilt-card-inner {
-  transform-style: preserve-3d;
   position: relative;
   z-index: 2;
 }
@@ -1057,7 +1054,7 @@ nav.scrolled {
   z-index: 1;
 }
 
-.tilt-card:hover .card-gloss {
+.tilt-3d:hover .card-gloss {
   opacity: 1;
 }
 
@@ -1085,13 +1082,6 @@ nav.scrolled {
     filter: blur(0px);
   }
 }
-
-/* Stagger reveal variants for bento items */
-.reveal-left  { --reveal-x: -50px; --reveal-y: 0px; }
-.reveal-right { --reveal-x: 50px; --reveal-y: 0px; }
-.reveal-up    { --reveal-x: 0px; --reveal-y: 40px; }
-.reveal-scale { --reveal-x: 0px; --reveal-y: 0px; }
-.reveal-scale .tilt-card-inner { transform-origin: center; }
 
 /* Ripple effect */
 .ripple-container {
@@ -1166,7 +1156,6 @@ nav.scrolled {
 /* Enhanced orb behavior — remove CSS animation conflict with JS parallax */
 .orb {
   animation: none !important;
-  will-change: transform;
 }
 
 @keyframes orbPulse {
@@ -1228,6 +1217,23 @@ nav a:hover::after {
   box-shadow: 0 0 20px rgba(48, 209, 88, 0.2);
 }
 
+/* No-tilt quote block glow */
+.no-tilt {
+  transition: box-shadow 0.5s ease, border-color 0.3s ease;
+}
+
+.no-tilt.glow-blue:hover {
+  box-shadow: 0 0 40px rgba(0, 122, 255, 0.12),
+              0 0 80px rgba(0, 122, 255, 0.06);
+  border-color: rgba(0, 122, 255, 0.25);
+}
+
+.no-tilt.glow-gold:hover {
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0.12),
+              0 0 80px rgba(255, 215, 0, 0.06);
+  border-color: rgba(255, 215, 0, 0.25);
+}
+
 /* Theme/Lang toggle enhanced */
 .theme-toggle,
 .lang-toggle {
@@ -1235,21 +1241,6 @@ nav a:hover::after {
               background-color 0.3s ease,
               border-color 0.3s ease,
               box-shadow 0.3s ease;
-}
-
-/* Section entrance animation (set by GSAP) */
-section {
-  will-change: transform, opacity;
-}
-
-/* View transitions - optional page feel */
-.bento-item,
-.project-card,
-.stat-item,
-.contact-item,
-.skill-item,
-.story-card {
-  will-change: transform, opacity;
 }
 
 /* Section divider enhancement */
@@ -1265,23 +1256,15 @@ section {
   border-radius: 1px;
 }
 
-/* Cursor glow on glass cards */
-.glass.tilt-card {
-  transition: box-shadow 0.4s ease, border-color 0.3s ease;
-}
+/* Reveal variants */
 
-.glass.tilt-card:hover {
-  border-color: rgba(255, 255, 255, 0.18);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-}
-
-/* Mobile reset for tilt */
+/* Mobile reset */
 @media (max-width: 768px) {
-  .tilt-card {
+  .tilt-card,
+  .tilt-3d {
     transform: none !important;
-    transform-style: flat;
   }
-  
+
   .card-gloss {
     display: none;
   }
@@ -1289,13 +1272,5 @@ section {
   nav.scrolled {
     transform: scale(0.97);
     border-radius: 14px;
-  }
-  
-  .reveal-left,
-  .reveal-right,
-  .reveal-up,
-  .reveal-scale {
-    --reveal-x: 0px;
-    --reveal-y: 20px;
   }
 }

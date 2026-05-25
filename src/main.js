@@ -120,7 +120,7 @@ document.querySelector('#app').innerHTML = `
     </div>
     
     <!-- Leadership Quote -->
-    <div class="bento-item glass span-12 quote-block" style="margin-top: var(--space-lg);" data-i18n="about.quote">
+    <div class="bento-item glass span-12 quote-block no-tilt glow-blue" style="margin-top: var(--space-lg);" data-i18n="about.quote">
       Opportunities exist where the concepts have not yet been invented.
       <span class="author" data-i18n="about.quote.author">— My philosophy on leadership</span>
     </div>
@@ -334,7 +334,7 @@ document.querySelector('#app').innerHTML = `
       </a>
     </div>
     
-    <div class="bento-item glass span-12" style="margin-top: var(--space-xl); text-align: center; padding: var(--space-xl);">
+    <div class="bento-item glass span-12 no-tilt glow-gold" style="margin-top: var(--space-xl); text-align: center; padding: var(--space-xl);">
       <p style="font-size: 1.1rem; margin-bottom: var(--space-md);" data-i18n="contact.quote1">
         I don't aim to be the smartest person in the room —<br>
         <strong data-i18n="contact.quote2">I aim to be the one who dares to act.</strong>
@@ -375,11 +375,11 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  // ---- Card 3D Tilt Effect (desktop only) ----
+  // ---- Card Hover Effects: 3D Tilt for display cards, lift for cards with links ----
   function initCardTilt() {
     if (window.matchMedia('(pointer: coarse)').matches) return
 
-    const cards = document.querySelectorAll('.bento-item.glass, .project-card, .stat-item.glass')
+    const cards = document.querySelectorAll('.bento-item.glass:not(.no-tilt), .project-card, .stat-item.glass')
     cards.forEach(card => {
       const children = Array.from(card.childNodes)
       const inner = document.createElement('div')
@@ -387,31 +387,44 @@ document.addEventListener('DOMContentLoaded', () => {
       children.forEach(c => inner.appendChild(c))
       card.appendChild(inner)
 
-      const gloss = document.createElement('div')
-      gloss.className = 'card-gloss'
-      card.appendChild(gloss)
+      const hasInteractive = card.querySelector('a, button, .paper-link, .github-link')
 
-      card.classList.add('tilt-card')
+      if (hasInteractive) {
+        card.classList.add('tilt-card')
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'translateY(-6px)'
+          card.style.boxShadow = '0 12px 40px rgba(0,0,0,0.3)'
+        })
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'translateY(0px)'
+          card.style.boxShadow = ''
+        })
+      } else {
+        card.classList.add('tilt-3d')
+        const gloss = document.createElement('div')
+        gloss.className = 'card-gloss'
+        card.appendChild(gloss)
 
-      card.addEventListener('mousemove', (e) => {
-        card.style.transition = 'transform 0s'
-        const rect = card.getBoundingClientRect()
-        const x = e.clientX - rect.left
-        const y = e.clientY - rect.top
-        const centerX = rect.width / 2
-        const centerY = rect.height / 2
-        const deltaX = (x - centerX) / centerX
-        const deltaY = (y - centerY) / centerY
+        card.addEventListener('mousemove', (e) => {
+          card.style.transition = 'none'
+          const rect = card.getBoundingClientRect()
+          const x = e.clientX - rect.left
+          const y = e.clientY - rect.top
+          const centerX = rect.width / 2
+          const centerY = rect.height / 2
+          const deltaX = (x - centerX) / centerX
+          const deltaY = (y - centerY) / centerY
 
-        card.style.transform = `perspective(800px) rotateX(${deltaY * -6}deg) rotateY(${deltaX * 6}deg) translateY(-2px)`
-        card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`)
-        card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`)
-      })
+          card.style.transform = `perspective(800px) rotateX(${deltaY * -6}deg) rotateY(${deltaX * 6}deg) translateY(-2px)`
+          card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`)
+          card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`)
+        })
 
-      card.addEventListener('mouseleave', () => {
-        card.style.transition = ''
-        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px)'
-      })
+        card.addEventListener('mouseleave', () => {
+          card.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
+          card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px)'
+        })
+      }
     })
   }
 
@@ -435,10 +448,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('section').forEach(section => {
       if (section.classList.contains('hero')) return
       gsap.fromTo(section,
-        { opacity: 0, y: 50 },
+        { opacity: 0, y: 30 },
         {
-          opacity: 1, y: 0, duration: 1, ease: 'power3.out',
-          scrollTrigger: { trigger: section, start: 'top 82%', toggleActions: 'play none none none' }
+          opacity: 1, y: 0, duration: 0.45, ease: 'power1.out',
+          scrollTrigger: { trigger: section, start: 'top bottom-=80', toggleActions: 'play none none none' }
         }
       )
     })
@@ -446,39 +459,39 @@ document.addEventListener('DOMContentLoaded', () => {
     // Bento items — directional stagger
     document.querySelectorAll('.bento-item').forEach((item, i) => {
       const mod = i % 4
-      let fromX = 0, fromY = 30, fromScale = 1
-      if (mod === 0)      { fromX = -40; fromY = 20 }
-      else if (mod === 1) { fromX = 40; fromY = 20 }
-      else if (mod === 2) { fromY = 50; fromScale = 0.92 }
-      else                { fromY = 30; fromScale = 0.95 }
+      let fromX = 0, fromY = 20, fromScale = 1
+      if (mod === 0)      { fromX = -30; fromY = 15 }
+      else if (mod === 1) { fromX = 30; fromY = 15 }
+      else if (mod === 2) { fromY = 35; fromScale = 0.92 }
+      else                { fromY = 20; fromScale = 0.95 }
 
       gsap.fromTo(item,
         { opacity: 0, x: fromX, y: fromY, scale: fromScale },
         {
-          opacity: 1, x: 0, y: 0, scale: 1, duration: 0.8, delay: i * 0.06, ease: 'power2.out',
-          scrollTrigger: { trigger: item.parentElement, start: 'top 85%', toggleActions: 'play none none none' }
+          opacity: 1, x: 0, y: 0, scale: 1, duration: 0.45, delay: i * 0.03, ease: 'power1.out',
+          scrollTrigger: { trigger: item, start: 'top bottom-=60', toggleActions: 'play none none none' }
         }
       )
     })
 
-    // Project cards — bounce stagger
+    // Project cards — snap with slight overshoot
     document.querySelectorAll('.project-card').forEach((card, i) => {
       gsap.fromTo(card,
-        { opacity: 0, y: 60, scale: 0.92 },
+        { opacity: 0, y: 40, scale: 0.94 },
         {
-          opacity: 1, y: 0, scale: 1, duration: 0.8, delay: i * 0.08, ease: 'back.out(1.4)',
-          scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none none' }
+          opacity: 1, y: 0, scale: 1, duration: 0.45, delay: i * 0.05, ease: 'power1.out',
+          scrollTrigger: { trigger: card, start: 'top bottom-=60', toggleActions: 'play none none none' }
         }
       )
     })
 
-    // Stat items — elastic
+    // Stat items — quick elastic
     document.querySelectorAll('.stat-item').forEach((item, i) => {
       gsap.fromTo(item,
-        { opacity: 0, y: 40, scale: 0.8 },
+        { opacity: 0, y: 30, scale: 0.85 },
         {
-          opacity: 1, y: 0, scale: 1, duration: 0.7, delay: i * 0.12, ease: 'elastic.out(1, 0.5)',
-          scrollTrigger: { trigger: item.parentElement, start: 'top 88%', toggleActions: 'play none none none' }
+          opacity: 1, y: 0, scale: 1, duration: 0.35, delay: i * 0.06, ease: 'back.out(1.2)',
+          scrollTrigger: { trigger: item, start: 'top bottom-=40', toggleActions: 'play none none none' }
         }
       )
     })
@@ -486,10 +499,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Contact items
     document.querySelectorAll('.contact-item').forEach((item, i) => {
       gsap.fromTo(item,
-        { opacity: 0, y: 25 },
+        { opacity: 0, y: 20 },
         {
-          opacity: 1, y: 0, duration: 0.5, delay: i * 0.1, ease: 'power3.out',
-          scrollTrigger: { trigger: item.parentElement, start: 'top 90%', toggleActions: 'play none none none' }
+          opacity: 1, y: 0, duration: 0.3, delay: i * 0.06, ease: 'power1.out',
+          scrollTrigger: { trigger: item, start: 'top bottom-=40', toggleActions: 'play none none none' }
         }
       )
     })
@@ -497,10 +510,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Story cards
     document.querySelectorAll('.story-card').forEach((card, i) => {
       gsap.fromTo(card,
-        { opacity: 0, y: 40 },
+        { opacity: 0, y: 30 },
         {
-          opacity: 1, y: 0, duration: 0.7, delay: i * 0.15, ease: 'power3.out',
-          scrollTrigger: { trigger: card, start: 'top 85%', toggleActions: 'play none none none' }
+          opacity: 1, y: 0, duration: 0.4, delay: i * 0.08, ease: 'power1.out',
+          scrollTrigger: { trigger: card, start: 'top bottom-=60', toggleActions: 'play none none none' }
         }
       )
     })
