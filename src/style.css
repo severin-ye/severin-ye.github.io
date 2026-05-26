@@ -859,7 +859,7 @@ section[id] {
 /* Mobile language toggle position */
 @media (max-width: 768px) {
   .lang-toggle {
-    top: var(--space-md);
+    top: 52px;
     right: calc(var(--space-md) + 48px);
     width: 40px;
     height: 40px;
@@ -938,7 +938,7 @@ section[id] {
 /* Mobile theme toggle position */
 @media (max-width: 768px) {
   .theme-toggle {
-    top: var(--space-md);
+    top: 52px;
     right: var(--space-md);
     width: 40px;
     height: 40px;
@@ -1248,9 +1248,86 @@ nav a:hover::after {
   .card-gloss {
     display: none;
   }
-  
+
+  /* Hide side nav — overlaps content on narrow portrait screens */
+  .section-nav {
+    display: none;
+  }
+
+  /* Top nav: compact, avoid collision with theme/lang toggles */
+  nav {
+    top: var(--space-sm);
+    padding: var(--space-xs) var(--space-sm);
+    gap: var(--space-sm);
+    font-size: 0.75rem;
+    max-width: calc(100vw - 120px);
+  }
+
   nav.scrolled {
     transform: scale(0.97);
     border-radius: 14px;
+  }
+
+  /* Hero: tighter padding, stack layout */
+  .hero {
+    min-height: auto;
+    padding: calc(var(--space-3xl) + 40px) 0 var(--space-xl);
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  /* Smaller orbs for mobile */
+  .orb-1 { width: 300px; height: 300px; }
+  .orb-2 { width: 250px; height: 250px; }
+  .orb-3 { width: 200px; height: 200px; }
+
+  /* Section spacing */
+  section {
+    padding: var(--space-xl) 0;
+  }
+
+  /* App container tighter padding */
+  #app {
+    padding: var(--space-md);
+  }
+
+  /* Contact bottom padding — 50vh is excessive on mobile */
+  #contact {
+    padding-bottom: var(--space-3xl);
+  }
+
+  /* Project cards: shorter min-height */
+  .project-card {
+    min-height: 200px;
+  }
+
+  /* Bento items: tighter padding, full width */
+  .bento-item {
+    padding: var(--space-md);
+    grid-column: span 12 !important;
+  }
+
+  /* Project rows: stack on mobile */
+  .project-row {
+    grid-template-columns: 1fr;
+  }
+
+  .project-span-12,
+  .project-span-6,
+  .project-span-4 {
+    grid-column: span 1;
+  }
+
+  /* Quote block: smaller quote mark */
+  .quote-block {
+    padding: var(--space-lg);
+    font-size: 1rem;
+  }
+
+  .quote-block::before {
+    font-size: 3rem;
   }
 }
