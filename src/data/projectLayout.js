@@ -4,7 +4,7 @@ const projectData = [
     categoryZh: '🔬 进行中的研究',
     year: '2025',
     githubUrl: 'https://github.com/severin-ye/CuraView',
-    paperUrl: '/papers/CuraView.pdf',
+    paperUrl: '/papers/CuraView_KBS_Submission_Manuscript.pdf',
     title: 'CuraView - Medical AI Hallucination Detection & Correction',
     titleZh: 'CuraView - 医学AI幻觉检测与修正',
     description: 'A multi-agent research platform for detecting, classifying, and correcting hallucinations in medical LLMs. Built with GraphRAG knowledge graphs, Qwen-30B models, and MS-Swift fine-tuning framework. Processed 46,998 MIMIC-IV patient records with automated error synthesis and intelligent correction.',
