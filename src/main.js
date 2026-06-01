@@ -724,8 +724,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const ringX = gsap.quickTo(ring, 'x', { duration: 0.12, ease: 'power2.out' })
     const ringY = gsap.quickTo(ring, 'y', { duration: 0.12, ease: 'power2.out' })
-    const dotX = gsap.quickTo(dot, 'x', { duration: 0.06, ease: 'none' })
-    const dotY = gsap.quickTo(dot, 'y', { duration: 0.06, ease: 'none' })
+    const dotX = gsap.quickTo(dot, 'x', { duration: 0.04, ease: 'none' })
+    const dotY = gsap.quickTo(dot, 'y', { duration: 0.04, ease: 'none' })
 
     document.addEventListener('mousemove', (e) => {
       const interactive = e.target.closest('a, button, .nav-dot')
