@@ -101,3 +101,10 @@ Use `data-i18n` attributes for translatable text.
 4. Keep `backdrop-filter: blur()` for glass effect
 5. Dark/light toggle is a core feature, don't remove
 6. `output/` and `personal/` are gitignored — don't commit generated PDFs or personal docs
+
+## AI 环境清单
+
+`Plugins, MCP, Skills.md` 记录了当前已安装的所有插件、MCP 服务器和代理技能。
+
+- 安装/卸载任何组件后必须同步更新该文件
+- 需要了解环境能力时直接读取该文件
