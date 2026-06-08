@@ -764,8 +764,8 @@ document.addEventListener('DOMContentLoaded', () => {
 const orbQuickTos = []
 document.querySelectorAll('.orb').forEach((orb, i) => {
   orbQuickTos.push({
-    x: gsap.quickTo(orb, 'x', { duration: 0.6, ease: 'power2.out' }),
-    y: gsap.quickTo(orb, 'y', { duration: 0.6, ease: 'power2.out' })
+    x: gsap.quickTo(orb, 'x', { duration: 0, ease: 'power2.out' }),
+    y: gsap.quickTo(orb, 'y', { duration: 0, ease: 'power2.out' })
   })
 })
 
