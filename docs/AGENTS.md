@@ -49,18 +49,52 @@ docs/
 - `.glass` class for frosted glass cards (`backdrop-filter: blur()`)
 - Dark (default) + Light mode via CSS custom properties
 - Theme toggle in top-right corner, persists to localStorage
-- Orb gradient background with parallax on mouse move
+- Orb gradient background with parallax on mouse move (gsap.quickTo, duration: 0 for instant follow)
+
+### Design Philosophy
+
+**Dark Mode**: Deep space aesthetic. Near-black backgrounds (`#0a0a0f`) with subtle glass reflections. High contrast white text. Colored orbs provide ambient glow.
+
+**Light Mode**: Warm ivory aesthetic, inspired by Anthropic/Claude's design language. Key principles:
+- Background uses warm ivory (`#F7F3EE`) and cream (`#EDE8E0`), never pure white
+- Glass cards are white semi-transparent (`rgba(255,255,255,0.65)`) to "float" above the warm background
+- Soft box-shadow (`--glass-shadow`) creates depth without harsh edges
+- Text contrast is slightly reduced (0.87/0.56/0.38) for comfortable reading
+- Selection color uses Claude's signature terracotta (`rgba(204,120,92,0.35)`)
+- Orb colors are desaturated and lowered opacity to avoid visual noise
 
 ### CSS Variables (key ones)
 
 ```css
---glass-bg, --glass-border, --glass-highlight
---accent-blue, --accent-purple, --accent-green, --accent-orange, --accent-pink, --accent-red
---text-primary, --text-secondary, --text-tertiary
+/* Glass system */
+--glass-bg, --glass-border, --glass-highlight, --glass-shadow
 --blur-amount: 40px
+
+/* Backgrounds */
+--bg-primary, --bg-secondary
+
+/* Text */
+--text-primary, --text-secondary, --text-tertiary
+
+/* Accents */
+--accent-blue, --accent-purple, --accent-green, --accent-orange, --accent-pink, --accent-red
+
+/* Orbs */
+--orb-purple, --orb-blue, --orb-green, --orb-opacity
 ```
 
 When editing styles: use existing variables, preserve dark/light theme, maintain glass consistency.
+
+### Light Mode Color Reference
+
+| Token | Value | Purpose |
+|-------|-------|---------|
+| `--bg-primary` | `#F7F3EE` | Page background, warm ivory |
+| `--bg-secondary` | `#EDE8E0` | Section backgrounds, deeper cream |
+| `--glass-bg` | `rgba(255,255,255,0.65)` | Card fill, white over ivory |
+| `--glass-shadow` | `0 8px 32px rgba(0,0,0,0.06)` | Card depth |
+| `--glass-border` | `rgba(0,0,0,0.08)` | Subtle card edges |
+| `::selection` | `rgba(204,120,92,0.35)` | Terracotta text selection |
 
 ## Code Conventions
 
@@ -101,3 +135,5 @@ Use `data-i18n` attributes for translatable text.
 4. Keep `backdrop-filter: blur()` for glass effect
 5. Dark/light toggle is a core feature, don't remove
 6. `output/` and `personal/` are gitignored — don't commit generated PDFs or personal docs
+7. Light mode uses warm ivory tones — never use pure white (`#fff`) or cool grays (`#f5f5f7`) for backgrounds
+8. When starting vite programmatically, use detached process (`Start-Process -PassThru`) to avoid timeout killing the server

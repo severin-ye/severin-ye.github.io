@@ -13,6 +13,7 @@
   --glass-bg: rgba(255, 255, 255, 0.03);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-highlight: rgba(255, 255, 255, 0.12);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2);
   
   --text-primary: rgba(255, 255, 255, 0.95);
   --text-secondary: rgba(255, 255, 255, 0.65);
@@ -60,11 +61,12 @@
    Light Theme
    ============================================ */
 [data-theme="light"] {
-  --bg-primary: #FAF8F5;
-  --bg-secondary: #F5F0E8;
-  --glass-bg: rgba(255, 253, 248, 0.72);
-  --glass-border: rgba(0, 0, 0, 0.06);
-  --glass-highlight: rgba(255, 253, 248, 0.92);
+  --bg-primary: #F7F3EE;
+  --bg-secondary: #EDE8E0;
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-highlight: rgba(255, 255, 255, 0.85);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
   
   --text-primary: rgba(0, 0, 0, 0.87);
   --text-secondary: rgba(0, 0, 0, 0.56);
@@ -95,11 +97,12 @@
 /* Auto detect system preference */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
-    --bg-primary: #FAF8F5;
-    --bg-secondary: #F5F0E8;
-    --glass-bg: rgba(255, 253, 248, 0.72);
-    --glass-border: rgba(0, 0, 0, 0.06);
-    --glass-highlight: rgba(255, 253, 248, 0.92);
+    --bg-primary: #F7F3EE;
+    --bg-secondary: #EDE8E0;
+    --glass-bg: rgba(255, 255, 255, 0.65);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --glass-highlight: rgba(255, 255, 255, 0.85);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
     
     --text-primary: rgba(0, 0, 0, 0.87);
     --text-secondary: rgba(0, 0, 0, 0.56);
@@ -213,7 +216,8 @@ body {
   -webkit-backdrop-filter: blur(var(--blur-amount));
   border: 1px solid var(--glass-border);
   border-radius: 20px;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  box-shadow: var(--glass-shadow);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .glass:hover {
@@ -913,12 +917,12 @@ section[id] {
 /* Light mode specific adjustments */
 [data-theme="light"] .glass:hover,
 :root:not([data-theme="dark"]) .glass:hover {
-  background: rgba(255, 253, 248, 0.88);
+  background: rgba(255, 255, 255, 0.82);
 }
 
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) .glass:hover {
-    background: rgba(255, 253, 248, 0.88);
+    background: rgba(255, 255, 255, 0.82);
   }
 }
 
