@@ -10,18 +10,18 @@
 
 ## 安装位置
 ```
-C:\Users\6seve\Codelib-severin\mcp-opencode-sync\
+C:\Users\6seve\Codelib-severin\2_业务项目\mcp-opencode-sync\
 ```
 
 ## 相关路径
 
 | 路径 | 用途 |
 |------|------|
-| `mcp-opencode-sync/src/index.ts` | MCP 服务器源码 |
-| `mcp-opencode-sync/scripts/export.sh` | Linux/Mac/WSL 导出脚本 |
-| `mcp-opencode-sync/scripts/export.ps1` | Windows 导出脚本 |
-| `mcp-opencode-sync/scripts/import.sh` | Linux/Mac/WSL 导入脚本 |
-| `mcp-opencode-sync/scripts/import.ps1` | Windows 导入脚本 |
+| `2_业务项目/mcp-opencode-sync/src/index.ts` | MCP 服务器源码 |
+| `2_业务项目/mcp-opencode-sync/scripts/export.sh` | Linux/Mac/WSL 导出脚本 |
+| `2_业务项目/mcp-opencode-sync/scripts/export.ps1` | Windows 导出脚本 |
+| `2_业务项目/mcp-opencode-sync/scripts/import.sh` | Linux/Mac/WSL 导入脚本 |
+| `2_业务项目/mcp-opencode-sync/scripts/import.ps1` | Windows 导入脚本 |
 | `workspace-sync-state.json` | 导出的状态文件 |
 
 ## 安装步骤
@@ -29,7 +29,7 @@ C:\Users\6seve\Codelib-severin\mcp-opencode-sync\
 ### 1. 安装依赖
 
 ```bash
-cd C:\Users\6seve\Codelib-severin\mcp-opencode-sync
+cd C:\Users\6seve\Codelib-severin\2_业务项目\mcp-opencode-sync
 npm install
 ```
 
@@ -48,7 +48,7 @@ npm run build
   "mcp": {
     "opencode-sync": {
       "type": "local",
-      "command": ["node", "C:/Users/6seve/Codelib-severin/mcp-opencode-sync/dist/index.js"],
+      "command": ["node", "C:/Users/6seve/Codelib-severin/2_业务项目/mcp-opencode-sync/dist/index.js"],
       "enabled": true
     }
   }
@@ -62,13 +62,13 @@ npm run build
 ```powershell
 # Windows
 cd C:\Users\6seve\Codelib-severin
-.\mcp-opencode-sync\scripts\export.ps1 -CommitMessage "迁移到新设备"
+.\2_业务项目\mcp-opencode-sync\scripts\export.ps1 -CommitMessage "迁移到新设备"
 ```
 
 ```bash
 # Linux/Mac/WSL
 cd ~/Codelib-severin
-./mcp-opencode-sync/scripts/export.sh "迁移到新设备"
+./2_业务项目/mcp-opencode-sync/scripts/export.sh "迁移到新设备"
 ```
 
 ### 在新系统导入
@@ -83,13 +83,13 @@ gh auth login
 
 # 3. 导入状态
 # Linux/Mac/WSL
-./mcp-opencode-sync/scripts/import.sh
+./2_业务项目/mcp-opencode-sync/scripts/import.sh
 
 # Windows
-.\mcp-opencode-sync\scripts\import.ps1
+.\2_业务项目\mcp-opencode-sync\scripts\import.ps1
 
 # 或者先预览
-./mcp-opencode-sync/scripts/import.sh --dry-run
+./2_业务项目/mcp-opencode-sync/scripts/import.sh --dry-run
 ```
 
 ## 导出的状态内容
@@ -108,15 +108,15 @@ gh auth login
 
 ## 常用命令
 
-```bash
+```powershell
 # 导出当前状态
-.\mcp-opencode-sync\scripts\export.ps1
+.\2_业务项目\mcp-opencode-sync\scripts\export.ps1
 
 # 导入状态
-.\mcp-opencode-sync\scripts\import.ps1
+.\2_业务项目\mcp-opencode-sync\scripts\import.ps1
 
 # 预览导入（不实际修改）
-.\mcp-opencode-sync\scripts\import.ps1 -DryRun
+.\2_业务项目\mcp-opencode-sync\scripts\import.ps1 -DryRun
 
 # 在 opencode 中使用 MCP 工具
 # 用户: 帮我同步配置到 GitHub
