@@ -1,0 +1,177 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[
+  top=15mm,
+  bottom=6mm,
+  left=16mm,
+  right=16mm,
+  includefoot,
+  footskip=8mm
+]{geometry}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\setmainfont{Times New Roman}
+\pagestyle{plain}
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlist[itemize]{
+  label=\textbullet,
+  leftmargin=1.35em,
+  labelsep=0.45em,
+  itemsep=1.5pt,
+  topsep=2pt,
+  parsep=0pt,
+  partopsep=0pt
+}
+
+\newcommand{\cvsection}[1]{%
+  \vspace{10pt}%
+  {\Large\bfseries #1}\par%
+  \vspace{1pt}%
+  \hrule height 0.4pt%
+  \vspace{3pt}%
+}
+
+\newcommand{\cvsectiontop}[1]{%
+  {\Large\bfseries #1}\par%
+  \vspace{1pt}%
+  \hrule height 0.4pt%
+  \vspace{3pt}%
+}
+
+\newcommand{\entrytitle}[1]{\textbf{#1}\par}
+\newcommand{\entrydate}[1]{\textbf{#1}\par}
+
+\begin{document}
+
+\begin{minipage}[t]{0.70\textwidth}
+  \vspace{0pt}
+  {\fontsize{21pt}{24pt}\selectfont\textbf{Botao Ye}}\par
+  \vspace{5pt}
+  \textbf{Email:} \href{mailto:6severin9@gmail.com}{6severin9@gmail.com}\par
+  \textbf{Tel:} +82-10-2194-8007\par
+  \textbf{Website:} \href{https://severin-ye.github.io}{severin-ye.github.io} |
+  \textbf{GitHub:} \href{https://github.com/severin-ye}{github.com/severin-ye}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.22\textwidth}
+  \vspace{-6pt}
+  \raggedleft
+  \includegraphics[width=26.5mm]{照片.jpg}
+\end{minipage}
+
+\vspace{1pt}
+
+\cvsection{Education}
+\entrydate{2022.09 - 2026.06 (Expected)}
+\entrytitle{Kyungpook National University, School of IT, Global Software Convergence Major (South Korea)}
+\begin{itemize}
+  \item One of South Korea's National Flagship Universities, ranked No. 91 in Asia and No. 1 among Korean national universities in the 2025 THE Asia Rankings, and =519 in the 2026 QS World University Rankings, where I received solid training in software engineering, AI, and research-oriented systems development.
+  \item Average Score: \textbf{90.4/100}
+  \item Selected coursework: Artificial Intelligence, Fundamentals of Data Science, Data Structures, Computer Architecture, Introduction to Neural Networks, Software Design, Open Source Programming
+\end{itemize}
+
+\cvsection{Selected Research Highlights}
+\begin{itemize}
+  \item \textbf{Independent problem formulation and ownership:} All three research projects were independently formulated by me. For \textbf{CuraView} and \textbf{Decathlon VOC Analyzer}, aside from necessary collaboration, I carried out most of the core work from problem definition and technical route design to system implementation, experiments, and paper preparation. \textbf{Craft-in-the-Loop} began as a problem I independently proposed and a first version I developed, and was later expanded through group collaboration into formal research.
+  \item \textbf{Trustworthy medical AI with GraphRAG:} Designed CuraView, a multi-agent medical hallucination detection framework for discharge summaries. On 1,103 test sentences, the safety-critical E4 detector achieved a \textbf{50\% relative improvement} and performed \textbf{15\% better than mainstream closed-source models}. The manuscript is \textbf{under review at KBS}, and the preprint is available on \textbf{arXiv}.
+  \item \textbf{Long-form multi-agent generation:} Built Craft-in-the-Loop, a Planner/Writer framework for structured long-form text generation with shared memory and narrative event trees. The paper was \textbf{accepted by ADHO}.
+  \item \textbf{Evidence-driven multimodal systems:} Developed Decathlon VOC Analyzer, a multimodal RAG and claim-level attribution system for product analysis. The project passes \textbf{166 automated tests}, and the paper was \textbf{accepted by KIIT}.
+  \item \textbf{Current research direction:} I am particularly interested in \textbf{trustworthy agent memory}, especially how latent internal state, explicit memory cards, and auditable behavior traces can be aligned in long-running AI systems.
+\end{itemize}
+
+\cvsection{Selected Publications and Systems}
+\begin{itemize}
+  \item \textbf{CuraView: Medical Hallucination Detection and GraphRAG-Based Evidence Verification for Discharge Summaries}\\
+  -- Status: \textbf{arXiv preprint}; manuscript \textbf{under review at KBS}\\
+  -- System role: Multi-agent medical verification system that combines patient-level EHR evidence graphs, GraphRAG retrieval, sentence-level claim checking, and structured evidence grading.\\
+  -- Links: arXiv: \href{https://arxiv.org/abs/2605.03476}{arxiv.org/abs/2605.03476} | GitHub: \href{https://github.com/severin-ye/CuraView}{github.com/severin-ye/CuraView}
+
+  \item \textbf{Craft-in-the-Loop / Narrative-Causal-Graph: Narrative Schema-Based Multi-Agent Generation for Long-Form Text}\\
+  -- Status: \textbf{Accepted by Alliance of Digital Humanities Organizations (ADHO)}\\
+  -- System role: Shared-memory multi-agent generation system that maintains long-range plot consistency through chapter planning, event trees, and structured narrative states.\\
+  -- Link: GitHub: \href{https://github.com/Xynovitch/Narrative-Causal-Graph}{github.com/Xynovitch/Narrative-Causal-Graph}
+
+  \item \textbf{Decathlon VOC Analyzer: Evidence-Driven Multimodal VOC Analysis with Claim-Level Attribution}\\
+  -- Status: \textbf{Accepted by Korean Institute of Information Technology (KIIT)}\\
+  -- System role: Multimodal evidence attribution system with artifact-centric experiment management, replay files, run manifests, and claim-level citation for reproducible analysis.\\
+  -- Link: GitHub: \href{https://github.com/severin-ye/Decathlon_VOC_Analyzer}{github.com/severin-ye/Decathlon\_VOC\_Analyzer}
+\end{itemize}
+
+\cvsection{Research Experience}
+\newpage
+
+\entrytitle{CuraView: Medical Hallucination Detection and GraphRAG-Based Evidence Verification}
+\entrydate{2025.04 - 2026.01}
+\begin{itemize}
+  \item Designed a multi-agent framework for sentence-level hallucination detection in medical discharge summaries, focusing on factual consistency risks in high-stakes clinical text generation.
+  \item Built a patient-level GraphRAG pipeline over diagnoses, medications, laboratory results, timestamps, numerical records, negation relations, and contradictory evidence.
+  \item Developed a seven-category hallucination taxonomy and an E1-E4 evidence grading scheme to support interpretable review and downstream training.
+  \item Combined Qwen3-14B fine-tuning, structured JSON output, and Pydantic validation to improve robustness in batch inference.
+\end{itemize}
+
+\vspace{4pt}
+\entrytitle{Craft-in-the-Loop: Narrative Schema-Based Multi-Agent Generation for Long-Form Text}
+\entrydate{2025.06 - 2026.02}
+\begin{itemize}
+  \item Proposed a Planner/Writer architecture that converts narrative schema into chapter plans, stasis/process statements, and hierarchical event trees.
+  \item Built a reference corpus of 100 bestselling novels and generated 100 long-form texts exceeding 100,000 tokens for comparative evaluation.
+  \item Designed a six-dimensional evaluation framework covering originality, diversity, reader engagement, plot consistency, characters and settings, and spatiotemporal clarity.
+  \item Showed that structured mid-level narrative control reduces long-form drift and homogenization compared with vanilla generation baselines.
+\end{itemize}
+
+\vspace{4pt}
+\entrytitle{Decathlon VOC Analyzer: Evidence-Driven Multimodal VOC Analysis System}
+\entrydate{2025.07 - 2026.05}
+\begin{itemize}
+  \item Developed a multimodal RAG pipeline for aligning reviews, product text, product images, and local visual regions with claim-level evidence attribution.
+  \item Implemented aspect-level review modeling, question planning, text/image retrieval, reranking, structured report generation, and artifact-based replay.
+  \item Built reproducibility support through evidence packs, retrieval logs, report claims, sidecars, and manifests.
+  \item Established validation coverage across normalization, modeling, retrieval, report generation, and workflow entry points, reaching 166 automated tests.
+\end{itemize}
+
+\cvsection{Entrepreneurial And Project Management Experience}
+\entrytitle{AI Review Assistant Development, Hainan Zhiyi Health Management Co., Ltd.}
+\entrydate{2023.10 - 2024.05}
+\begin{itemize}
+  \item Drove the project in an entrepreneurial setting, covering client communication, requirement definition, prototype design, development coordination, and deployment of an AI-assisted document review tool.
+  \item Managed product goals and technical execution from a project-manager perspective, while improving medical document verification and correction through model integration and LoRA-based optimization.
+\end{itemize}
+
+\vspace{4pt}
+\entrytitle{Recommendation Algorithm Design And Development, Chengdu Kamang Network Technology Co., Ltd.}
+\entrydate{2025.01 - 2025.02}
+\begin{itemize}
+  \item Worked in a project-management role for a game recommendation initiative, coordinating requirement analysis, recommendation logic design, implementation, and iterative refinement.
+  \item Built multidimensional matching features for retrieval-enhanced and interpretable recommendation, and applied LoRA-based optimization on Qwen-32B to improve output quality.
+\end{itemize}
+
+\cvsection{Technical Skills}
+\begin{itemize}
+  \item \textbf{Programming:} Python, Flask, C, Django, Vue
+  \item \textbf{AI / ML:} PyTorch, Transformer, RAG/GraphRAG, LoRA/QLoRA, structured output constraints, preference optimization
+  \item \textbf{Retrieval / Multimodal:} Qdrant, vector indexing, CLIP and vision-language embeddings, multi-stage retrieval, reranking, claim-level attribution
+  \item \textbf{Engineering:} Git, GitHub, Linux, Docker, LangChain, MS-SWIFT, Pydantic, automated testing, reproducible experiment management
+  \item \textbf{Languages:} Chinese (native), Korean (TOPIK Level 4), English (TOEFL planned; mock score 80+)
+\end{itemize}
+
+\newpage
+
+\cvsectiontop{Future Research Interests}
+\begin{itemize}
+  \item \textbf{Trustworthy agent memory:} explicit memory cards, auditable behavior traces, and long-term preference or policy retention in AI agents.
+  \item \textbf{Evidence-driven medical AI:} factual verification, clinical evidence workflows, structured outputs, and interpretable high-risk AI systems.
+  \item \textbf{Multi-agent planning and long-context generation:} shared memory, event-structured planning, and controllable generation in long-running tasks.
+\end{itemize}
+
+\cvsection{Awards}
+\begin{itemize}
+  \item \textbf{Kyungpook National University Excellent International Student Scholarship:} six consecutive semesters, including three first-class scholarships (top 8\%).
+  \item \textbf{EY ESG Regional Competition - Third Prize (2023).}
+\end{itemize}
+
+\end{document}
