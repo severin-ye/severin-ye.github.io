@@ -17,14 +17,14 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 // ---------------------------------------------------------------------------
 
 function extractI18nData() {
-  const src = fs.readFileSync(join(__dirname, '..', 'src', 'data', 'i18n.js'), 'utf-8');
+  const src = fs.readFileSync(join(__dirname, '..', '..', 'src', 'data', 'i18n.js'), 'utf-8');
   const m = src.match(/const translations = ({[\s\S]*?});\n/);
   if (!m) throw new Error('Failed to extract translations');
   return eval('(' + m[1] + ')');
 }
 
 function extractProjectData() {
-  const src = fs.readFileSync(join(__dirname, '..', 'src', 'data', 'projectLayout.js'), 'utf-8');
+  const src = fs.readFileSync(join(__dirname, '..', '..', 'src', 'data', 'projectLayout.js'), 'utf-8');
   const m = src.match(/const projectData = ([\s\S]*?]);\n/);
   if (!m) throw new Error('Failed to extract projectData');
   return eval('(' + m[1] + ')');
@@ -598,7 +598,7 @@ async function generatePDF(lang = 'zh') {
   console.log(`Generating PDF (${lang.toUpperCase()}) ...`);
 
   const html = buildDocument(lang);
-  const htmlPath = join(__dirname, '..', 'output', 'portfolio-export.html');
+  const htmlPath = join(__dirname, '..', 'portfolio-export.html');
   fs.writeFileSync(htmlPath, html, 'utf-8');
 
   const browser = await puppeteer.launch({
@@ -611,7 +611,7 @@ async function generatePDF(lang = 'zh') {
     await page.setContent(html, { waitUntil: 'networkidle0', timeout: 30000 });
     await page.evaluate(async () => { await document.fonts.ready; });
 
-    const out = join(__dirname, '..', 'output', `portfolio-${lang}.pdf`);
+    const out = join(__dirname, '..', `portfolio-${lang}.pdf`);
     await page.pdf({
       path: out,
       format: 'A4',

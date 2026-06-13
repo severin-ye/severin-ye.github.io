@@ -14,7 +14,7 @@ bash scripts/build.sh     # 一键构建生产版本，输出到 dist/
 | 开发 | `bash scripts/start.sh` |
 | 构建 | `bash scripts/build.sh` |
 | 预览构建 | `npm run preview` |
-| 导出 PDF | `bash scripts/export-pdf.mjs zh` 或 `en` |
+| 导出 PDF | `bash 简历相关/export-pdf.mjs zh` 或 `en` |
 | 运行测试 | `node src/data/projectLayout.test.js` |
 
 ## 部署

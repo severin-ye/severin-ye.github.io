@@ -23,9 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
-# Personal documents
-personal/港科/
-personal/我的论文/
+# Personal documents (managed via submodule)
 
 # Generated output
 output/

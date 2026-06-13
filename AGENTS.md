@@ -12,8 +12,9 @@ Personal portfolio website for Ye Botao (AI Researcher). Vite + Vanilla JavaScri
 ```bash
 bash scripts/start.sh        # Start dev server (nvm + deps + http://localhost:5173)
 bash scripts/build.sh        # Build for production (output: dist/)
-bash scripts/export-pdf.mjs zh  # Generate Chinese PDF portfolio
-bash scripts/export-pdf.mjs en  # Generate English PDF portfolio
+node 简历相关/scripts/export-cv.mjs      # Generate CV PDF (Botao_Ye_CV.pdf)
+node 简历相关/scripts/export-pdf.mjs zh  # Generate Chinese PDF portfolio
+node 简历相关/scripts/export-pdf.mjs en  # Generate English PDF portfolio
 npm run preview              # Preview production build locally
 ```
 
@@ -30,7 +31,10 @@ src/
 scripts/
   start.sh             # Dev server launcher
   build.sh             # Production build
-  export-pdf.mjs       # PDF portfolio generator (reads src/data/)
+简历相关/
+  scripts/
+    export-cv.mjs        # CV PDF generator (→ Botao_Ye_CV.pdf)
+    export-pdf.mjs       # PDF portfolio generator (reads src/data/)
 public/
   papers/              # Research papers (PDF)
 .github/workflows/

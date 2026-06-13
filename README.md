@@ -22,8 +22,8 @@ bash scripts/build.sh    # Production build → dist/
 | Dev server | `bash scripts/start.sh` |
 | Production build | `bash scripts/build.sh` |
 | Preview build | `npm run preview` |
-| Export PDF (ZH) | `bash scripts/export-pdf.mjs zh` |
-| Export PDF (EN) | `bash scripts/export-pdf.mjs en` |
+| Export PDF (ZH) | `bash 简历相关/export-pdf.mjs zh` |
+| Export PDF (EN) | `bash 简历相关/export-pdf.mjs en` |
 | Run tests | `node src/data/projectLayout.test.js` |
 
 ## Structure
