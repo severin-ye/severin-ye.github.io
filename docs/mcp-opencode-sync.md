@@ -9,17 +9,17 @@
 
 ## 安装位置
 ```
-C:\Users\6seve\Codelib-severin\2_业务项目\mcp-opencode-sync\
+C:\Users\6seve\Codelib-severin\2_Business\mcp-opencode-sync\
 ```
 
 ## 相关路径
 
 | 路径 | 用途 |
 |------|------|
-| `2_业务项目/mcp-opencode-sync/src/index.ts` | MCP 服务器源码 (McpServer + registerTool) |
-| `2_业务项目/mcp-opencode-sync/src/sync.ts` | 共享状态管理逻辑 |
-| `2_业务项目/mcp-opencode-sync/src/cli.ts` | CLI 接口 |
-| `2_业务项目/mcp-opencode-sync/dist/index.js` | 编译后的 MCP 入口 |
+| `2_Business/mcp-opencode-sync/src/index.ts` | MCP 服务器源码 (McpServer + registerTool) |
+| `2_Business/mcp-opencode-sync/src/sync.ts` | 共享状态管理逻辑 |
+| `2_Business/mcp-opencode-sync/src/cli.ts` | CLI 接口 |
+| `2_Business/mcp-opencode-sync/dist/index.js` | 编译后的 MCP 入口 |
 | `workspace-sync-state.json` | 导出的状态文件 |
 
 ## MCP 工具 (8个)
@@ -38,7 +38,7 @@ C:\Users\6seve\Codelib-severin\2_业务项目\mcp-opencode-sync\
 ## 安装步骤
 
 ```bash
-cd C:\Users\6seve\Codelib-severin\2_业务项目\mcp-opencode-sync
+cd C:\Users\6seve\Codelib-severin\2_Business\mcp-opencode-sync
 npm install
 npm run build
 ```
@@ -52,7 +52,7 @@ npm run build
   "mcp": {
     "opencode-sync": {
       "type": "local",
-      "command": ["node", "C:/Users/6seve/Codelib-severin/2_业务项目/mcp-opencode-sync/dist/index.js"],
+      "command": ["node", "C:/Users/6seve/Codelib-severin/2_Business/mcp-opencode-sync/dist/index.js"],
       "enabled": true
     }
   }

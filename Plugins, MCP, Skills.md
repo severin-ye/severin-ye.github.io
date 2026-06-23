@@ -31,7 +31,9 @@ Plugins, MCP servers, and skills currently installed across all environments.
 |------|------|---------|------|
 | word | local (uvx) | `office-word-mcp-server` | Word 文档读写编辑 |
 | notion | local (npx) | `@notionhq/notion-mcp-server` | Notion 页面/数据库操作 |
-| zapier-gmail | remote | Zapier MCP | Gmail 收发邮件 |
+| zapier-gmail | remote | Zapier MCP | Gmail 收发邮件；需 `"oauth": false` |
+
+**备注**: Zapier Gmail 配置详见 [`zapier-gmail-问题诊断与修复报告.md`](./安装流程/zapier-gmail-问题诊断与修复报告.md)。
 
 ---
 

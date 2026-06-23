@@ -38,6 +38,8 @@
 - **名称**: `zapier-gmail`
 - **URL**: `https://mcp.zapier.com/api/v1/connect`
 - **用途**: 通过 Zapier 连接 Gmail 等 9000+ 应用，执行邮件、日历、Slack 等操作
+- **关键配置**: 必须设置 `"oauth": false`，否则 OpenCode 会误判为需要 OAuth 授权，导致工具无法调用
+- **详细报告**: [`zapier-gmail-问题诊断与修复报告.md`](./zapier-gmail-问题诊断与修复报告.md)
 
 ---
 
