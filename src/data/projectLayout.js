@@ -1,4 +1,4 @@
-const projectData = [
+export const projectData = [
   {
     category: '🔬 Ongoing Research',
     categoryZh: '🔬 进行中的研究',
@@ -294,10 +294,6 @@ export function renderProjectsMarkup(lang = 'en') {
 export function updateProjectsLanguage(lang) {
   const projectsSection = document.querySelector('#projects');
   if (projectsSection) {
-    const sectionHeader = projectsSection.querySelector('.section-header h2');
-    // Keep the emoji and update the text
-    const headerText = projectsSection.querySelector('.section-header h2 span');
-    
     // Update project cards
     const cards = projectsSection.querySelectorAll('.project-card');
     cards.forEach((card, index) => {

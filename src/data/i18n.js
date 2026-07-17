@@ -16,7 +16,7 @@ const translations = {
     'hero.tagline1': 'Builder who turns <span>ideas into reality</span>.',
     'hero.tagline2': 'AI Researcher exploring the frontiers of Medical AI & LLMs.',
     'hero.belief': 'I believe the world needs people who can stay clear-headed amid complexity — those who create order from chaos and new value from uncertainty.',
-    'hero.stat1': 'Research Projects',
+    'hero.stat1': 'Projects',
     'hero.stat2': 'Tech Stacks',
     'hero.stat3': 'Curiosity',
     
@@ -63,6 +63,10 @@ const translations = {
     'contact.quote1': 'I don\'t aim to be the smartest person in the room —',
     'contact.quote2': 'I aim to be the one who dares to act.',
     'contact.quote3': 'To keep learning, keep moving forward, and keep creating in a complex and ever-changing world.',
+
+    // Footer
+    'footer.built': 'Designed & built by Ye Botao — Vite + Vanilla JS',
+    'footer.motto': 'Stay curious, keep building.',
   },
   zh: {
     // Navigation
@@ -77,7 +81,7 @@ const translations = {
     'hero.tagline1': '将<span>想法变为现实</span>的构建者。',
     'hero.tagline2': '探索医学AI与LLM前沿的AI研究者。',
     'hero.belief': '我相信世界需要能在复杂中保持清醒的人——那些能在混沌中创造秩序、在不确定中创造新价值的人。',
-    'hero.stat1': '研究项目',
+    'hero.stat1': '项目',
     'hero.stat2': '技术栈',
     'hero.stat3': '好奇心',
     
@@ -124,6 +128,10 @@ const translations = {
     'contact.quote1': '我不追求成为房间里最聪明的人——',
     'contact.quote2': '我追求成为敢于行动的人。',
     'contact.quote3': '在复杂多变的世界里，保持学习、保持前进、保持创造。',
+
+    // Footer
+    'footer.built': '由 Ye Botao 设计并构建 — Vite + 原生 JS',
+    'footer.motto': '保持好奇，持续构建。',
   }
 };
 

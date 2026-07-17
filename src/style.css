@@ -918,12 +918,20 @@ section[id] {
 [data-theme="light"] .glass:hover,
 :root:not([data-theme="dark"]) .glass:hover {
   background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(0, 0, 0, 0.12);
 }
 
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) .glass:hover {
     background: rgba(255, 255, 255, 0.82);
+    border-color: rgba(0, 0, 0, 0.12);
   }
+}
+
+/* Tags: neutral base adapts to light surfaces */
+[data-theme="light"] .tag,
+:root:not([data-theme="dark"]) .tag {
+  background: rgba(0, 0, 0, 0.05);
 }
 
 /* Selection color for light mode */
@@ -1229,6 +1237,8 @@ nav a:hover::after {
 
 /* Section divider enhancement */
 .section-header .line {
+  flex: 1;
+  min-width: 48px;
   transition: background 0.5s ease;
   background: linear-gradient(
     90deg,
@@ -1333,5 +1343,134 @@ nav a:hover::after {
 
   .quote-block::before {
     font-size: 3rem;
+  }
+}
+
+/* ============================================
+   Polish Additions
+   ============================================ */
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-green));
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: 1002;
+  pointer-events: none;
+}
+
+/* Hero: anchor for scroll cue */
+.hero {
+  position: relative;
+}
+
+/* Hero belief paragraph (replaces inline style) */
+.hero-belief {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: var(--space-lg);
+}
+
+/* Hero scroll cue */
+.scroll-cue {
+  position: absolute;
+  bottom: var(--space-xl);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--blur-amount));
+  -webkit-backdrop-filter: blur(var(--blur-amount));
+  color: var(--text-tertiary);
+  cursor: pointer;
+  animation: cueFloat 2.4s ease-in-out infinite;
+  transition: opacity 0.4s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.scroll-cue:hover {
+  color: var(--text-primary);
+  border-color: var(--glass-highlight);
+}
+
+.scroll-cue.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes cueFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* Hero title: after JS splits text into char spans, the gradient
+   must live on the spans (background-clip:text doesn't cross inline-block children) */
+.hero-text h1 .char-animate {
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Story card highlight quotes (sibling of desc <p> so i18n updates don't clobber it) */
+em.highlight,
+em.highlight-purple,
+em.highlight-green {
+  display: block;
+  margin-top: var(--space-md);
+  font-style: italic;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  padding: 0.6em 0.85em;
+  border-radius: 8px;
+}
+
+em.highlight { color: var(--accent-blue); background: rgba(0, 122, 255, 0.08); }
+em.highlight-purple { color: var(--accent-purple); background: rgba(175, 82, 222, 0.08); }
+em.highlight-green { color: var(--accent-green); background: rgba(48, 209, 88, 0.08); }
+
+/* Footer */
+.site-footer {
+  padding: var(--space-2xl) 0 var(--space-xl);
+  text-align: center;
+}
+
+.site-footer .footer-inner {
+  border-top: 1px solid var(--glass-border);
+  padding-top: var(--space-xl);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.site-footer p {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  line-height: 1.8;
+}
+
+/* Mobile: hide scroll cue */
+@media (max-width: 768px) {
+  .scroll-cue {
+    display: none;
+  }
+}
+
+/* Reduced motion: honor user preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

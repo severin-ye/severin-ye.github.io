@@ -1,5 +1,5 @@
 import './style.css'
-import { renderProjectsMarkup, updateProjectsLanguage } from './data/projectLayout.js'
+import { renderProjectsMarkup, updateProjectsLanguage, projectData } from './data/projectLayout.js'
 import { i18n } from './data/i18n.js'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -17,6 +17,9 @@ document.querySelector('#app').innerHTML = `
   <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language">
     <span class="lang-text">EN</span>
   </button>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" aria-hidden="true"></div>
 
   <!-- Background Gradient Orbs -->
   <div class="bg-gradient">
@@ -45,6 +48,8 @@ document.querySelector('#app').innerHTML = `
     </button>
   </nav>
 
+  <main>
+
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
@@ -57,15 +62,15 @@ document.querySelector('#app').innerHTML = `
         <p class="tagline" data-i18n="hero.tagline2">
           AI Researcher exploring the frontiers of Medical AI & LLMs.
         </p>
-        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: var(--space-lg);" data-i18n="hero.belief">
+        <p class="hero-belief" data-i18n="hero.belief">
           I believe the world needs people who can stay clear-headed amid complexity — 
           those who create order from chaos and new value from uncertainty.
         </p>
       </div>
       <div class="quick-stats">
         <div class="stat-item glass">
-          <span class="stat-value">3+</span>
-          <span class="stat-label" data-i18n="hero.stat1">Research Projects</span>
+          <span class="stat-value" id="stat-projects">3+</span>
+          <span class="stat-label" data-i18n="hero.stat1">Projects</span>
         </div>
         <div class="stat-item glass">
           <span class="stat-value">5+</span>
@@ -77,6 +82,11 @@ document.querySelector('#app').innerHTML = `
         </div>
       </div>
     </div>
+    <button class="scroll-cue" aria-label="Scroll to About">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
   </section>
 
   <!-- About Section -->
@@ -163,9 +173,8 @@ document.querySelector('#app').innerHTML = `
           In the summer of 2023, I met a medical journal editor-in-chief who was interested in AI. That conversation wasn't just a casual chat about technology—it was my first exposure to real needs in the medical publishing world: how to use AI to improve content processing efficiency, how to assess whether a system is truly feasible, and how to turn a vague idea into an executable engineering plan.
           <br><br>
           Afterward, I completed a needs analysis, technical feasibility study, and business framework design around this requirement, and landed my first engineering contract.
-          <br><br>
-          <em class="highlight" data-i18n="stories.train.highlight">This experience made me realize that opportunities don't always appear in the form of "projects." They might start as just a conversation, a pain point, or a problem that hasn't yet been clearly defined. What truly matters is whether you can identify it and break it down into a deliverable system.</em>
         </p>
+        <em class="highlight" data-i18n="stories.train.highlight">This experience made me realize that opportunities don't always appear in the form of "projects." They might start as just a conversation, a pain point, or a problem that hasn't yet been clearly defined. What truly matters is whether you can identify it and break it down into a deliverable system.</em>
       </div>
       <div class="bento-item glass span-4 story-card">
         <div class="emoji">🏸</div>
@@ -178,9 +187,8 @@ document.querySelector('#app').innerHTML = `
           I said: "Give me two weeks."
           <br><br>
           Over the next two weeks, I broke the requirement down into several specific questions: what should the system recommend, what are the user inputs, how to select the model, how to present the results, and how to validate the prototype. Two weeks later, I completed a working demo. One month later, the system entered formal delivery and received an equity offer.
-          <br><br>
-          <em class="highlight-purple" data-i18n="stories.badminton.highlight">This experience confirmed for me that the value of learning isn't just mastering concepts—it's whether you can quickly transform newly acquired knowledge into something that others truly need and can actually use.</em>
         </p>
+        <em class="highlight-purple" data-i18n="stories.badminton.highlight">This experience confirmed for me that the value of learning isn't just mastering concepts—it's whether you can quickly transform newly acquired knowledge into something that others truly need and can actually use.</em>
       </div>
       <div class="bento-item glass span-4 story-card">
         <div class="emoji">🚪</div>
@@ -193,9 +201,8 @@ document.querySelector('#app').innerHTML = `
           During that face-to-face conversation, I introduced my project experience, research interests, and reasons for wanting systematic research training. Compared to email, face-to-face communication gave me the chance to express myself more clearly: I didn't just want to "join a lab," but hoped to transform the problem-awareness I had developed through engineering projects into more long-term, systematic research capabilities.
           <br><br>
           Ultimately, I was offered the opportunity to join the lab.
-          <br><br>
-          <em class="highlight-green" data-i18n="stories.door.highlight">This taught me that research opportunities, like entrepreneurial opportunities, require active pursuit. Often, opportunities don't appear automatically—you have to put yourself in front of the problem and the people first, then prove yourself through clear expression and genuine action.</em>
         </p>
+        <em class="highlight-green" data-i18n="stories.door.highlight">This taught me that research opportunities, like entrepreneurial opportunities, require active pursuit. Often, opportunities don't appear automatically—you have to put yourself in front of the problem and the people first, then prove yourself through clear expression and genuine action.</em>
       </div>
     </div>
   </section>
@@ -356,9 +363,14 @@ document.querySelector('#app').innerHTML = `
       </p>
     </div>
   </section>
+  </main>
 
   <!-- Footer -->
-  <footer>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p data-i18n="footer.built">Designed & built by Ye Botao — Vite + Vanilla JS</p>
+      <p>© <span id="footer-year">2026</span> · <span data-i18n="footer.motto">Stay curious, keep building.</span></p>
+    </div>
   </footer>
 `
 
@@ -666,22 +678,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  // ---- Timeline Progress ----
-  function initTimelineProgress() {
-    document.querySelectorAll('.timeline').forEach(timeline => {
-      const progress = document.createElement('div')
-      progress.className = 'timeline-progress'
-      timeline.insertBefore(progress, timeline.firstChild)
-      gsap.fromTo(progress,
-        { scaleY: 0 },
-        {
-          scaleY: 1, ease: 'none',
-          scrollTrigger: { trigger: timeline, start: 'top 70%', end: 'bottom 30%', scrub: 0.5 }
-        }
-      )
-    })
-  }
-
   // ---- Theme & Lang Buttons Entrance ----
   function animateHeaderButtons() {
     gsap.fromTo('.theme-toggle',
@@ -748,36 +744,74 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
+  // ---- Scroll Progress Bar ----
+  function initScrollProgress() {
+    const bar = document.querySelector('.scroll-progress')
+    if (!bar) return
+    gsap.to(bar, {
+      scaleX: 1, ease: 'none',
+      scrollTrigger: { start: 0, end: 'max', scrub: 0.3 }
+    })
+  }
+
+  // ---- Hero Scroll Cue ----
+  function initScrollCue() {
+    const cue = document.querySelector('.scroll-cue')
+    if (!cue) return
+    const toggleVisibility = () => cue.classList.toggle('hidden', window.scrollY > 60)
+    window.addEventListener('scroll', toggleVisibility, { passive: true })
+    toggleVisibility()
+    cue.addEventListener('click', () => {
+      document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
+    })
+  }
+
+  // ---- Dynamic Stats & Footer Year ----
+  function initDynamicBits() {
+    const stat = document.getElementById('stat-projects')
+    if (stat) stat.textContent = `${projectData.length}+`
+    const year = document.getElementById('footer-year')
+    if (year) year.textContent = new Date().getFullYear()
+  }
+
   // Execute all
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   animateHeroTitle()
-  initCardTilt()
   initSectionNav()
-  initScrollTriggers()
-  initScrollAway()
+  initScrollProgress()
+  initScrollCue()
+  initDynamicBits()
   initRipple()
-  initTimelineProgress()
   animateHeaderButtons()
-  initCursor()
+  if (!reduceMotion) {
+    initCardTilt()
+    initScrollTriggers()
+    initScrollAway()
+    initCursor()
+  }
 })
 
 // Enhanced orb parallax with GSAP quickTo for smooth mouse follow
+const reduceOrbMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 const orbQuickTos = []
 document.querySelectorAll('.orb').forEach((orb, i) => {
   orbQuickTos.push({
-    x: gsap.quickTo(orb, 'x', { duration: 0, ease: 'power2.out' }),
-    y: gsap.quickTo(orb, 'y', { duration: 0, ease: 'power2.out' })
+    x: gsap.quickTo(orb, 'x', { duration: 0.6, ease: 'power2.out' }),
+    y: gsap.quickTo(orb, 'y', { duration: 0.6, ease: 'power2.out' })
   })
 })
 
-document.addEventListener('mousemove', (e) => {
-  const x = e.clientX / window.innerWidth
-  const y = e.clientY / window.innerHeight
-  orbQuickTos.forEach((qt, i) => {
-    const speed = (i + 1) * 28
-    qt.x((x - 0.5) * speed)
-    qt.y((y - 0.5) * speed)
+if (!reduceOrbMotion) {
+  document.addEventListener('mousemove', (e) => {
+    const x = e.clientX / window.innerWidth
+    const y = e.clientY / window.innerHeight
+    orbQuickTos.forEach((qt, i) => {
+      const speed = (i + 1) * 28
+      qt.x((x - 0.5) * speed)
+      qt.y((y - 0.5) * speed)
+    })
   })
-})
+}
 
 // ============================================
 // Language Toggle Functionality
