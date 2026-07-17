@@ -232,31 +232,6 @@ body {
   padding: var(--space-lg);
 }
 
-/* Navigation */
-nav {
-  position: fixed;
-  top: var(--space-lg);
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  padding: var(--space-sm) var(--space-lg);
-  display: flex;
-  gap: var(--space-lg);
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-nav a {
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: color 0.2s;
-  white-space: nowrap;
-}
-
-nav a:hover {
-  color: var(--text-primary);
-}
-
 /* Section Side Navigation */
 .section-nav {
   position: fixed;
@@ -638,59 +613,6 @@ section {
 .project-card .paper-link:hover {
   opacity: 1;
   transform: translateX(4px);
-}
-
-/* Timeline */
-.timeline {
-  position: relative;
-  padding-left: var(--space-xl);
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: linear-gradient(180deg, var(--accent-blue), var(--accent-purple), var(--accent-green));
-}
-
-.timeline-item {
-  position: relative;
-  padding-bottom: var(--space-lg);
-}
-
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: calc(-1 * var(--space-xl) - 4px);
-  top: 6px;
-  width: 9px;
-  height: 9px;
-  background: var(--bg-primary);
-  border: 2px solid var(--accent-blue);
-  border-radius: 50%;
-}
-
-.timeline-item .date {
-  font-size: 0.7rem;
-  color: var(--text-tertiary);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: var(--space-xs);
-}
-
-.timeline-item h4 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin-bottom: var(--space-xs);
-}
-
-.timeline-item p {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
 }
 
 /* Skills Grid */
@@ -1124,27 +1046,6 @@ section[id] {
               color 0.2s ease;
 }
 
-/* Timeline progress bar */
-.timeline {
-  position: relative;
-}
-
-.timeline-progress {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(
-    180deg,
-    var(--accent-blue),
-    var(--accent-purple),
-    var(--accent-green)
-  );
-  transform-origin: top;
-  opacity: 0.4;
-}
-
 /* Enhanced orb behavior — remove CSS animation conflict with JS parallax */
 .orb {
   animation: none !important;
@@ -1177,27 +1078,6 @@ section[id] {
 /* Section section-header slide in */
 .section-header h2 {
   transition: opacity 0s;
-}
-
-/* Nav link underline animation */
-nav a {
-  position: relative;
-}
-
-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 50%;
-  width: 0;
-  height: 1.5px;
-  background: var(--text-primary);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  transform: translateX(-50%);
-}
-
-nav a:hover::after {
-  width: 100%;
 }
 
 /* Status badge glow pulse */
@@ -1266,20 +1146,6 @@ nav a:hover::after {
   /* Hide side nav — overlaps content on narrow portrait screens */
   .section-nav {
     display: none;
-  }
-
-  /* Top nav: compact, avoid collision with theme/lang toggles */
-  nav {
-    top: var(--space-sm);
-    padding: var(--space-xs) var(--space-sm);
-    gap: var(--space-sm);
-    font-size: 0.75rem;
-    max-width: calc(100vw - 120px);
-  }
-
-  nav.scrolled {
-    transform: scale(0.97);
-    border-radius: 14px;
   }
 
   /* Hero: tighter padding, stack layout */
