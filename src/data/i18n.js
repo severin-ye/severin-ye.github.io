@@ -38,10 +38,10 @@ const translations = {
 
     // Stories
     'stories.title': 'Stories That Shaped Me',
-    'stories.train.title': 'A Chance That Would Have Passed Me By',
+    'stories.train.title': 'Real Needs Aren\'t Found at School',
     'stories.train.desc': "My first engineering contract came from a chance encounter on a high-speed train. In the summer of 2023, I met a medical journal editor-in-chief who was interested in AI. That conversation wasn't just a casual chat about technology—it was my first exposure to real needs in the medical publishing world: how to use AI to improve content processing efficiency, how to assess whether a system is truly feasible, and how to turn a vague idea into an executable engineering plan. Afterward, I completed a needs analysis, technical feasibility study, and business framework design around this requirement, and landed my first engineering contract.",
     'stories.train.highlight': "This experience made me realize that opportunities don't always appear in the form of \"projects.\" They might start as just a conversation, a pain point, or a problem that hasn't yet been clearly defined. What truly matters is whether you can identify it and break it down into a deliverable system.",
-    'stories.badminton.title': 'Catch It, Learn It, Deliver It',
+    'stories.badminton.title': 'Opportunity rarely waits until you\'re ready.',
     'stories.badminton.desc': "My first recommendation system project came from a badminton game. At the time, I met two Imperial College graduates while playing badminton. They were looking for a recommendation system solution, and I had just finished my machine learning course. Faced with this opportunity, I didn't limit myself to the identity of a \"student.\" Instead, I treated the problem as a system delivery task. I said: \"Give me two weeks.\" Over the next two weeks, I broke the requirement down into several specific questions: what should the system recommend, what are the user inputs, how to select the model, how to present the results, and how to validate the prototype. Two weeks later, I completed a working demo. One month later, the system entered formal delivery and received an equity offer.",
     'stories.badminton.highlight': "This experience confirmed for me that the value of learning isn't just mastering concepts—it's whether you can quickly transform newly acquired knowledge into something that others truly need and can actually use.",
     'stories.door.title': 'No Reply? Knock on the Door',
@@ -99,10 +99,10 @@ const translations = {
 
     // Stories
     'stories.title': '塑造我的故事',
-    'stories.train.title': '本来会略过我的机会',
+    'stories.train.title': '真实的需求不在学校',
     'stories.train.desc': '我的第一份工程合同，来自一次高铁上的偶然交流。2023年夏天，我在高铁上遇到了一位对AI感兴趣的医学期刊主编。那次交流让我第一次接触到医学出版场景中的真实需求：如何用AI提升内容处理效率，如何判断系统是否真的可行，以及如何把一个模糊想法转化为可以执行的工程方案。之后，我完成了需求分析、技术可行性研究和商业框架设计，并拿到了自己的第一份工程合同。',
     'stories.train.highlight': '这段经历让我第一次意识到，机会往往并不是以"项目"的形式出现的。它最开始可能只是一段对话、一个痛点，或者一个尚未被清楚定义的问题。真正重要的是，能否把它识别出来，并进一步拆解成可以落地的系统。',
-    'stories.badminton.title': '先接住，再学会，再交付',
+    'stories.badminton.title': '机会，不总在准备好的时候发生',
     'stories.badminton.desc': '我的第一个推荐系统项目，来自一次羽毛球活动。当时，我在打羽毛球时认识了两位帝国理工学院的毕业生。他们正在寻找一个推荐系统方案，而我刚刚完成机器学习课程。面对这个机会，我没有把自己限制在"学生"身份里，而是直接把问题当成一个需要交付的系统任务来处理。我提出："给我两周。"接下来的两周里，我把需求拆成几个具体问题。两周后，我完成了一个可以运行的demo。一个月后，系统进入正式交付阶段，并获得了股权邀约。',
     'stories.badminton.highlight': '这段经历让我确认，学习的价值不只是掌握概念，而是能否把刚学到的知识快速转化为别人真正需要、真正能用的东西。',
     'stories.door.title': '没有回复，就去敲门',

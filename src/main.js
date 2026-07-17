@@ -166,7 +166,7 @@ document.querySelector('#app').innerHTML = `
     <div class="bento-grid">
       <div class="bento-item glass span-4 story-card">
         <div class="emoji">🚄</div>
-        <h4 data-i18n="stories.train.title">The High-Speed Train Encounter</h4>
+        <h4 data-i18n="stories.train.title">Real Needs Aren't Found at School</h4>
         <p data-i18n="stories.train.desc">
           My first engineering contract came from a chance encounter on a high-speed train.
           <br><br>
@@ -178,7 +178,7 @@ document.querySelector('#app').innerHTML = `
       </div>
       <div class="bento-item glass span-4 story-card">
         <div class="emoji">🏸</div>
-        <h4 data-i18n="stories.badminton.title">Badminton Court Deal</h4>
+        <h4 data-i18n="stories.badminton.title">Opportunity rarely waits until you're ready.</h4>
         <p data-i18n="stories.badminton.desc">
           My first recommendation system project came from a badminton game.
           <br><br>
