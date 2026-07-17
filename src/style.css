@@ -1305,25 +1305,6 @@ em.highlight { color: var(--accent-blue); background: rgba(0, 122, 255, 0.08); }
 em.highlight-purple { color: var(--accent-purple); background: rgba(175, 82, 222, 0.08); }
 em.highlight-green { color: var(--accent-green); background: rgba(48, 209, 88, 0.08); }
 
-/* Footer */
-.site-footer {
-  padding: var(--space-2xl) 0 var(--space-xl);
-  text-align: center;
-}
-
-.site-footer .footer-inner {
-  border-top: 1px solid var(--glass-border);
-  padding-top: var(--space-xl);
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-.site-footer p {
-  font-size: 0.8rem;
-  color: var(--text-tertiary);
-  line-height: 1.8;
-}
-
 /* Mobile: hide scroll cue */
 @media (max-width: 768px) {
   .scroll-cue {

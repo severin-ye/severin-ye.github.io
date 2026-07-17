@@ -63,10 +63,6 @@ const translations = {
     'contact.quote1': 'I don\'t aim to be the smartest person in the room —',
     'contact.quote2': 'I aim to be the one who dares to act.',
     'contact.quote3': 'To keep learning, keep moving forward, and keep creating in a complex and ever-changing world.',
-
-    // Footer
-    'footer.built': 'Designed & built by Ye Botao — Vite + Vanilla JS',
-    'footer.motto': 'Stay curious, keep building.',
   },
   zh: {
     // Navigation
@@ -128,10 +124,6 @@ const translations = {
     'contact.quote1': '我不追求成为房间里最聪明的人——',
     'contact.quote2': '我追求成为敢于行动的人。',
     'contact.quote3': '在复杂多变的世界里，保持学习、保持前进、保持创造。',
-
-    // Footer
-    'footer.built': '由 Ye Botao 设计并构建 — Vite + 原生 JS',
-    'footer.motto': '保持好奇，持续构建。',
   }
 };
 

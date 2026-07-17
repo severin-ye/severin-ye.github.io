@@ -366,11 +366,7 @@ document.querySelector('#app').innerHTML = `
   </main>
 
   <!-- Footer -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <p data-i18n="footer.built">Designed & built by Ye Botao — Vite + Vanilla JS</p>
-      <p>© <span id="footer-year">2026</span> · <span data-i18n="footer.motto">Stay curious, keep building.</span></p>
-    </div>
+  <footer>
   </footer>
 `
 
@@ -766,12 +762,10 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  // ---- Dynamic Stats & Footer Year ----
-  function initDynamicBits() {
+  // ---- Dynamic Stats ----
+  function initDynamicStats() {
     const stat = document.getElementById('stat-projects')
     if (stat) stat.textContent = `${projectData.length}+`
-    const year = document.getElementById('footer-year')
-    if (year) year.textContent = new Date().getFullYear()
   }
 
   // Execute all
@@ -780,7 +774,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSectionNav()
   initScrollProgress()
   initScrollCue()
-  initDynamicBits()
+  initDynamicStats()
   initRipple()
   animateHeaderButtons()
   if (!reduceMotion) {
