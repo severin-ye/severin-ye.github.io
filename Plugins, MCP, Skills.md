@@ -37,6 +37,16 @@ Plugins, MCP servers, and skills currently installed across all environments.
 
 ---
 
+## Local Tools
+
+| 名称 | 路径 | 用途 | 状态 |
+|------|------|------|------|
+| codex-bridge | `C:\Users\6seve\.codex\tools\codex-bridge` | Codex Responses API 到 DeepSeek / MiMo Chat Completions 的本地桥接器 | active |
+
+**备注**: codex-bridge 配置详见 [`codex-bridge.md`](./安装流程/codex-bridge.md)。
+
+---
+
 ## Skills
 
 ### 安装来源说明
@@ -112,9 +122,10 @@ Plugins, MCP servers, and skills currently installed across all environments.
 |------|------|
 | 插件 | 8 |
 | MCP 服务器 | 3 |
+| 本地工具 | 1 |
 | 技能（GStack） | ~50 |
 | 技能（Science Skills） | 37 |
 | 技能（独立） | 5 |
 | 技能（Ralph Loop） | 3 |
 | 技能（本地自定义） | 8 |
-| **合计** | **~114** |
+| **合计** | **~115** |
