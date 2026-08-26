@@ -4,14 +4,14 @@
 - 平台：Windows 11 / PowerShell / Codex Desktop / Codex CLI 0.149.0
 - Plugin ID：`severin-research`
 - Skill ID：`research-skill`
-- 安装版本：`0.1.0+codex.20260826165804`
+- 安装版本：`0.1.0+codex.20260826170828`
 - Marketplace：`personal-opencode-imports`
 
 ## 安装位置
 
 - 开发源码：`C:\Users\6seve\Codelib-severin\2_Business\Severin research skill`
 - 个人插件源：`C:\Users\6seve\plugins\severin-research`
-- Codex 缓存：`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-research\0.1.0+codex.20260826165804`
+- Codex 缓存：`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-research\0.1.0+codex.20260826170828`
 - 个人 Marketplace：`C:\Users\6seve\.agents\plugins\marketplace.json`
 - 已停用兼容入口备份：`C:\Users\6seve\.agents\skills-disabled\research-skill-junction-20260827`
 - 备份类型：目录 `Junction`，仍指向开发源码中的 `skills\research-skill`
@@ -35,6 +35,7 @@
 
 - 不需要环境变量。
 - 不需要 API Key。
+- Python 治理验证器依赖已在 `requirements.txt` 中声明，当前为 `jsonschema>=4.23,<5`。
 - MCP 服务器通过本地 stdio 启动，不监听网络端口。
 
 ## 安装与更新命令
@@ -43,6 +44,7 @@
 # 构建与测试
 Set-Location "C:\Users\6seve\Codelib-severin\2_Business\Severin research skill"
 npm install
+py -3 -m pip install -r requirements.txt
 npm test
 
 # 对指定插件目录执行安装态发布门禁
@@ -100,7 +102,8 @@ codex plugin list
 
 - 源码测试 4/4 通过，插件源码和新缓存均通过官方 `validate_plugin.py`。
 - 新缓存中的独立服务器完成真实 MCP 握手，并枚举出 3 个预期工具。
-- 新增安装态发布门禁，并对 `0.1.0+codex.20260826165804` 的 Codex 缓存副本执行同一门禁，结果通过。
+- 新增安装态发布门禁，并对 `0.1.0+codex.20260826170828` 的 Codex 缓存副本执行同一门禁，结果通过。
+- GitHub Actions 已在干净 Linux 环境中完成 Node 构建、隔离安装态握手和 Python 治理校验。
 
 ## 回滚
 
