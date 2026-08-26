@@ -4,14 +4,14 @@
 - 平台：Windows 11 / PowerShell / Codex Desktop / Codex CLI 0.149.0
 - Plugin ID：`severin-research`
 - Skill ID：`research-skill`
-- 安装版本：`0.1.0+codex.20260826165109`
+- 安装版本：`0.1.0+codex.20260826165804`
 - Marketplace：`personal-opencode-imports`
 
 ## 安装位置
 
 - 开发源码：`C:\Users\6seve\Codelib-severin\2_Business\Severin research skill`
 - 个人插件源：`C:\Users\6seve\plugins\severin-research`
-- Codex 缓存：`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-research\0.1.0+codex.20260826165109`
+- Codex 缓存：`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-research\0.1.0+codex.20260826165804`
 - 个人 Marketplace：`C:\Users\6seve\.agents\plugins\marketplace.json`
 - 兼容入口：`C:\Users\6seve\.agents\skills\research-skill`
 - 兼容入口类型：目录 `Junction`
@@ -46,6 +46,9 @@ Set-Location "C:\Users\6seve\Codelib-severin\2_Business\Severin research skill"
 npm install
 npm test
 
+# 对指定插件目录执行安装态发布门禁
+node scripts\verify-plugin-package.mjs --plugin-root "<插件目录或 Codex 缓存目录>"
+
 # 安装或刷新插件
 codex plugin add severin-research@personal-opencode-imports
 
@@ -74,6 +77,7 @@ codex plugin list
 
 - Plugin 安装完成后，当前旧任务不会自动重新发现新 Skill/MCP；请新建任务，必要时重启 Codex。
 - `.mcp.json` 必须设置 `cwd: "."`，并以 `./dist/mcp/server.mjs` 这种插件根目录相对路径启动。`${__dirname}` 不会被 Codex 的插件 MCP 配置展开，会出现 Skill 已加载但 MCP 工具缺失。
+- `npm test` 包含安装态发布门禁：生成不含 `node_modules` 的隔离包，按 `.mcp.json` 启动服务器，并强制枚举 3 个工具和面板资源。入口路径或打包依赖错误会在安装前失败。
 - MCP 服务器必须构建为独立的 `server.mjs`。仅复制 TypeScript 编译产物会依赖开发目录的 `node_modules`，安装后可能失效。
 - 旧版 `$research-skill` 符号链接因源码迁入 `skills\research-skill` 而失效。当前权限不能新建 SymbolicLink，因此改用无需管理员权限的 Junction；旧链接只作为备份保留。
 - Evidence 的本地来源必须保存项目相对路径和 SHA-256；摘要不能替代原始文件路径。
@@ -97,6 +101,7 @@ codex plugin list
 
 - 源码测试 4/4 通过，插件源码和新缓存均通过官方 `validate_plugin.py`。
 - 新缓存中的独立服务器完成真实 MCP 握手，并枚举出 3 个预期工具。
+- 新增安装态发布门禁，并对 `0.1.0+codex.20260826165804` 的 Codex 缓存副本执行同一门禁，结果通过。
 
 ## 回滚
 
