@@ -1,17 +1,17 @@
 # Severin-research 安装记录
 
-- 安装日期：2026-08-26
+- 安装日期：2026-08-26（2026-08-27 修复 MCP 入口）
 - 平台：Windows 11 / PowerShell / Codex Desktop / Codex CLI 0.149.0
 - Plugin ID：`severin-research`
 - Skill ID：`research-skill`
-- 安装版本：`0.1.0+codex.20260826153636`
+- 安装版本：`0.1.0+codex.20260826165109`
 - Marketplace：`personal-opencode-imports`
 
 ## 安装位置
 
 - 开发源码：`C:\Users\6seve\Codelib-severin\2_Business\Severin research skill`
 - 个人插件源：`C:\Users\6seve\plugins\severin-research`
-- Codex 缓存：`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-research\0.1.0+codex.20260826153636`
+- Codex 缓存：`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-research\0.1.0+codex.20260826165109`
 - 个人 Marketplace：`C:\Users\6seve\.agents\plugins\marketplace.json`
 - 兼容入口：`C:\Users\6seve\.agents\skills\research-skill`
 - 兼容入口类型：目录 `Junction`
@@ -73,6 +73,7 @@ codex plugin list
 ## 注意事项和踩坑
 
 - Plugin 安装完成后，当前旧任务不会自动重新发现新 Skill/MCP；请新建任务，必要时重启 Codex。
+- `.mcp.json` 必须设置 `cwd: "."`，并以 `./dist/mcp/server.mjs` 这种插件根目录相对路径启动。`${__dirname}` 不会被 Codex 的插件 MCP 配置展开，会出现 Skill 已加载但 MCP 工具缺失。
 - MCP 服务器必须构建为独立的 `server.mjs`。仅复制 TypeScript 编译产物会依赖开发目录的 `node_modules`，安装后可能失效。
 - 旧版 `$research-skill` 符号链接因源码迁入 `skills\research-skill` 而失效。当前权限不能新建 SymbolicLink，因此改用无需管理员权限的 Junction；旧链接只作为备份保留。
 - Evidence 的本地来源必须保存项目相对路径和 SHA-256；摘要不能替代原始文件路径。
@@ -91,6 +92,11 @@ codex plugin list
 - MCP App 资源为 `ui://severin-research/current-experiment.html`。
 - TypeScript/MCP 测试 4/4 通过，Python 治理验证器测试 3/3 通过。
 - `npm audit` 为 0 个已知漏洞。
+
+2026-08-27 修复后再次验证：
+
+- 源码测试 4/4 通过，插件源码和新缓存均通过官方 `validate_plugin.py`。
+- 新缓存中的独立服务器完成真实 MCP 握手，并枚举出 3 个预期工具。
 
 ## 回滚
 
