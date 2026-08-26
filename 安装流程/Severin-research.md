@@ -13,9 +13,8 @@
 - 个人插件源：`C:\Users\6seve\plugins\severin-research`
 - Codex 缓存：`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-research\0.1.0+codex.20260826165804`
 - 个人 Marketplace：`C:\Users\6seve\.agents\plugins\marketplace.json`
-- 兼容入口：`C:\Users\6seve\.agents\skills\research-skill`
-- 兼容入口类型：目录 `Junction`
-- 兼容入口目标：`C:\Users\6seve\Codelib-severin\2_Business\Severin research skill\skills\research-skill`
+- 已停用兼容入口备份：`C:\Users\6seve\.agents\skills-disabled\research-skill-junction-20260827`
+- 备份类型：目录 `Junction`，仍指向开发源码中的 `skills\research-skill`
 - 旧失效符号链接备份：`C:\Users\6seve\.agents\skills\research-skill.legacy-broken-20260826`
 - 上一版安装记录：`Severin-research-legacy-20260825.md`
 
@@ -79,7 +78,7 @@ codex plugin list
 - `.mcp.json` 必须设置 `cwd: "."`，并以 `./dist/mcp/server.mjs` 这种插件根目录相对路径启动。`${__dirname}` 不会被 Codex 的插件 MCP 配置展开，会出现 Skill 已加载但 MCP 工具缺失。
 - `npm test` 包含安装态发布门禁：生成不含 `node_modules` 的隔离包，按 `.mcp.json` 启动服务器，并强制枚举 3 个工具和面板资源。入口路径或打包依赖错误会在安装前失败。
 - MCP 服务器必须构建为独立的 `server.mjs`。仅复制 TypeScript 编译产物会依赖开发目录的 `node_modules`，安装后可能失效。
-- 旧版 `$research-skill` 符号链接因源码迁入 `skills\research-skill` 而失效。当前权限不能新建 SymbolicLink，因此改用无需管理员权限的 Junction；旧链接只作为备份保留。
+- 旧版 `$research-skill` 兼容 Junction 已移出 `.agents\skills` 发现目录，避免和插件内 Skill 重复加载。Junction 仅作为可恢复备份保留，正式入口只有 `Severin-research` 插件。
 - Evidence 的本地来源必须保存项目相对路径和 SHA-256；摘要不能替代原始文件路径。
 - Result、Evidence、Claim 和 Conclusion 必须分层，审计通过不能冒充科学结论成立。
 - Marketplace 只保存安装入口；开发源码仍以 Codelib 项目为准。
@@ -105,4 +104,4 @@ codex plugin list
 
 ## 回滚
 
-在 Codex 中卸载 `severin-research`，然后移除个人插件源和 Marketplace 条目。开发源码不应删除。若不再需要兼容入口，只移除 `C:\Users\6seve\.agents\skills\research-skill` Junction，不要删除其目标目录。
+在 Codex 中卸载 `severin-research`，然后移除个人插件源和 Marketplace 条目。开发源码不应删除。若要临时恢复旧入口，可把 `skills-disabled\research-skill-junction-20260827` 移回 `.agents\skills\research-skill`；不要删除其目标目录。
