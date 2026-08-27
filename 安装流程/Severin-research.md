@@ -4,14 +4,14 @@
 - 平台：Windows 11 / PowerShell / Codex Desktop / Codex CLI 0.149.0
 - Plugin ID：`severin-research`
 - Skill ID：`research-skill`
-- 安装版本：`0.1.0+codex.20260826170828`
+- 安装版本：`0.1.0+codex.20260827044008`
 - Marketplace：`personal-opencode-imports`
 
 ## 安装位置
 
 - 开发源码：`C:\Users\6seve\Codelib-severin\2_Business\Severin research skill`
 - 个人插件源：`C:\Users\6seve\plugins\severin-research`
-- Codex 缓存：`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-research\0.1.0+codex.20260826170828`
+- Codex 缓存：`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-research\0.1.0+codex.20260827044008`
 - 个人 Marketplace：`C:\Users\6seve\.agents\plugins\marketplace.json`
 - 已停用兼容入口备份：`C:\Users\6seve\.agents\skills-disabled\research-skill-junction-20260827`
 - 备份类型：目录 `Junction`，仍指向开发源码中的 `skills\research-skill`
@@ -74,6 +74,9 @@ codex plugin list
 
 也可以显式调用 `$research-skill`。Ponytail 面板只显示当前科研项目/实验，不提供跨项目首页；面板按钮把命令交回 Agent，不能绕过 Skill 直接修改 Claim 或 Conclusion。
 
+`收录实验` 完成校验后，最终对话回复必须为本次实际处理的每个问题分别输出“核验问题—假设—结果”。
+未登记假设和证据不足都有固定回退文本；结果摘要不能创建 Evidence，也不能冒充 Conclusion。
+
 ## 注意事项和踩坑
 
 - Plugin 安装完成后，当前旧任务不会自动重新发现新 Skill/MCP；请新建任务，必要时重启 Codex。
@@ -104,6 +107,7 @@ codex plugin list
 - 新缓存中的独立服务器完成真实 MCP 握手，并枚举出 3 个预期工具。
 - 新增安装态发布门禁，并对 `0.1.0+codex.20260826170828` 的 Codex 缓存副本执行同一门禁，结果通过。
 - GitHub Actions 已在干净 Linux 环境中完成 Node 构建、隔离安装态握手和 Python 治理校验。
+- `0.1.0+codex.20260827044008` 新增收录完成响应契约；源码测试 5/5、缓存契约检查和安装态门禁均通过。
 
 ## 回滚
 
