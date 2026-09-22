@@ -1,4 +1,4 @@
-# 知行 4.1.0：多来源信息归集与事项整理
+# 知行 4.1.1：多来源信息归集与事项整理
 
 安装日期：2026-09-22。平台：Windows。正式名称经用户确认；本模块位于既有“知识梳理”内，不增加顶层 Skill。
 
@@ -9,7 +9,7 @@
 - 工作流：`skills/severin-knowledge-skill/workflows/multisource-matters.md`。
 - CLI：`skills/severin-knowledge-skill/scripts/multisource_matters.py`。
 - 市场安装源：`C:\Users\6seve\plugins\severin-skill`。
-- 安装缓存：`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-skill\4.1.0`。缓存不作为编辑源。
+- 安装缓存：`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-skill\4.1.1`。缓存不作为编辑源。
 - 市场配置：`C:\Users\6seve\.agents\plugins\marketplace.json`；Codex 配置：`C:\Users\6seve\.codex\config.toml`，此次配置保持不变。
 - Python：使用现有 `py -3`；Codex：使用已有 `codex` CLI。模块不新增 API Key、环境变量、常驻服务或定时任务。邮件读取沿用用户已授权连接器；飞书、微信只预留来源契约。
 
@@ -32,10 +32,10 @@ codex plugin list --marketplace personal-opencode-imports --json
 ## 验证与边界
 
 - 发布前 Node 测试、隔离包、MCP 工具与面板资源门禁通过。
-- 正式发布 Python 回归：294 项，1 项环境相关跳过；新增模块11项定向测试全部通过。
+- 正式发布 Python 回归：295 项，1 项环境相关跳过；新增模块12项定向测试全部通过。
 - 发布包包含正式设计、工作流与CLI；361个安装缓存文件与ZIP逐字节一致。
-- `codex plugin add severin-skill@personal-opencode-imports --json` 安装成功，版本4.1.0；安装清单显示 enabled=true。
-- 新启动的只读 app-server 发现4.1.0路径，13个知行Hook均enabled=true、trustStatus=trusted。没有手动改写信任状态。
+- `codex plugin add severin-skill@personal-opencode-imports --json` 安装成功，版本4.1.1；安装清单显示 enabled=true。
+- 新启动的只读 app-server 发现4.1.1路径，13个知行Hook均enabled=true、trustStatus=trusted。没有手动改写信任状态。
 - 安装版CLI已在真实用户指定目录完成20个文件及空目录的快照与校验；私人文件不进入插件仓库或本文。
 - 本轮既有对话上下文不会因此热替换；安装发现与CLI验收不冒充新对话的全部生命周期验收。
 - 依赖审计报告现有间接依赖qs有1项moderate级条目；本次标准库模块未增改该依赖，未顺带扩大修复范围。
@@ -48,4 +48,6 @@ codex plugin list --marketplace personal-opencode-imports --json
 
 首次原生app-server检查因15秒等待超时失败；延长单次等待到60秒后成功。浏览器未导出的页面状态须从原页面合法导出，不能通过快照工具绕过浏览器安全策略。
 
-代码提交：[d8ca51d](https://github.com/severin-ye/Severin-skill/commit/d8ca51d9c0da8086defbb08538e64f8f0fa8c347)。本文件记录插件安装，不包含私人邮件整理内容。
+代码提交：[3a4772b](https://github.com/severin-ye/Severin-skill/commit/3a4772b51e00c45416b7b00381c018bb9f8f7323)。本文件记录插件安装，不包含私人邮件整理内容。
+
+4.1.1补充：目录遍历遇到读取错误立即失败，防止静默遗漏子目录；最终版重新通过完整发布检查、361文件缓存校验、13个Hook及知识梳理入口的原生宿主发现。4.1.0中间版安装源另保留在同备份目录的`plugin-source-4.1.0`，可用于回溯。
