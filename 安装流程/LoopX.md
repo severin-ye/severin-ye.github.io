@@ -8,9 +8,19 @@
 
 知行插件已通过个人市场升级到 6.0.0，安装缓存为 `C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-skill\6.0.0`；本机 `C:\Users\6seve\.codex\AGENTS.md` 已部署 LoopX 任务权威规则，`C:\Users\6seve\.codex\plugins\data\severin-skill-personal-opencode-imports\task-authority.json` 写入 `mode=loopx`。新宿主只读检查 13 条 Hook 全部启用且受信任。无新增 API Key 或环境变量；LoopX 自身路径不变。完整职责、测试与限制见[知行整合交付记录](https://github.com/severin-ye/Severin-skill/blob/main/docs/loopx-zhixing-integration-result-2026-09-25.md)。
 
-常用核对命令：`loopx status --format json`、`loopx doctor --deep --format json`、`loopx quota should-run --goal-id <目标> --runtime-profile generic_cli --registry <项目>/.loopx/registry.json`、`loopx todo list --goal-id <目标> --project <项目> --registry <项目>/.loopx/registry.json`。本机当前终端仍可能通过 `C:\Users\6seve\.local\bin` 的 uv shim 找到 CLI，深度诊断会把命令路径认作不同分发；先将 `C:\Users\6seve\AppData\Roaming\uv\tools\loopx\Scripts` 放在当前 PowerShell `PATH` 最前，再运行诊断。Dashboard `http://127.0.0.1:8765/` 已返回 HTTP 200。
+常用核对命令：`loopx status --format json`、`loopx doctor --deep --format json`、`loopx quota should-run --goal-id <目标> --runtime-profile generic_cli --registry <项目>/.loopx/registry.json`、`loopx todo list --goal-id <目标> --project <项目> --registry <项目>/.loopx/registry.json`。本机当前终端仍可能通过 `C:\Users\6seve\.local\bin` 的 uv shim 找到 CLI，深度诊断会把命令路径认作不同分发；先将 `C:\Users\6seve\AppData\Roaming\uv\tools\loopx\Scripts` 放在当前 PowerShell `PATH` 最前，再运行诊断。最初只确认 Dashboard `http://127.0.0.1:8765/` 返回 HTTP 200；下面记录了任务页面的补验和修正。
 
 回退须先停止相关 LoopX Goal 写入、保存切换后的新决定，再用保留的旧插件来源经 `codex plugin add severin-skill@personal-opencode-imports` 重装 5.1.1；核对后恢复旧全局规则和开机入口，启动保留的看板 10.0.0，读回旧数据。不要把封存快照直接覆盖切换后的有效工作。当前 Codex 轮次的旧看板复核只进入待应用事件，已保存在封存中；不把旧卡描述冒称为最新进展。
+
+## 2026-09-25 已停止 Goal 的任务页面本机修正
+
+用户在 LoopX“TabPred 待办接续”中看到空看板；CLI 实际能读到 5 个迁移 Todo。LoopX 1.2.0 的 Goal 专属状态接口默认只向页面提供可执行队列，已停止 Goal 被排除。已在**本机安装包**的 `C:\Users\6seve\AppData\Roaming\uv\tools\loopx\Lib\site-packages\loopx\chat_status_api.py` 中修正：只在指定已停止 Goal 且没有显式激活状态参数时，读取其持久 Todo。全局可执行队列与暂停门禁保持原样；上游源码和包版本未改。
+
+- 原文件备份：`C:\Users\6seve\AppData\Local\SeverinBoardMigration\cutover-20260925\loopx-chat-status-api-1.2.0-original.py`；SHA256 `E91E0E57FC340F91C0E60C0D31076417984D0A57D042191331E74A029AEC2063`。
+- 本机补丁：同目录 `loopx-chat-status-api-1.2.0-local.patch`。修正后安装文件 SHA256 `851CA9053CA8C59857430B7DAB08497D743A747F6DE111C7FC16A7EC2893F686`。
+- 验收：重启本地 Dashboard 后，五个 Goal 专属接口显示 3、1、6、5、18 个 Todo，合计 33；浏览器打开 TabPred 真实页面显示 5 张“受阻”来源卡。未指定 Goal 的可执行队列为 0；五个 Goal 的 `quota should-run` 均为 `paused / should_run=false`；`doctor --deep` 为 `ok=true`、必需项失败 0。
+- 回退本机修正：先停止 `loopx dashboard --global-registry --host 127.0.0.1 --port 8765 --no-open` 对应进程，核对备份文件 SHA256 后，把上述原文件备份复制回安装位置，再用同一命令重启 Dashboard 并读回页面。此回退只影响停止 Goal 的页面可见性，不会删除迁移的 Todo。
+- `uv tool upgrade loopx` 或重新安装可能覆盖本机修正。升级后须检查官方版本是否已解决此问题，并重新验证五个 Goal 的页面读回及暂停门禁；不能只凭 HTTP 200 宣称验收通过。
 
 安装日期：2026-09-25；平台：Windows 11、PowerShell 7.6.5。来源：[LoopX 官方仓库](https://github.com/loopx-project/loopx)的 [v1.2.0 发布版](https://github.com/loopx-project/loopx/releases/tag/v1.2.0)。本次安装的是正式 PyPI 包与 Codex 工作流技能，未安装独立桌面预览版，未连接任何现有项目。
 
