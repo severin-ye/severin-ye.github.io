@@ -4,6 +4,14 @@
 
 # Severin 个人 Hook 实施结果
 
+## 2026-09-25 知行 6.0.0 与 LoopX 整合安装
+
+平台：Windows 11；来源：`C:\Users\6seve\Codelib-severin\2_Business\Severin-skill` 的 6.0.0 发布包。安装源为 `C:\Users\6seve\plugins\severin-skill`，Codex 插件缓存为 `C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-skill\6.0.0`；旧 5.1.1 来源和配置备份在 `C:\Users\6seve\AppData\Local\SeverinBoardMigration\cutover-20260925`。实际全局规则为 `C:\Users\6seve\.codex\AGENTS.md`，插件数据标记为 `C:\Users\6seve\.codex\plugins\data\severin-skill-personal-opencode-imports\task-authority.json`（`mode=loopx`）。
+
+安装命令：`codex plugin add severin-skill@personal-opencode-imports --json`。核对命令：`codex plugin list --marketplace personal-opencode-imports --json`、`node scripts/verify-plugin-package.mjs --plugin-root <安装缓存>`、`py -3 scripts/inspect_host_hooks.py --cwd <项目根目录>`。安装器读回版本 6.0.0；解包校验通过，独立宿主读取 13 条 Hook 均启用且受信任，警告和错误均为 0。源码发布门禁通过 337 项 Python 测试（1 项跳过）及 14 项科研 MCP Node 测试。当前已运行的旧会话可能继续持有 5.1.1 规则文本，不能把独立宿主读取冒充旧会话热更新。
+
+此次未新增 API Key、环境变量、科研 MCP 名称或 Hook 信任绕过。与 LoopX 重复的旧看板和 Agent Status 写入已封存；个人恢复记录、中文标题、Router、翻译、学习、论文、套磁、HTML 批注、科研实验治理和 MCP 继续保留。知行看板 10.0.0 原数据及安装仍在本机，服务和开机入口停用；详细私有封存与回退路径见[LoopX 安装记录](LoopX.md)。回退先停止 LoopX 相关目标写入并保留新决定，再用备份的旧来源经上述个人市场命令重装 5.1.1，逐条核对后恢复旧全局规则和看板启动入口；不要覆盖切换后的有效用户数据。
+
 2026-09-04，Windows。本轮已完成规则修复、运行时实现、离线验收、安装和只读宿主发现；真实事件验收等待用户审核信任。不能标记整个计划 DONE。
 
 ## 之前、改后和理由

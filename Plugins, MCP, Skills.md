@@ -21,6 +21,12 @@ Plugins, MCP servers, and skills currently installed across all environments.
 | Codex Auth | `opencode-openai-codex-auth` | OpenAI Codex 认证 | active |
 | Ralph Loop | `opencode-ralph-loop` | 自动续行任务直到完成 | active（本地） |
 
+### Codex 个人插件
+
+| 插件 | 版本与路径 | 状态 |
+|------|------------|------|
+| 知行 `severin-skill@personal-opencode-imports` | 6.0.0；`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-skill\6.0.0` | 已安装并启用；13 条 Hook 已获信任，旧看板与 Agent Status 写入封存；见[安装记录](安装流程/Severin-skill.md) |
+
 ---
 
 ## MCP Servers
@@ -42,6 +48,7 @@ Plugins, MCP servers, and skills currently installed across all environments.
 | 名称 | 路径 | 用途 | 状态 |
 |------|------|------|------|
 | codex-bridge | `C:\Users\6seve\.codex\tools\codex-bridge` | Codex Responses API 到 DeepSeek / MiMo Chat Completions 的本地桥接器 | active |
+| LoopX | `C:\Users\6seve\AppData\Roaming\uv\tools\loopx\Scripts\loopx.exe` | 长任务 Goal/Todo/门禁/证据与 Codex 工作流 CLI | 1.2.0 已安装；五个项目的迁移 Goal 已连接且停止 |
 
 **备注**: codex-bridge 配置详见 [`codex-bridge.md`](./安装流程/codex-bridge.md)。
 
@@ -93,6 +100,22 @@ Plugins, MCP servers, and skills currently installed across all environments.
 | ui-ux-pro-max | `nexu-io/open-design` | UI/UX 设计模式库 |
 | whitepaper | 手动安装 | 专业 PDF 白皮书 |
 
+### LoopX 的 Codex 工作流技能
+
+2026-09-25 从 LoopX 1.2.0 正式 Python 包安装到 `C:\Users\6seve\.codex\skills\`；本次会话的技能目录不会热更新，重开 Codex 后还需验证发现。
+
+| 技能 | 用途 |
+|------|------|
+| loopx | 显式查看或建立 LoopX Goal |
+| loopx-project | 项目连接、Goal/Todo 接续与诊断 |
+| loopx-pr-program | 多 PR/MR 交付计划和变更监测 |
+| loopx-pr-review | 按确切修订及证据审查 PR |
+| loopx-doc-registry | 已连接项目的资料登记与来源权威 |
+| loopx-benchmark | LoopX 管理的基准实验流程 |
+| loopx-self-repair | LoopX 状态或代理行为偏离的排查 |
+
+安装、路径、诊断和回退见[LoopX 安装记录](安装流程/LoopX.md)。五个已迁移项目的长期任务状态现在由 LoopX 持有，专业科研原件和个人恢复记录仍由知行负责。
+
 ### Ralph Loop 控制
 
 | 技能 | 说明 |
@@ -120,12 +143,13 @@ Plugins, MCP servers, and skills currently installed across all environments.
 
 | 类别 | 数量 |
 |------|------|
-| 插件 | 8 |
+| 插件 | 9 |
 | MCP 服务器 | 3 |
-| 本地工具 | 1 |
+| 本地工具 | 2 |
 | 技能（GStack） | ~50 |
 | 技能（Science Skills） | 37 |
-| 技能（独立） | 5 |
+| 技能（独立） | 6 |
+| 技能（LoopX） | 7 |
 | 技能（Ralph Loop） | 3 |
 | 技能（本地自定义） | 8 |
-| **合计** | **~115** |
+| **合计** | **~125** |
