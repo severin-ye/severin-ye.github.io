@@ -1,5 +1,21 @@
 # LoopX 安装记录
 
+## 2026-09-25 Codex 对话连接补验与本机配置
+
+此前的“已连接”只验证了项目、Goal/Todo 状态和看板页面，**没有验证看板向 Codex 发送消息并收到回复**。用户实际发送消息时页面报“Codex 上游拒绝了本轮请求参数”；因此此前把完整聊天连接说成已验收是错误的。
+
+根因已从 Codex 上游错误查明：Goal 对话未显式指定模型，继承了用户全局 `C:\Users\6seve\.codex\config.toml` 的 `gpt-6-sol`；当前 ChatGPT 账号的 Codex 连接不支持该模型。Manager 对话使用显式模型，不能用它或 CLI 登录成功推断 Goal 对话可用。用户原话并非被拒绝的原因；LoopX 的通用报错隐藏了上游的具体模型错误。
+
+本机用独立包装入口 `C:\Users\6seve\.codex\loopx\bin\codex-compatible.cmd` 启动 Codex，为 **LoopX 启动的会话**指定经验证可用的 `gpt-6-astra`，不修改用户全局 Codex 模型。当前 Dashboard 用 `--codex-bin` 指向该入口，监听 `127.0.0.1:8765`。包装入口实际内容为 `call "C:\Users\6seve\AppData\Roaming\npm\codex.cmd" -c model=gpt-6-astra %*`；没有新增 API Key 或环境变量。
+
+```powershell
+& 'C:\Users\6seve\AppData\Roaming\uv\tools\loopx\Scripts\loopx.exe' dashboard --global-registry --host 127.0.0.1 --port 8765 --no-open --codex-bin 'C:\Users\6seve\.codex\loopx\bin\codex-compatible.cmd'
+```
+
+重启 Dashboard 时仍须使用这个参数；单独执行旧的 `loopx dashboard` 命令可能重现原问题。本机未设置开机自启。回退只需停止这个 Dashboard 进程并用普通 `codex` 入口重启；用户全局配置和旧聊天记录均未改。若以后账号支持原模型，先在新会话中做真实往返验证，再移除覆盖。更新 LoopX 或 Codex 后也应重做此验证。
+
+实际验收：通过本机 `/api/chat/sessions` 为五个已停止 Goal 分别建立新会话，`resume_latest` 逐一返回新会话；旧失败会话及消息仍保留。TabPred 和 CuraView 分别通过 `/turns` 发出测试消息并在会话快照中读回 Codex 回复，状态均为 `ready`、`last_error_code=null`。另外在新开的 CuraView 浏览器页面读到“已连接”、旧错误历史与新的成功回复。其余三个 Goal 已确认新会话建立和接续，未逐个发送测试消息。**聊天接通不表示五个已停止 Goal 已获准执行任务**，其暂停门禁保持不变。
+
 ## 2026-09-25 与知行切换后的追加记录
 
 下文“未连接任何项目”描述的是最初安装时的状态；本次已将 Cembra、CuraView、Severin-skill、TabPred、uagent-sync 五个项目连接到 LoopX 1.2.0。来自知行看板的 33 张未完成工作卡转换为 33 个阻塞 Todo，五个 Goal 全部设为 `stopped`，配额读回 `paused / should_run=false`。41 张对话镜像仅保留来源，62 张完成或删除卡只读封存；总计 136 张，无分类异常。
