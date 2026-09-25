@@ -1,5 +1,17 @@
 # LoopX 安装记录
 
+## 2026-09-25 停用与知行看板恢复
+
+用户决定停止使用 LoopX，重新使用知行看板。本机 LoopX Dashboard 已停止，`127.0.0.1:8765` 不再监听；没有配置 LoopX 开机任务。七个 `C:\Users\6seve\.codex\skills\loopx*` 工作流目录已移入下述回退备份，LoopX 程序与 Goal/Todo 数据保留，不再作为当前任务入口。此前 Goal 和 Todo 的状态是历史记录，不应再驱动工作。
+
+知行看板 10.0.0 已从保留的安装目录启动，页面 `http://127.0.0.1:47831/` 返回 200，浏览器读到旧项目、旧任务及人工暂停状态；原定时任务 `Severin Project Board` 已重新启用，开机快捷方式已恢复。恢复时先核对原 136 张任务与切换前快照一致，随后把 LoopX 中新增的两张 CuraView 任务建回看板，把三张旧卡在 LoopX 期间的进展写入备注。新建的游戏本实际实验卡保持人工暂缓；LoopX 上缺少证据的“完成”没有直接转成旧卡完成。所有项目的自动执行暂未开启，避免未经核验自动领取旧任务。
+
+回退备份：`C:\Users\6seve\AppData\Local\SeverinBoardMigration\rollback-to-board-20260925T204147`，包括 LoopX 全局及五个项目状态、切换时插件数据和规则、6.0.0 安装源。旧看板原始封存仍在 `C:\Users\6seve\AppData\Local\SeverinBoardMigration\snapshots\board-20260925T063151Z-f04c4131`。本次没有用旧快照覆盖切换后的有效工作。
+
+知行 5.1.1 安装源已恢复到 `C:\Users\6seve\plugins\severin-skill`，全局规则已恢复看板与 Agent Status 职责，LoopX 任务权威标记已移出当前插件数据。**插件切换尚未完成验收**：当前 Codex 进程占用 6.0.0 缓存，`codex plugin remove` 报 Windows 文件占用，`codex plugin add` 无法把 5.1.1 设为活动版；CLI 仍读回 6.0.0。下一次关闭 Codex 后应运行 `codex plugin remove severin-skill@personal-opencode-imports --json` 和 `codex plugin add severin-skill@personal-opencode-imports --json`，重新打开 Codex 后核对 5.1.1、Hook 信任状态与真实看板同步。旧 6.0.0 缓存已在失败尝试后从备份恢复，不以当前页面可访问冒充插件回退完成。
+
+平台：Windows 11；未新增 API Key 或环境变量。LoopX 本机 CLI 仍保留，供读取旧记录或回退使用；重新启动 Dashboard 会重新启用 LoopX 界面，因此在恢复看板期间不运行下文历史启动命令。
+
 ## 2026-09-25 Codex CLI 升级与 Sol 恢复
 
 LoopX 看板调用的是独立安装的 npm Codex CLI，不是 Codex 桌面端内置运行时。核查时桌面端为 `26.917.71314` 且更新检查为最新；独立 CLI 为 `0.153.4`。使用同一个 ChatGPT 登录和同一条 `gpt-6-sol` 测试请求，CLI `0.153.4` 返回“Unknown model”及 HTTP 400（不支持通过 ChatGPT 账号使用该模型），CLI `0.157.0` 则成功回复 `PONG`。因此先前把失败归因于“账号不支持 Sol”是错误的；本机旧 CLI 与该模型不兼容，桌面端更新不会自动更新独立 CLI。

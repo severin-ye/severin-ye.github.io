@@ -4,6 +4,12 @@
 
 # Severin 个人 Hook 实施结果
 
+## 2026-09-25 知行看板回退状态
+
+用户要求停用 LoopX 并恢复知行看板。5.1.1 来源已恢复到 `C:\Users\6seve\plugins\severin-skill`，6.0.0 来源保存在 `C:\Users\6seve\AppData\Local\SeverinBoardMigration\rollback-to-board-20260925T204147\plugin-source-6.0.0`；全局规则 `C:\Users\6seve\.codex\AGENTS.md` 已恢复看板与 Agent Status 职责，保留切换期间新增的自动提交与推送约定。LoopX 任务权威标记移出当前插件数据，原用户数据没有清空。
+
+当前 Codex 进程仍占用 6.0.0 插件缓存，CLI 安装列表仍显示 6.0.0；5.1.1 已复制到缓存，但尚未激活。关闭 Codex 后按 [LoopX 停用与看板恢复记录](LoopX.md#2026-09-25-停用与知行看板恢复)完成官方卸载/安装和宿主信任核对。在这一步完成前，不能宣称 5.1.1 已正式安装或 Hook 已按旧版运行。知行看板 10.0.0 服务和开机入口已经恢复，旧任务及人工暂停在页面可见。
+
 ## 2026-09-25 知行 6.0.0 与 LoopX 整合安装
 
 平台：Windows 11；来源：`C:\Users\6seve\Codelib-severin\2_Business\Severin-skill` 的 6.0.0 发布包。安装源为 `C:\Users\6seve\plugins\severin-skill`，Codex 插件缓存为 `C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-skill\6.0.0`；旧 5.1.1 来源和配置备份在 `C:\Users\6seve\AppData\Local\SeverinBoardMigration\cutover-20260925`。实际全局规则为 `C:\Users\6seve\.codex\AGENTS.md`，插件数据标记为 `C:\Users\6seve\.codex\plugins\data\severin-skill-personal-opencode-imports\task-authority.json`（`mode=loopx`）。
