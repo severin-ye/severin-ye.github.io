@@ -1,5 +1,15 @@
 # LoopX 安装记录
 
+## 2026-09-25 Codex CLI 升级与 Sol 恢复
+
+LoopX 看板调用的是独立安装的 npm Codex CLI，不是 Codex 桌面端内置运行时。核查时桌面端为 `26.917.71314` 且更新检查为最新；独立 CLI 为 `0.153.4`。使用同一个 ChatGPT 登录和同一条 `gpt-6-sol` 测试请求，CLI `0.153.4` 返回“Unknown model”及 HTTP 400（不支持通过 ChatGPT 账号使用该模型），CLI `0.157.0` 则成功回复 `PONG`。因此先前把失败归因于“账号不支持 Sol”是错误的；本机旧 CLI 与该模型不兼容，桌面端更新不会自动更新独立 CLI。
+
+已用 `npm install -g @openai/codex@0.157.0` 更新 `C:\Users\6seve\AppData\Roaming\npm\codex.cmd`，并将 LoopX 专用包装入口 `C:\Users\6seve\.codex\loopx\bin\codex-compatible.cmd` 改为 `call "C:\Users\6seve\AppData\Roaming\npm\codex.cmd" -c model=gpt-6-sol %*`。原包装入口备份为 `C:\Users\6seve\.codex\loopx\backups\codex-compatible-before-sol-20260925-194248.cmd`；未改用户的全局 Codex 模型、登录或密钥。Dashboard 已使用同一 `--codex-bin` 参数重新启动，本机 `127.0.0.1:8765` 仍可访问。npm 更新时曾提示旧进程占用旧版清理目录，但安装退出码为 0，随后读回 CLI `0.157.0`；该残留目录不作为新版运行入口。
+
+真实验收分两层：LoopX 的 Codex 适配器用包装入口启动 `gpt-6-sol`，读回模型和 `medium` 档位，发消息得到 `PONG`；Dashboard 在 TabPred Goal 新建会话，经 `/turns` 发消息也得到 `PONG`，会话回到 `ready` 且无错误，Codex 线程记录读回实际模型 `gpt-6-sol`、CLI `0.157.0`。LoopX 管家新会话的执行绑定读回 `gpt-6-sol`／`medium`，实际消息得到 `PONG`；旧管家 Astra 会话留作历史。CuraView 最近的旧会话保留原线程和消息，已在续接时将线程模型改为 Sol 并再次读回 Sol；Cembra、uagent-sync 和 Severin-skill 的最近旧 Goal 会话也分别以新版入口续接并读回 Sol。TabPred 的新会话是该 Goal 的最新会话；其他旧历史未删除。连接验证不改变 Goal 暂停、Todo 状态或科研执行授权。
+
+回退本次 CLI/模型切换时，先停止这一 Dashboard 进程，备份当前包装入口，把上述备份复制回原路径；如需同时回退 CLI，可运行 `npm install -g @openai/codex@0.153.4`，再以安装记录中的完整 `loopx dashboard ... --codex-bin` 命令重启。旧 CLI 对 Sol 的已知 400 错误会随回退再次出现；回退前保留新会话与旧会话记录，不删除 LoopX 数据。
+
 ## 2026-09-25 旧看板停止理由校正
 
 旧知行看板服务和计划任务已停用，本机旧端口无监听。切换时写入 LoopX 的四个 Goal 停止理由仍称“原服务仍为任务写入者”；这个历史理由在封存后过期，曾使 Codex 错误解释为旧看板仍在影响当前任务。已在四个项目注册表和 LoopX 全局投影中改为当前事实：旧看板已停用，Goal 保留的是迁移时设置的 LoopX 停止门禁。设置门禁的原因是 LoopX 1.2.0 的阻塞 Todo 本身不能保证 Goal 不获得自动轮次；恢复前仍须逐项核对原任务的人工暂停、依赖和审核。
@@ -10,15 +20,15 @@
 
 此前的“已连接”只验证了项目、Goal/Todo 状态和看板页面，**没有验证看板向 Codex 发送消息并收到回复**。用户实际发送消息时页面报“Codex 上游拒绝了本轮请求参数”；因此此前把完整聊天连接说成已验收是错误的。
 
-根因已从 Codex 上游错误查明：Goal 对话未显式指定模型，继承了用户全局 `C:\Users\6seve\.codex\config.toml` 的 `gpt-6-sol`；当前 ChatGPT 账号的 Codex 连接不支持该模型。Manager 对话使用显式模型，不能用它或 CLI 登录成功推断 Goal 对话可用。用户原话并非被拒绝的原因；LoopX 的通用报错隐藏了上游的具体模型错误。
+当时 Goal 对话未显式指定模型，继承了用户全局 `C:\Users\6seve\.codex\config.toml` 的 `gpt-6-sol`；旧 CLI `0.153.4` 对该模型返回 HTTP 400。那时据错误文字推断“当前账号不支持 Sol”，后续同账号、新旧 CLI 对照试验证明这一推断错误，实际差异是 CLI 版本。用户原话并非被拒绝的原因；LoopX 的通用报错隐藏了上游的具体模型错误。
 
-本机用独立包装入口 `C:\Users\6seve\.codex\loopx\bin\codex-compatible.cmd` 启动 Codex，为 **LoopX 启动的会话**指定经验证可用的 `gpt-6-astra`，不修改用户全局 Codex 模型。当前 Dashboard 用 `--codex-bin` 指向该入口，监听 `127.0.0.1:8765`。包装入口实际内容为 `call "C:\Users\6seve\AppData\Roaming\npm\codex.cmd" -c model=gpt-6-astra %*`；没有新增 API Key 或环境变量。
+当时曾用独立包装入口 `C:\Users\6seve\.codex\loopx\bin\codex-compatible.cmd` 临时指定 `gpt-6-astra`，使聊天先恢复可用；这段 Astra 配置已经由上节的 Sol 配置取代。Dashboard 仍通过 `--codex-bin` 指向该入口，监听 `127.0.0.1:8765`；没有新增 API Key 或环境变量。
 
 ```powershell
 & 'C:\Users\6seve\AppData\Roaming\uv\tools\loopx\Scripts\loopx.exe' dashboard --global-registry --host 127.0.0.1 --port 8765 --no-open --codex-bin 'C:\Users\6seve\.codex\loopx\bin\codex-compatible.cmd'
 ```
 
-重启 Dashboard 时仍须使用这个参数；单独执行旧的 `loopx dashboard` 命令可能重现原问题。本机未设置开机自启。回退只需停止这个 Dashboard 进程并用普通 `codex` 入口重启；用户全局配置和旧聊天记录均未改。若以后账号支持原模型，先在新会话中做真实往返验证，再移除覆盖。更新 LoopX 或 Codex 后也应重做此验证。
+重启 Dashboard 时仍须使用这个参数，确保调用已验收的 CLI 入口。本机未设置开机自启。用户全局配置和旧聊天记录未改；更新 LoopX 或 Codex 后应重做真实消息往返验证。
 
 实际验收：通过本机 `/api/chat/sessions` 为五个已停止 Goal 分别建立新会话，`resume_latest` 逐一返回新会话；旧失败会话及消息仍保留。TabPred 和 CuraView 分别通过 `/turns` 发出测试消息并在会话快照中读回 Codex 回复，状态均为 `ready`、`last_error_code=null`。另外在新开的 CuraView 浏览器页面读到“已连接”、旧错误历史与新的成功回复。其余三个 Goal 已确认新会话建立和接续，未逐个发送测试消息。**聊天接通不表示五个已停止 Goal 已获准执行任务**，其暂停门禁保持不变。
 
