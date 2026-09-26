@@ -8,6 +8,10 @@
 
 `uv tool uninstall loopx` 已卸载 LoopX 1.2.0 和五个命令入口；用户 PATH 已移除 `C:\Users\6seve\AppData\Roaming\uv\tools\loopx\Scripts`，Codex 配置中 LoopX 专用的管理工作区信任项已移除，残留的 `.loopx-skill-install.json` 也移入封存。
 
+知行插件原 7.0.1 安装源已保存在封存目录的 `plugin-source-before-8.0.0`，新的 8.0.0 安装源位于 `C:\Users\6seve\plugins\severin-skill`；`codex plugin add` 读回 8.0.0 已安装且启用，缓存中的 Hook 与安装源哈希相同，当前已打开的对话仍可能保留旧版预加载上下文。
+
+知行看板 `http://127.0.0.1:47831/api/session` 返回 200 和版本 10.1.1；LoopX 的 8765 端口无监听，`loopx` 命令不可用，旧缓存和历史文档不作为活动服务。
+
 本次不删除封存记录；若需取回，只能从 `manifest.json` 核对源路径和校验值后逐项恢复，不能把旧 Goal/Todo 当作当前任务权威或直接恢复自启。
 
 ## 2026-09-25 停用与知行看板恢复
