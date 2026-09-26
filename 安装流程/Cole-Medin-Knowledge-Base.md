@@ -67,7 +67,7 @@ py -3 'C:\Users\6seve\.codex\knowledge-bases\cole-medin-knowledge-base\lint.py' 
   - 执行线程完成工作后提交 `done`、`blocked` 或 `failed` 结果及证据，暂停、技术阻塞和时间预算复核仍由调度器约束。
 - 第 5 步：`board/workspace.mjs` 建立独立验收现场，`board/scheduler.mjs` 通过 `board/runtime.mjs` 启动独立验收线程并处理不通过时的修复路径。
   - 看板现已具备独立验收、时间复核、人工暂停和恢复路径，因此文章不会在这里凭空新增另一套循环。
-- 第 6 步：验收通过后，`board/workspace.mjs` 负责整合，`board/delivery.mjs` 负责交付配置、提交与远端发布，`board/scheduler.mjs` 核对结果并更新任务状态。
+- 第 6 步：写任务验收通过后由 `board/workspace.mjs` 整合、`board/delivery.mjs` 提交并远端发布，纯只读任务通过验收后由 `board/scheduler.mjs` 直接完成。
   - `board/store.mjs` 保留任务、运行记录和历史，界面再把状态与证据展示给用户。
 
 ### 文章对各模块的具体帮助与拟议变化
