@@ -1,5 +1,15 @@
 # LoopX 安装记录
 
+## 2026-09-26 历史封存与完整卸载
+
+用户决定完全移除 LoopX，并选择先封存历史再卸载；本节记录当前结果，下文各节仅是过去的安装、修复和回退过程，不代表今天仍在运行。
+
+封存位置为 `C:\Users\6seve\AppData\Local\SeverinBoardMigration\loopx-final-archive-20260926`，其中 `manifest.json` 记录 247 个文件、813679 字节及 SHA256 校验；先复制校验，再把全局和五个项目内共 11 组活动目录移入 `active-originals`，活动路径核对为零。
+
+`uv tool uninstall loopx` 已卸载 LoopX 1.2.0 和五个命令入口；用户 PATH 已移除 `C:\Users\6seve\AppData\Roaming\uv\tools\loopx\Scripts`，Codex 配置中 LoopX 专用的管理工作区信任项已移除，残留的 `.loopx-skill-install.json` 也移入封存。
+
+本次不删除封存记录；若需取回，只能从 `manifest.json` 核对源路径和校验值后逐项恢复，不能把旧 Goal/Todo 当作当前任务权威或直接恢复自启。
+
 ## 2026-09-25 停用与知行看板恢复
 
 用户决定停止使用 LoopX，重新使用知行看板。本机 LoopX Dashboard 已停止，`127.0.0.1:8765` 不再监听；没有配置 LoopX 开机任务。七个 `C:\Users\6seve\.codex\skills\loopx*` 工作流目录已移入下述回退备份，LoopX 程序与 Goal/Todo 数据保留，不再作为当前任务入口。此前 Goal 和 Todo 的状态是历史记录，不应再驱动工作。
