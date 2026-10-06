@@ -4,6 +4,21 @@
 
 # Severin 个人 Hook 实施结果
 
+## 2026-10-06 Router 双模式，8.3.0
+
+Windows 本机通过正常 `codex plugin add severin-skill@personal-opencode-imports --json` 从 8.2.2 更新到 8.3.0。保留原轻量 Luna/medium 配置为“节约额度模式”，默认“避免上下文压缩模式”使用机械 Sol/low、普通及扫描 Sol/medium；原 Sol/Astra 分类与升级条件不变。型号只按等级从每次调用的宿主可见目录选择最新数字版本，不固定型号，也不保证宿主永不压缩。
+
+- 维护源：`C:/Users/6seve/Codelib-severin/2_Business/Severin-skill`。
+- 安装源：`C:/Users/6seve/plugins/severin-skill`；缓存：`C:/Users/6seve/.codex/plugins/cache/personal-opencode-imports/severin-skill/8.3.0`。
+- 模式设置：`C:/Users/6seve/.codex/plugins/data/severin-skill-personal-opencode-imports/router-mode.json`，当前保存 context-preserving。
+- 既有配置：`C:/Users/6seve/.codex/config.toml`、`C:/Users/6seve/.codex/AGENTS.md` 均未修改。CLI 入口为上述安装缓存下 `skills/severin-agent-ops-skill/scripts/router_entry.py`。
+- 常用命令：`py -3 <入口> mode-status`；`mode-set --mode quota-saving`；`mode-set --mode context-preserving`。也可直接说“开启节约额度模式”或“开启避免上下文压缩模式”。
+- 不新增 API Key、系统环境变量、服务或轮询；沿用 PLUGIN_DATA，未设置时使用 CODEX_HOME 或个人 .codex 下的既有插件数据根。无第三方模型 API Key 要求。
+- 27 项 Node、346 项 Python 发布检查通过；367 个包文件与安装内容一致，原数据和配置保留，新宿主发现新版 Router，13 条原 Hook 均 trusted/enabled。两模式安装版 CLI 已核验；真实目录当前 Sol 最高为 6.1，Luna 仍为 6，模拟 Luna 6.1 升级不代表真实可派发。
+- 备份及证据：`C:/Users/6seve/.codex/backups/router-modes-20261006-01a10533`，回退用其中 install-source-8.2.2 经正常安装器恢复，保留回退前的新数据。设置损坏时拒绝派发，不自动清空或假装默认正常。
+
+切换从下一次 Router CLI 生效，无需为命令重启；已运行代理和已注入主对话正文不因此改写。详细源码记录：[Router 两模式交付](https://github.com/severin-ye/Severin-skill/blob/main/docs/router-modes-2026-10-06.md)。
+
 ## 2026-09-25 知行看板回退状态
 
 用户要求停用 LoopX 并恢复知行看板。5.1.1 来源已恢复到 `C:\Users\6seve\plugins\severin-skill`，6.0.0 来源保存在 `C:\Users\6seve\AppData\Local\SeverinBoardMigration\rollback-to-board-20260925T204147\plugin-source-6.0.0`；全局规则 `C:\Users\6seve\.codex\AGENTS.md` 已恢复看板与 Agent Status 职责，保留切换期间新增的自动提交与推送约定。LoopX 任务权威标记移出当前插件数据，原用户数据没有清空。
