@@ -25,7 +25,7 @@ Plugins, MCP servers, and skills currently installed across all environments.
 
 | 插件 | 版本与路径 | 状态 |
 |------|------------|------|
-| 知行 `severin-skill@personal-opencode-imports` | 6.0.0；`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-skill\6.0.0` | 已安装并启用；13 条 Hook 已获信任，旧看板与 Agent Status 写入封存；见[安装记录](安装流程/severin-skill.md) |
+| 知行 `severin-skill@personal-opencode-imports` | 8.1.0；`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-skill\8.1.0` | 已安装并启用；13 条 Hook 已获信任，知行看板与 Agent Status 恢复；新增对话验收桥接；见[安装记录](安装流程/severin-skill.md) |
 
 ---
 
@@ -100,9 +100,9 @@ Plugins, MCP servers, and skills currently installed across all environments.
 | ui-ux-pro-max | `nexu-io/open-design` | UI/UX 设计模式库 |
 | whitepaper | 手动安装 | 专业 PDF 白皮书 |
 
-### LoopX 的 Codex 工作流技能
+### LoopX 的 Codex 工作流技能（历史安装，现已撤出）
 
-2026-09-25 从 LoopX 1.2.0 正式 Python 包安装到 `C:\Users\6seve\.codex\skills\`；本次会话的技能目录不会热更新，重开 Codex 后还需验证发现。
+2026-09-25 曾从 LoopX 1.2.0 正式 Python 包安装到 `C:\Users\6seve\.codex\skills\`；下表只保留当时的功能记录，不作为当前已安装能力清单。当前任务状态由知行看板维护。
 
 | 技能 | 用途 |
 |------|------|
@@ -114,7 +114,7 @@ Plugins, MCP servers, and skills currently installed across all environments.
 | loopx-benchmark | LoopX 管理的基准实验流程 |
 | loopx-self-repair | LoopX 状态或代理行为偏离的排查 |
 
-安装、路径、诊断和回退见[LoopX 安装记录](安装流程/LoopX.md)。五个已迁移项目的长期任务状态现在由 LoopX 持有，专业科研原件和个人恢复记录仍由知行负责。
+旧安装、路径、诊断和封存见[LoopX 安装记录](安装流程/LoopX.md)。已迁入的任务与历史在恢复知行看板时分别处理；不要据旧表推断 LoopX 仍在运行。
 
 ### Ralph Loop 控制
 

@@ -1,3 +1,14 @@
+## 2026-09-26 知行 8.1.0 对话验收桥接安装
+
+- 平台与日期：Windows 11，2026-09-26；插件 `severin-skill@personal-opencode-imports` 8.1.0 已由官方市场命令安装并启用。
+- 源码与包：`C:\Users\6seve\.codex\worktrees\board-loop-engineering-20260926\Severin-skill`；`artifacts\severin-skill-8.1.0\severin-skill-8.1.0-plugin.zip`，SHA-256 为 `c284b71a560bc63cf4f3d0e354cf9b2709d66a18665f27ab4056470cdaabc4e0`。
+- 安装源：`C:\Users\6seve\plugins\severin-skill`；宿主缓存：`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-skill\8.1.0`；市场配置：`C:\Users\6seve\.agents\plugins\marketplace.json`；Codex 配置：`C:\Users\6seve\.codex\config.toml`；实际全局规则：`C:\Users\6seve\.codex\AGENTS.md`，本轮未替换。
+- 回退副本：`C:\Users\6seve\AppData\Local\SeverinPluginBackups\severin-skill-8.0.0-20260926-loop-engineering`，367 个文件；旧 8.0.0 缓存未删除。
+- 依赖与配置：继续使用现有 Node.js、Python 3、Codex 个人市场及本机看板；未新增 API Key 或环境变量。宿主提供的 `PLUGIN_DATA` 对应 `C:\Users\6seve\.codex\plugins\data\severin-skill-personal-opencode-imports`，其中保留个人会话状态。对话桥接命令为 `py -3 <缓存目录>\hooks\personal_workflow.py board-acceptance --data-root C:\Users\6seve\.codex\plugins\data\severin-skill-personal-opencode-imports --session <当前会话> --turn <当前轮次> --input <JSON文件>`；身份仍由当前宿主轮次读取。
+- 安装命令：`codex plugin add severin-skill@personal-opencode-imports --json`。核对命令：`codex plugin list --marketplace personal-opencode-imports --json`、`node scripts/verify-plugin-package.mjs --plugin-root <缓存目录>`、`py -3 scripts/inspect_host_hooks.py --cwd C:\Users\6seve\Codelib-severin`。
+- 验证：安装源 367 个文件与 ZIP 逐文件一致；缓存包、MCP 三工具与面板校验通过；发布前 Node 14/14、Python 335 项通过且 1 项跳过。新建的只读宿主进程发现 13 条知行 Hook 均 enabled/trusted，warnings/errors 为 0；缓存脚本确有 `board-acceptance` 入口。当前已运行对话仍可能持有 8.0.0 文本，未把它当作热加载验证。看板 11.0.0 的正式服务安装及两入口现场验收另记。
+- 回退：先保留当前看板任务与插件数据，再用上述备份恢复安装源并运行官方 `codex plugin add`，核对重新生成的缓存版本与 Hook 信任；不要只改缓存目录名，不清空任务或历史。旧版规则对新验收数据的兼容须先在副本核对。
+
 > 2026-09-05 当前版本：0.3.2+codex.20260904152955。首次真实测试未通过：桌面仍注入0.2.0，且自动标题格式保留条件过松。格式校验已修复，55项Python及隔离包通过，Hook仍已信任；需重开桌面核对版本后复测。
 
 > 2026-09-05 当前版本更新：0.3.1+codex.20260904152248，缓存对应同名版本目录。补齐首次规范命名，保留第十轮复核；54 项 Python 测试通过，安装后全部 Hook 仍 trusted/enabled，无需重新信任。备份：C:\Users\6seve\.codex\backups\severin-first-title-20260905-002228。以下保留之前完整路径、依赖和安装记录。
