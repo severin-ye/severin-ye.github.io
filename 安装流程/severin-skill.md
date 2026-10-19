@@ -1,3 +1,19 @@
+## 2026-10-19 知行9.0.1：算力占领统一客户端握手
+
+Windows，Asia/Seoul。已由标准安装器安装9.0.1；现有已授权GPU任务通过独立兼容桥无中断迁移，控制器、作业及冻结源码保持，科学实验预算未改变。
+
+- 维护源：`C:/Users/6seve/Codelib-severin/2_Business/Severin-skill`；安装源：`C:/Users/6seve/plugins/severin-skill`；缓存：`C:/Users/6seve/.codex/plugins/cache/personal-opencode-imports/severin-skill/9.0.1`。
+- 数据：`C:/Users/6seve/.codex/plugins/data/severin-skill-personal-opencode-imports`；每任务客户端在其`gpu-handshake-clients/<task-id>`。配置仍为`C:/Users/6seve/.codex/config.toml`、市场`C:/Users/6seve/.agents/plugins/marketplace.json`；本次没有新增API Key、永久环境变量或信任规则，也未改驱动和服务器凭据。
+- 原生客户端从宿主继承`CODEX_APP_TOOLS_PIPE_PATH`，核对现有WindowsApps Codex进程及新鲜RPC；服务器训练活动、自建app-server和内部监督通知均不能冒充客户端握手。每任务客户端持续运行，不因一次回复或实验阶段结束释放。
+- 默认每24小时真实握手，失败后宽限12小时；最后成功后完全失联最多36小时，无累计使用时长上限。可以说“这次每6小时握手，失联后等2小时”或“以后默认每8小时握手，宽限4小时”；前者只改当前任务，后者只改未来任务。明确停止优先，旧、重复和迟到消息不能复活或延长期限。
+- 安装：`codex plugin add severin-skill@personal-opencode-imports --json`；核验：`codex plugin list --marketplace personal-opencode-imports --json`。读取参数：`py -3 <缓存>/skills/severin-research-skill/modules/gpu-occupation/gpu_client.py defaults`；任务运行回读：同一脚本`status --client-dir <任务客户端目录>`。用户不用手写JSON。
+- 最终ZIP SHA256：`33f953af80368b124ed696c997cf09a20f7cace0868aa7346ffbbdd40828793a`；396个包文件与安装缓存一致，新只读会话发现18个技能均指向9.0.1。4487个安装前数据文件未丢失，旧失败绑定完整归档；活跃会话Hook的正常状态更新单独记录。配置、全局规则和市场文件摘要不变。
+- 验证：500项本机Python、38项Node、最终96项授权服务器GPU测试通过。真实自动握手、宽限恢复、失联释放、停止与重放拒绝、作业跨旧截止和原身份连续性已验；生产默认36h及自定义72h均收到真实systemd监督确认。分钟级时间流转不冒充已经实等36小时；实际关闭用户Desktop、重启共享主机和其他平台未运行。
+- 踩坑：9.0.0首次生产迁移准备暴露旧24h通知边界，准备自动撤销且原训练保留；9.0.1修复后重新独立验收再迁移。安装缓存存在不代表迁移完成，单看旧控制器的底层有限deadline也不能判断迁移后的整体证书期限。
+- 回退：任务私有证据保留8.11.0/9.0.0源和配置备份，旧缓存未删除。回退前核对活动客户端及冻结服务，保留它们依赖的代码和持久数据，按标准安装入口恢复发现版本；不清空数据、不替换活跃源码或停止训练。
+
+正式实现及各版本验收边界见[知行交付记录](https://github.com/severin-ye/Severin-skill/blob/9f1dc03a57ab25d675194ad88dacf647b5f7132d/docs/gpu-client-handshake-2026-10-19.md)。本页是安装记录更新，不改变网站界面或重跑研究实验。
+
 ## 2026-09-26 知行 8.1.0 对话验收桥接安装
 
 - 平台与日期：Windows 11，2026-09-26；插件 `severin-skill@personal-opencode-imports` 8.1.0 已由官方市场命令安装并启用。
