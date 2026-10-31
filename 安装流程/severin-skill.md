@@ -1,3 +1,13 @@
+## 2026-10-31 知行9.5.1：偏好适用边界补正
+
+Windows正常市场安装9.5.1，安装源`C:\Users\6seve\plugins\severin-skill`，缓存`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-skill\9.5.1`；沿用下节已有Codex、Python、Node、配置及私有数据根，未新增API Key、环境变量或后台服务。管理入口仍为`scripts/preference_iteration.py --help`，安装命令仍为`codex plugin add severin-skill@personal-opencode-imports --json`。
+
+提案须披露适用活动/项目、排除场景、条件、依据及正式落点，一起绑定批准；非全局规则保留条件，扩大范围另行确认。其他项目与实际全局AGENTS未修改。旧索引可读，缺边界的未应用提案须补齐重新确认，不重写已应用历史。
+
+本地Python633/Node48及包/MCP/面板检查通过，424文件与ZIP一致；核对原13条Hook定义和运行器均未变，再通过原生审核，13条trusted/enabled。新原生会话的同仓库异活动、异项目同活动、临时要求和扩大领域四个合成场景通过；旧聊天热加载与长期语义稳定性未验证。
+
+包位于`C:\Users\6seve\.codex\worktrees\preference-scope-1031\Severin-skill\artifacts\severin-skill-9.5.1\severin-skill-9.5.1-plugin.zip`，SHA256 `9658e257aefebb4bf622902da55a70b373030b62e8a33d6329766efa621ddacc`；旧源在`C:\Users\6seve\plugins\severin-skill-backup-9.5.0-scope-20261031`，配置/规则原文在本聊天私有产物scope-installation-backup。回退先保留新有效数据，再恢复旧源走正常安装/审核，不清空候选或手写信任摘要。详细依据见[偏好迭代记录](https://github.com/severin-ye/Severin-skill/blob/main/docs/preference-iteration-2026-10-31.md)。
+
 ## 2026-10-31 知行9.5.0：偏好迭代
 
 Windows安装：正常`codex plugin add severin-skill@personal-opencode-imports --json`更新9.5.0。实际源为`C:\Users\6seve\plugins\severin-skill`，缓存为`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-skill\9.5.0`；配置`C:\Users\6seve\.codex\config.toml`，实际全局规则`C:\Users\6seve\.codex\AGENTS.md`，私有数据`C:\Users\6seve\.codex\plugins\data\severin-skill-personal-opencode-imports`。继续使用现有Node、Python 3和Codex，没有新增API Key、环境变量或后台服务。
