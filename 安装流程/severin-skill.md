@@ -1,3 +1,13 @@
+## 2026-10-31 知行9.6.0：偏好提案准入与提问节流
+
+Windows正常市场命令`codex plugin add severin-skill@personal-opencode-imports --json`安装9.6.0。源`C:\Users\6seve\plugins\severin-skill`，缓存`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-skill\9.6.0`；沿用下节Codex、Python、Node、`C:\Users\6seve\.codex\config.toml`和私有数据根，未新增API Key、环境变量、后台进程或扫描。实际全局AGENTS未改。
+
+既有偏好模块新增只读`assess`和`prepare-question`，通过来源、独立证据、覆盖、边界、收益、替代解释及影响检查，区分observe/reuse/clarify_current_task/propose。普通提问只在自然收尾且首问/后续间隔至少五个真实完成逻辑轮，用户主动审核另核验当前真实请求；全库一项待答或未完应用，拒绝/暂缓需明确重开。准确批准、文件基线和范围检查继续保留。命令见缓存根`scripts/preference_iteration.py --help`及任务接续工作流。
+
+74项专项、本地Python666/Node48及隔离包/MCP/面板通过；424文件与ZIP一致，13条Hook原生审核后trusted/enabled。实际安装CLI的隔离流程和新原生会话七项合成场景通过，不将合成发言采纳为真实偏好。其他旧聊天热加载及永久语义正确性未验证。
+
+包位于`C:\Users\6seve\.codex\worktrees\preference-admission-1031\Severin-skill\artifacts\severin-skill-9.6.0\severin-skill-9.6.0-plugin.zip`，SHA256 `10664023913c7c0037f33d17339affa4cceac046b841d8134d5248a5cf2ee41c`。旧源在`C:\Users\6seve\plugins\severin-skill-backup-9.5.1-admission-20261031`，原配置/全局规则在本聊天私有产物admission-installation-backup。回退先保留新有效工作，恢复旧源后正常安装及审核，不清空原始记录、不手写信任摘要。设计与实际回执见[偏好迭代记录](https://github.com/severin-ye/Severin-skill/blob/main/docs/preference-iteration-2026-10-31.md)。
+
 ## 2026-10-31 知行9.5.1：偏好适用边界补正
 
 Windows正常市场安装9.5.1，安装源`C:\Users\6seve\plugins\severin-skill`，缓存`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-skill\9.5.1`；沿用下节已有Codex、Python、Node、配置及私有数据根，未新增API Key、环境变量或后台服务。管理入口仍为`scripts/preference_iteration.py --help`，安装命令仍为`codex plugin add severin-skill@personal-opencode-imports --json`。
