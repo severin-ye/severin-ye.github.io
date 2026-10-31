@@ -1,3 +1,15 @@
+## 2026-10-31 知行9.5.0：偏好迭代
+
+Windows安装：正常`codex plugin add severin-skill@personal-opencode-imports --json`更新9.5.0。实际源为`C:\Users\6seve\plugins\severin-skill`，缓存为`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-skill\9.5.0`；配置`C:\Users\6seve\.codex\config.toml`，实际全局规则`C:\Users\6seve\.codex\AGENTS.md`，私有数据`C:\Users\6seve\.codex\plugins\data\severin-skill-personal-opencode-imports`。继续使用现有Node、Python 3和Codex，没有新增API Key、环境变量或后台服务。
+
+偏好迭代嵌入任务接续：正常对话发现线索，核对已有规则，有增量才提出准确改法，用户明确确认后再应用、验证和安装。反复纠正不自动成为正式偏好；复用已有事件，不做离线扫描。日常无需用户手工操作；管理入口为缓存根下`scripts/preference_iteration.py --help`，提供observe/propose/list/show/decide/apply，索引不是正式指令。
+
+424个安装文件与ZIP一致；发布检查Node48、本地Python627、隔离MCP三工具及面板通过。原生TUI逐项审核后hooks/list确认13条可信启用；新只读原生会话读取9.5.0，四项合成情景及首次自动披露通过。其他旧聊天的完整插件热加载未验证，有限样例不保证永久遵从。
+
+包：`C:\Users\6seve\.codex\worktrees\preference-iteration-1031\Severin-skill\artifacts\severin-skill-9.5.0\severin-skill-9.5.0-plugin.zip`，SHA256 `7ffa2d4918ea7274e48f79debccd3d1aa22721e33b4d8065799444cedf5f2526`。旧源保留于`C:\Users\6seve\plugins\severin-skill-backup-9.4.0-preference-20261031`，旧规则与配置在本次聊天私有产物installation-backup内；保留升级后的有效数据后恢复旧源，走正常plugin add及审核，不手写信任摘要、不清空状态。
+
+首次TUI提示daemon包不完整，按宿主提示用`--no-daemon`恢复；常用核验命令为`codex plugin list --json`和源仓`scripts/inspect_host_hooks.py --cwd <项目> --output <文件>`。完整设计、12项覆盖和证据说明见[源码验收记录](https://github.com/severin-ye/Severin-skill/blob/main/docs/preference-iteration-2026-10-31.md)。安装记录只记录本次增量，既有历史保持。
+
 ## 2026-10-19 知行9.0.1：算力占领统一客户端握手
 
 Windows，Asia/Seoul。已由标准安装器安装9.0.1；现有已授权GPU任务通过独立兼容桥无中断迁移，控制器、作业及冻结源码保持，科学实验预算未改变。
