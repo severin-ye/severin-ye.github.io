@@ -1,3 +1,13 @@
+## 2026-10-31 知行9.6.1：偏好迭代自然语言入口
+
+正常市场命令`codex plugin add severin-skill@personal-opencode-imports --json`安装9.6.1。源`C:\Users\6seve\plugins\severin-skill`，缓存`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-skill\9.6.1`；沿用下节Codex、Python、Node、配置及私有数据根，没有新增环境变量、API Key、Hook事件或后台进程；实际全局AGENTS未改。
+
+固定指令“请进行偏好迭代”整理当前对话，“请对……进行偏好迭代”只整理指定内容。复用已有请求式审核；口令及主题不构成偏好证据或修改批准，准确提案、范围、真实确认及单个待答限制继续有效。命名、引用、否定不触发。
+
+本地Python670、Node48及78项不同专项测试通过；424安装文件一致，13条Hook原生审核后可信启用。安装CLI隔离合成夹具通过两条口令与未批准拒绝应用；新原生只读会话四项有限语义样例通过、首次披露count=1。样例不写真实候选；只读子会话辅助标题/看板检查因py/python不可用未完成，主聊天看板因活动轮次不匹配未绑定；旧聊天热加载和长期语义稳定性未验证。
+
+包在`C:\Users\6seve\.codex\worktrees\preference-language-1031\Severin-skill\artifacts\severin-skill-9.6.1\severin-skill-9.6.1-plugin.zip`，SHA256 `a384ac65a3fdf9327545a032f3c807954235f0609c1320c7804fd4ee6a9b335d`。旧源`C:\Users\6seve\plugins\severin-skill-backup-9.6.0-language-20261031`，配置/全局原文保留于本聊天私有产物language-installation-backup；回退先保留新有效工作，再恢复旧源走正常安装/审核，不清空用户数据或手写信任摘要。详见[设计与实际回执](https://github.com/severin-ye/Severin-skill/blob/main/docs/preference-iteration-2026-10-31.md)。
+
 ## 2026-10-31 知行9.6.0：偏好提案准入与提问节流
 
 Windows正常市场命令`codex plugin add severin-skill@personal-opencode-imports --json`安装9.6.0。源`C:\Users\6seve\plugins\severin-skill`，缓存`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-skill\9.6.0`；沿用下节Codex、Python、Node、`C:\Users\6seve\.codex\config.toml`和私有数据根，未新增API Key、环境变量、后台进程或扫描。实际全局AGENTS未改。
