@@ -25,7 +25,7 @@ Plugins, MCP servers, and skills currently installed across all environments.
 
 | 插件 | 版本与路径 | 状态 |
 |------|------------|------|
-| 知行 `severin-skill@personal-opencode-imports` | 9.6.1；`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-skill\9.6.1` | 已原生安装；13条Hook可信启用，19个Skill；偏好迭代含准入、提问节流及两条确认的自然语言入口，确认只覆盖披露范围，新会话有限行为验收通过，其他旧聊天热加载未验证；见[安装记录](安装流程/severin-skill.md) |
+| 知行 `severin-skill@personal-opencode-imports` | 9.9.0；`C:/Users/6seve/.codex/plugins/cache/personal-opencode-imports/severin-skill/9.9.0` | 已原生安装，20个Skill条目可发现；13条Hook待重新信任。模型首次同步成功，固定首尔08:00任务待保存；完整披露不变，看板保持停用。见[安装记录](安装流程/severin-skill.md) |
 
 ---
 

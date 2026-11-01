@@ -1,3 +1,15 @@
+## 2026-11-01 知行9.9.0：模型日同步与标题时区
+
+Windows / Asia/Seoul；通过官方`codex plugin add severin-skill@personal-opencode-imports --json`从9.8.1安装9.9.0。安装源`C:/Users/6seve/plugins/severin-skill`；实际缓存`C:/Users/6seve/.codex/plugins/cache/personal-opencode-imports/severin-skill/9.9.0`。Desktop可执行程序为`C:/Users/6seve/AppData/Local/OpenAI/Codex/bin/22cfb1d302613eae/codex.exe`，不把PATH中的其他Codex版本当作Desktop。
+
+- 模型普通路由仅消费成功快照；每日08:00 Asia/Seoul调度待原生确认卡保存。首次安装版真实同步已成功，8个型号；新系列不会自动扩展路由策略。同步命令`py -3 -B <缓存>/skills/severin-agent-ops-skill/scripts/router_entry.py model-sync --codex-executable <核实的Desktop程序> --data-root <插件数据根>`；查看使用同入口`model-status --data-root <插件数据根>`。
+- 插件数据根`C:/Users/6seve/.codex/plugins/data/severin-skill-personal-opencode-imports`；6336个原数据文件在安装后逐个校验保留且摘要相同。`router-model-snapshot.json`为成功目录，失败不覆盖；模式文件不变。
+- 标题按可靠创建时区固定创建日；旧规范标题日期保留。实际`C:/Users/6seve/.codex/AGENTS.md`只更新标题和第三方Skill注入边界两段；核心完整披露机制保持。Python3.14安装tzdata2026.6，支持IANA时区，不改系统时区。没有新增API Key或永久环境变量；Codex配置`C:/Users/6seve/.codex/config.toml`摘要不变；市场配置沿用`C:/Users/6seve/.agents/plugins/marketplace.json`。
+- 发布检查705项Python、48项Node、隔离包/MCP三工具/面板通过；看板定向70项通过，按用户要求保持停用，仅提交兼容源码。发布包442文件与安装缓存一致，SHA256 `c3abd207ff5f35a8a45f3a7e761339b27ae99fe8199a347b755776bb9c297748`。
+- 新只读app-server发现20个Skill条目且无错误；13条Hook为enabled/modified，待用户在Codex原生界面重新审核信任。未冒充已信任、已自动运行或次日定时已触发。显式时区任务被原生工具要求使用suggested_create，不删除时区规避确认。
+- 回退：旧市场源`C:/Users/6seve/plugins/severin-skill-before-9.9.0-1101`、旧缓存9.8.1保留；`C:/Users/6seve/wt/official-compat-1101/artifacts/host-compat-evidence/preinstall-backup`含全局规则、配置和数据。先保留新增运行数据，再恢复旧市场源并官方安装、恢复两段规则及核对信任；不盲目覆盖后续用户数据。
+- 源码及完整验收记录：[e083368](https://github.com/severin-ye/Severin-skill/commit/e083368)和该提交`docs/official-host-compat-2026-11-01.md`。安装/定时原生确认仍未完成，此记录不代表正式发布完成。
+
 ## 2026-10-31 知行9.6.1：偏好迭代自然语言入口
 
 正常市场命令`codex plugin add severin-skill@personal-opencode-imports --json`安装9.6.1。源`C:\Users\6seve\plugins\severin-skill`，缓存`C:\Users\6seve\.codex\plugins\cache\personal-opencode-imports\severin-skill\9.6.1`；沿用下节Codex、Python、Node、配置及私有数据根，没有新增环境变量、API Key、Hook事件或后台进程；实际全局AGENTS未改。
