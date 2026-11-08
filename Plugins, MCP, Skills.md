@@ -158,3 +158,7 @@ Plugins, MCP servers, and skills currently installed across all environments.
 ## 2026-09-04 Severin 个人扩展部署更新
 
 本段更新此前清单中的科研插件信息：`severin-skill@personal-opencode-imports` 0.3.5+codex.20260904160350 已启用，含 13 个 Skill 和科研 MCP；旧 `severin-research@personal-opencode-imports` 保持安装但已停用。10 条个人协作 Hook 与 3 条科研 Hook 已被宿主解析，Windows Shell 命令修复后 13 条需要重新信任（modified）；56 项 Python 测试及三种 Windows Shell 启动测试通过，前版 9 项 Node 测试通过，真实自动运行未验收。详见 [安装记录](安装流程/severin-skill.md)。此前 research-skill 来源描述为历史记录，本次未据此删除独立文件。
+
+## 浏览器扩展与本机配套程序
+
+- VidSift：独立扩展5.0.2及Native程序5.0.3，Edge本机连接已经正常Windows环境验证；跨平台真实视频验收未全部完成。详见[安装记录](安装流程/VidSift.md)。
