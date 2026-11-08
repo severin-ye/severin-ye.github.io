@@ -1,3 +1,17 @@
+## 2026-11-08 工作副本与清理偏好：全局入口已部署，程序安装待统一发布
+
+平台：Windows，日期2026-11-08（Asia/Seoul）。用户批准五条偏好、72小时兜底和删除受阻集中记录的实现、验证与安装；本条只记录已实际部署的部分，插件与看板尚无本任务的正式安装回执。
+
+- 实际部署位置：`C:/Users/6seve/.codex/AGENTS.md`仅增加一段正式规则引用；规则持有者为`C:/Users/6seve/Codelib-severin/2_Business/Severin-skill/skills/severin-coding-skill/SKILL.md#工作副本与开发残留`，源码提交`c10bb25b91439045bcd9e956c956205afa4b9931`已整合main；没有覆盖其它全局规则。
+- 原全局SHA256为`5711d640d3c6cdb9dd8df4d9445b7fce0795c5032d4db1737cd10e60126d1fb6`，新SHA256为`c5c89cfdff4d6686eb069aeba3ea65f4bb535899349354f5e6c20d1890c06b82`；回退原件在`C:/Users/6seve/.codex/visualizations/2026/11/08/01a1bb0d-d1a8-75c1-87c8-f07413d3c062/global-agents-before-workspace-preferences.md`，恢复前先核对用户后续修改。
+- 新程序源码：`scripts/workspace_lifecycle.py`（登记/离线同步），`board/workspace-lifecycle.mjs`（本机认证接口），`board/workspace-retention.mjs`（72小时兜底），`board/scripts/deletion_denials.py`（Node与Hook共用的唯一日志写入器），根`scripts/deletion_denials.py`仅为兼容入口；安装包完整性已在隔离目录核验。
+- 集中私有记录位置：`C:/Users/6seve/.codex/disk-audit/deletion-denials.jsonl`及`删除受阻记录.md`，当前导入两次真实宿主拒绝、七个原请求目标；不上传私有日志，不把成功读取到的历史文字当事件，不设自动分析门槛。
+- 配置及环境：没有新增API Key、全局环境变量、常驻服务或定时任务；CLI复用`PLUGIN_DATA`，其次兼容`SEVERIN_BOARD_DATA`；看板沿既有本机端口47831与token/来源保护。没有修改Hook信任、Codex其它注册、人工暂停或任务自动执行开关。
+- 常用操作：从实际安装插件运行`py -3 <插件根>/scripts/workspace_lifecycle.py register --thread-id <对话ID> --cwd <精确副本> --source <项目本体> --origin git-cli --goal-revision <版本>`；结束时用同入口`report --thread-id <对话ID> --cwd <精确副本> --event close`，`sync`补送离线队列；报告关闭不能声明任务完成。程序正式安装前，不能假定旧缓存已有该CLI。
+- 验证边界：83个不同Node专项、76个Python专项/回归、插件构建及隔离包通过；当前正式17.0.0数据受控加载后456任务、15项目、23509事件、14人工保留及设置/检查点/旧清理记录均保持。完整看板回归未报告通过，既有恢复脚本依赖缺口已交给当前发布负责人；这些证据不是正式新版本安装验收。
+- 实际清理：26份旧完整ZIP已逐文件核对，独有319对象去重保存并读回核验，净减少152023905字节；必要资料在`C:/Users/6seve/.codex/archives/business-layout-1108/necessary-evidence-1108.zip`，恢复先读同目录`archive-reduction-audit.json`。两份第三方参考已留来源和许可，但递归删除被宿主拒绝，仍在原处，未换工具重试。
+- 发布接续：插件与Board由现有统一发布流程取得独立实际回执；当前正式Board仍17.0.0，本任务不抢改版本、不直接写插件cache、不冒称旧聊天热加载。最终安装后须另补实际版本/包摘要/保护状态与真实流程证据。
+
 ## 2026-11-01 知行9.9.0：模型日同步与标题时区
 
 Windows / Asia/Seoul；通过官方`codex plugin add severin-skill@personal-opencode-imports --json`从9.8.1安装9.9.0。安装源`C:/Users/6seve/plugins/severin-skill`；实际缓存`C:/Users/6seve/.codex/plugins/cache/personal-opencode-imports/severin-skill/9.9.0`。Desktop可执行程序为`C:/Users/6seve/AppData/Local/OpenAI/Codex/bin/22cfb1d302613eae/codex.exe`，不把PATH中的其他Codex版本当作Desktop。
