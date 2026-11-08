@@ -1,18 +1,18 @@
 # VidSift 浏览器扩展与本机程序
 
 - 安装日期：2026-11-09；Windows 11，Edge 157.0.4341.42，同一普通用户安装，不写HKLM。
-- 本机程序：5.0.3；独立扩展ID：`kggdkncbamdlhhihfkeldbbkppkgihad`，与原版独立。
-- 扩展当前加载目录：`C:\Users\6seve\Codelib-severin\2_Business\VidSift\dist\VidSift-5.0.0-standalone`，目录名为历史名称，内含5.0.2扩展；后续版本按manifest核对。
+- 本机程序：5.0.4；独立扩展ID：`kggdkncbamdlhhihfkeldbbkppkgihad`，与原版独立。
+- 扩展当前加载目录：`C:\Users\6seve\Codelib-severin\2_Business\VidSift\dist\VidSift-5.0.0-standalone`，目录名为历史名称，磁盘内容已更新5.0.4扩展，日常浏览器运行时需手动重新加载；后续版本按manifest核对。
 
 ## 实际安装位置
 
 - 运行资源：`C:\Users\6seve\AppData\Local\VidSift\runtime`。
 - 当前激活配置：`C:\Users\6seve\AppData\Local\VidSift\runtime\current.json`。
-- 当前Native版本目录：`C:\Users\6seve\AppData\Local\VidSift\releases\5.0.3\native\f2efc93364404cc0aac32aee35c5d26c`。
+- 当前Native版本目录：`C:\Users\6seve\AppData\Local\VidSift\releases\5.0.4\native\7c39a681cbca49469fdce638a1462b70`。
 - Native清单：上述版本目录中的 `com.vidsift.media.json`；启动器 `native-launcher.exe`；实现 `host.py`。
-- Python：`C:\Users\6seve\AppData\Local\VidSift\runtime\envs\py312-8fcf034b7a7f5b01-f2efc93364404cc0aac32aee35c5d26c\Scripts\python.exe`。
+- Python：`C:\Users\6seve\AppData\Local\VidSift\runtime\envs\py312-8fcf034b7a7f5b01-7c39a681cbca49469fdce638a1462b70\Scripts\python.exe`。
 - FFmpeg：`C:\Users\6seve\AppData\Local\VidSift\runtime\bin\ffmpeg.exe`；来源、哈希及许可保存在同目录安装回执中。
-- 本次回退：`C:\Users\6seve\AppData\Local\VidSift\backups\native-20261109-014220-be840d743e5b41f38d912f4047209420\rollback.json`。
+- 本次回退：`C:\Users\6seve\AppData\Local\VidSift\backups\native-20261109-021733-585f91fbfafa4d11a77f5fc2074a96d4\rollback.json`。
 - Chrome注册：`HKCU\Software\Google\Chrome\NativeMessagingHosts\com.vidsift.media`。
 - Edge注册：`HKCU\Software\Microsoft\Edge\NativeMessagingHosts\com.vidsift.media`。
 
@@ -36,7 +36,7 @@
 ## 已验证与边界
 
 - 正常用户进程中的CIM文件核验和当前用户HKU注册表读回均通过，Chrome/Edge指向同一Native清单。
-- 从正常Windows环境启动的隔离Edge成功连接本机程序5.0.3，并检出FFmpeg、yt-dlp与字幕组件；这不代替日常浏览器中每个平台的完整视频上传验收。
+- 从正常Windows环境启动的隔离Edge成功连接本机程序5.0.4，并检出FFmpeg、yt-dlp与字幕组件；这不代替日常浏览器中每个平台的完整视频上传验收。
 - 用户反馈B站在Edge“好像没有问题了”，保留为初步现场证据；抖音在本机程序重装后的真实提取及发送仍待验收。
 
 ## 本次踩坑
@@ -45,3 +45,5 @@
 - 壳内Test-Path和HKCU读回成功、从同一环境启动的隔离Edge连接成功，仍可能对应日常Edge完全看不到的主机。
 - 本次通过同用户的正常Windows安装环境部署到真正LocalAppData，外部读回及浏览器握手后才记录成功；没有关闭MSIX隔离、降低浏览器安全设置或覆盖商店扩展。
 - 安装器现在把外部可见性验证放进注册/指针切换事务，失败会回退，不再仅凭自身视图报告安装成功。
+
+- Windows PowerShell 5 的Get-Content原始文本仍附带文件系统属性，放入升级回执会递归展开并卡住；现改用File.ReadAllText保存旧激活配置，升级与回退专项通过。
