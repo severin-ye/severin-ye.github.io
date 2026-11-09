@@ -2,7 +2,7 @@
 
 - 安装日期：2026-11-09；Windows 11，Edge 157.0.4341.42，同一普通用户安装，不写HKLM。
 - 本机程序：5.0.6；独立扩展ID：`kggdkncbamdlhhihfkeldbbkppkgihad`，与原版独立。
-- 扩展当前加载目录：`C:\Users\6seve\Codelib-severin\2_Business\VidSift\dist\VidSift-5.0.0-standalone`，目录名为历史名称，磁盘内容已更新5.0.6扩展，日常浏览器运行时需手动重新加载；后续版本按manifest核对。
+- 扩展当前加载目录：`C:\Users\6seve\Codelib-severin\2_Business\VidSift\dist\VidSift-5.0.0-standalone`，目录名为历史名称，磁盘内容已更新5.0.7扩展，日常浏览器运行时需手动重新加载；后续版本按manifest核对。
 
 ## 实际安装位置
 
@@ -52,3 +52,13 @@
 - Windows PowerShell 5 的Get-Content原始文本仍附带文件系统属性，放入升级回执会递归展开并卡住；现改用File.ReadAllText保存旧激活配置，升级与回退专项通过。
 
 - 抖音播放器urlList可为`[{src}]`对象，不能只按字符串解析；同作品简化页面数据也不能遮住含独立音轨的播放器数据，`music.play_url`不作为完整口播来源。
+
+## 5.0.7扩展更新（2026-11-09）
+
+- 仅更新独立扩展，继续使用已安装Native5.0.6；正常Windows隔离Edge已验证扩展5.0.7与Native5.0.6连接成功，没有重复安装依赖。
+- 用户确认5.0.6在日常Edge音轨上传成功，AI Studio未自动发送且没有错误文字；5.0.7排除Run settings误匹配，使用原生输入setter，标题修改移至提交确认后。
+- 全部附件确认后只点击一次，以新增页面对话轮次或停止生成控件确认接受；未知结果不重复发送，这不证明模型已成功生成完整逐字稿。
+- AI Studio默认改为要求完整带时间戳SRT逐字稿；GPT默认原样采用用户在Edge VidSift中保存的2264字《视频深度理解与结构化总结提示词》，不读取或改写原版设置。
+- 在真实Edge扩展设置的受控副本验证已有自定义值、恢复默认及其他配置哈希不变；源快照与旧提示词只保存在本任务私有证据目录，不进入安装包或Git。
+- 73项Node、42项正确依赖环境的Native及受控Edge发送测试通过；日常AI Studio实际自动发送和完整转写结果仍待用户激活新版后确认。
+- 包：VidSift-5.0.7-standalone.zip，SHA256 D812E696DE022D8F3639A5EE5F88F4E3B14388E6965C65A224DE46942F7A19A6；回退使用保留的5.0.6扩展ZIP，本机程序不变。
