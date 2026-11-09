@@ -2,7 +2,7 @@
 
 - 安装日期：2026-11-09；Windows 11，Edge 157.0.4341.42，同一普通用户安装，不写HKLM。
 - 本机程序：5.0.6；独立扩展ID：`kggdkncbamdlhhihfkeldbbkppkgihad`，与原版独立。
-- 扩展当前加载目录：`C:\Users\6seve\Codelib-severin\2_Business\VidSift\dist\VidSift-5.0.0-standalone`，目录名为历史名称，磁盘内容已更新5.0.8扩展，日常浏览器运行时需手动重新加载；后续版本按manifest核对。
+- 扩展当前加载目录：`C:\Users\6seve\Codelib-severin\2_Business\VidSift\dist\VidSift-5.0.0-standalone`，目录名为历史名称，磁盘内容已更新5.0.9扩展，日常浏览器运行时需手动重新加载；后续版本按manifest核对。
 
 ## 实际安装位置
 
@@ -74,3 +74,14 @@
 - 103项Node和42项Native通过；受控Edge B站/抖音样例转写→SRT→GPT发送通过，真实登录AI Studio仍待用户激活5.0.8后验收。
 - 真实Edge设置受控副本升级、默认提示词与其他设置哈希保留通过；日常配置未写入。
 - 本机Native5.0.6继续复用，不重新安装依赖；5.0.8包SHA256为7FBE02C9B425DACA3E5774C8A94F034C758F544F749693127F643F05DCCC84B2，回退使用保留的VidSift-5.0.7-standalone.zip。
+
+## 5.0.9连接与现场排障（2026-11-09）
+
+- 用户现场确认5.0.8仍前台显示AI Studio且没有提示词/音频，截图在目标页面打开扩展只得到“不支持当前页”；不能将此前隔离测试当作现场已恢复。
+- 普通Windows只读核对Edge Default加载目录与当前目录一致，近期有重载记录，原版停用；不归咎用户未重载或点错扩展。
+- 修复目标页面进度归属：在AI Studio或GPT打开扩展，可查看原视频任务的进度并取消；终态按钮明确显示“视频任务已结束”。
+- AI Studio连接改看脚本握手，跳过无关资源阻塞的整页load；建页时立即登记任务，明确检查接收应答，失败不重复上传。源视频关闭也会立即取消目标任务并清理心跳。
+- 最近交接诊断仅保存在本地扩展存储vidsiftLastTargetDiagnostic，含版本、阶段、时间、任务/源/目标标签ID和活动状态，不含提示词、音频或凭据。
+- 107项Node、42项Native、真实tabs.create且未调用目标goto的隔离Edge流程通过；无关图片保持页面未complete时仍开始上传，并能在AI Studio页面打开扩展查看最终结果。
+- 本机Native5.0.6继续复用；用户既有GPT默认提示词与真实设置受控副本保留核验通过。前台激活的真实原因仍未确定，等待新版本现场阶段记录，不宣称实站修好。
+- 包VidSift-5.0.9-standalone.zip，SHA256为41E13ADE59D5E92202F8A05B0E90B25B0C4A344377F84C2A94E8D41276B84AD8；磁盘文件已更新但仍需手动重载，5.0.8 ZIP保留回退。

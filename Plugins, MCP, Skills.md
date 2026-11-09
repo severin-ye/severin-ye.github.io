@@ -161,4 +161,4 @@ Plugins, MCP servers, and skills currently installed across all environments.
 
 ## 浏览器扩展与本机配套程序
 
-- 通用总结扩展（VidSift）：独立扩展5.0.8及Native程序5.0.6，Edge本机连接已经正常Windows环境验证；跨平台真实视频验收未全部完成。详见[安装记录](安装流程/VidSift.md)。
+- 通用总结扩展（VidSift）：独立扩展5.0.9及Native程序5.0.6，Edge本机连接已经正常Windows环境验证；跨平台真实视频验收未全部完成。详见[安装记录](安装流程/VidSift.md)。
