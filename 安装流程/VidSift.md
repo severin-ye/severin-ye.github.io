@@ -1,18 +1,18 @@
 # 通用总结扩展（VidSift）与本机程序
 
 - 安装日期：2026-11-09；Windows 11，Edge 157.0.4341.42，同一普通用户安装，不写HKLM。
-- 本机程序：5.0.6；独立扩展ID：`kggdkncbamdlhhihfkeldbbkppkgihad`，与原版独立。
-- 扩展当前加载目录：`C:\Users\6seve\Codelib-severin\2_Business\VidSift\dist\VidSift-5.0.0-standalone`，目录名为历史名称，磁盘内容已更新5.0.9扩展，日常浏览器运行时需手动重新加载；后续版本按manifest核对。
+- 本机程序：5.1.0；独立扩展ID：`kggdkncbamdlhhihfkeldbbkppkgihad`，与原版独立。
+- 扩展当前加载目录：`C:\Users\6seve\Codelib-severin\2_Business\VidSift\dist\VidSift-5.0.0-standalone`，目录名为历史名称，磁盘内容已更新5.1.1扩展，日常浏览器运行时需手动重新加载；后续版本按manifest核对。
 
 ## 实际安装位置
 
 - 运行资源：`C:\Users\6seve\AppData\Local\VidSift\runtime`。
 - 当前激活配置：`C:\Users\6seve\AppData\Local\VidSift\runtime\current.json`。
-- 当前Native版本目录：`C:\Users\6seve\AppData\Local\VidSift\releases\5.0.6\native\81bf6c65ae75455a8a3951c2ee951fc5`。
+- 当前Native版本目录：`C:\Users\6seve\AppData\Local\VidSift\releases\5.1.0\native\a1c403191fcb4333b5289d86307d5d15`。
 - Native清单：上述版本目录中的 `com.vidsift.media.json`；启动器 `native-launcher.exe`；实现 `host.py`。
-- Python：`C:\Users\6seve\AppData\Local\VidSift\runtime\envs\py312-8fcf034b7a7f5b01-81bf6c65ae75455a8a3951c2ee951fc5\Scripts\python.exe`。
+- Python：`C:\Users\6seve\AppData\Local\VidSift\runtime\envs\py312-8fcf034b7a7f5b01-a1c403191fcb4333b5289d86307d5d15\Scripts\python.exe`。
 - FFmpeg：`C:\Users\6seve\AppData\Local\VidSift\runtime\bin\ffmpeg.exe`；来源、哈希及许可保存在同目录安装回执中。
-- 本次回退：`C:\Users\6seve\AppData\Local\VidSift\backups\native-20261109-024356-7c4e05807a824b2da1e928455a9ec299\rollback.json`。
+- 最近一次Native回退：`C:\Users\6seve\AppData\Local\VidSift\backups\native-20261109-135933-85742f3bc7e44263905f4beba922d8ea\rollback.json`；若要回到更新前5.0.6，使用`C:\Users\6seve\AppData\Local\VidSift\backups\native-20261109-134908-14c49e158082420e9e13682df6dac11c\rollback.json`。
 - Chrome注册：`HKCU\Software\Google\Chrome\NativeMessagingHosts\com.vidsift.media`。
 - Edge注册：`HKCU\Software\Microsoft\Edge\NativeMessagingHosts\com.vidsift.media`。
 
@@ -36,7 +36,7 @@
 ## 已验证与边界
 
 - 正常用户进程中的CIM文件核验和当前用户HKU注册表读回均通过，Chrome/Edge指向同一Native清单。
-- 从正常Windows环境启动的隔离Edge成功连接本机程序5.0.6，并检出FFmpeg、yt-dlp与字幕组件；这不代替日常浏览器中每个平台的完整视频上传验收。
+- 从正常Windows环境启动的隔离Edge成功连接本机程序5.1.0，并检出FFmpeg、yt-dlp与字幕组件；这不代替日常浏览器中每个平台的完整视频上传验收。
 - 用户反馈B站在Edge“好像没有问题了”，保留为初步现场证据；日常浏览器抖音实际上传发送仍待确认。
 - 正常Windows隔离Edge对抖音7695816752525053222实测：图片关仅下载同作品播放器独立音轨，未下载画面；音频821.27秒，对照页面821.247秒。
 - 独立音轨与该作品原视频提取音轨的10、410、806秒样本波形相关系数分别0.99306、0.99200、0.98789；静音校验，未向AI网站上传，不代表整站或其他作品均通过。
@@ -85,3 +85,24 @@
 - 107项Node、42项Native、真实tabs.create且未调用目标goto的隔离Edge流程通过；无关图片保持页面未complete时仍开始上传，并能在AI Studio页面打开扩展查看最终结果。
 - 本机Native5.0.6继续复用；用户既有GPT默认提示词与真实设置受控副本保留核验通过。前台激活的真实原因仍未确定，等待新版本现场阶段记录，不宣称实站修好。
 - 包VidSift-5.0.9-standalone.zip，SHA256为41E13ADE59D5E92202F8A05B0E90B25B0C4A344377F84C2A94E8D41276B84AD8；磁盘文件已更新但仍需手动重载，5.0.8 ZIP保留回退。
+
+## 5.1.0抖音传输与音频体积（2026-11-09）
+
+- 用户确认B站正常、抖音5.0.9仍无提示词/音频；只读日常Edge最近诊断为script-connected且observedActive=false，尚未task-accepted。
+- 抖音现代路径将相同base64音频同时放进attachments与audioData；隔离Edge实API复现27 MiB二进制变72 MiB重复消息，超过64 MiB限制，单份可发送。
+- 5.1.0移除重复字段并分块传输，绑定任务与接收端，全部组装后只提交一次；隔离Edge对27/60 MiB附件哈希一致，单次上传及Run通过，最大消息262342字节。
+- 默认本机AAC64 kbps单声道、来源目标64 kbps，可在设置页独立保存/恢复；优先完整原声，不以背景乐代替口播，编码后验证时长。
+- 同一821秒样本13,545,027字节压至6,799,130字节，时长差小于0.01秒；这是上传体积，平台无更小音轨时下载量不一定下降，转写准确率尚未比较。
+- GPT后台打开只控制最终GPT焦点，AI Studio中间转写始终后台；B站原浏览器最小带宽路径保留。
+- 126项Node、47项正确环境Native、受控Edge抖音与B站后台接力通过；真实设置受控副本自定义提示词与其他配置保留通过。
+- Native5.1.0已在正常Windows安装并通过Edge握手；扩展磁盘文件逐字节核对已更新，用户仍需重新加载激活，实站AI Studio/GPT尚未验收，不称正式完成。
+- 包VidSift-5.1.0-standalone.zip，SHA256为03EF1C82AB7C5B26D01133202D5BE83F433E79691D2B718F86F6407E398E72AD；保留5.0.9 ZIP回退，原版与日常设置未修改。
+
+## 5.1.1误取消排查（2026-11-09）
+
+- 用户截图确认5.1.0已有音频与提示词，但显示“任务已取消”；用户明确未手动取消、关闭标签页或切换作品，不归因于用户操作。
+- 新只读诊断确认实际Edge版本5.1.0、task-accepted、observedActive=false；此前未移交内容的问题已跨过，完整发送仍失败。
+- 单元复现旧来源变化消息会取消当前仍匹配的抖音作品，5.1.1改读当前标签页网址复核，真实来源切换和发送前身份检查保留；这不证明已查明本次现场全部根因。
+- 新取消提示区分扩展取消、来源关闭、作品改变及传输应答异常，本地诊断保留取消原因和作品标识，不保存完整网址或内容。
+- 127项Node、47项Native及受控Edge后台转写接力通过；当前加载目录文件已更新5.1.1，日常Edge仍待重载和实站结果，Native5.1.0继续兼容、无需重装。
+- ZIP SHA256为9C2A759AB113ABA511FD1C992E0FF7B4B55B7E0574E8564CADE4533E40B5E308；保留5.1.0 ZIP回退，源码未视为正式验收完成。
