@@ -161,4 +161,4 @@ Plugins, MCP servers, and skills currently installed across all environments.
 
 ## 浏览器扩展与本机配套程序
 
-- 通用总结扩展（VidSift）：独立扩展5.1.1、Native程序5.1.0，修复抖音重复音频消息并增加音频压缩设置；正常Windows Edge连接及分块传输已验证，真实抖音自动交GPT尚待验收。详见[安装记录](安装流程/VidSift.md)。
+- 通用总结扩展（VidSift）：独立扩展及Native程序5.2.4；YouTube日常Edge已确认可用，补齐抖音字幕/完整音轨候选并适配AI Studio新附件组件；磁盘与Native已更新，真实抖音自动交GPT尚待验收。详见[安装记录](安装流程/VidSift.md)。

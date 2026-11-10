@@ -1,18 +1,18 @@
 # 通用总结扩展（VidSift）与本机程序
 
-- 安装日期：2026-11-09；Windows 11，Edge 157.0.4341.42，同一普通用户安装，不写HKLM。
-- 本机程序：5.1.0；独立扩展ID：`kggdkncbamdlhhihfkeldbbkppkgihad`，与原版独立。
-- 扩展当前加载目录：`C:\Users\6seve\Codelib-severin\2_Business\VidSift\dist\VidSift-5.0.0-standalone`，目录名为历史名称，磁盘内容已更新5.1.1扩展，日常浏览器运行时需手动重新加载；后续版本按manifest核对。
+- 首次安装：2026-11-09；最近更新：2026-11-10；Windows 11，Edge 157.0.4341.42，同一普通用户安装，不写HKLM。
+- 本机程序：5.2.4；独立扩展ID：`kggdkncbamdlhhihfkeldbbkppkgihad`，与原版独立。
+- 扩展当前加载目录：`C:\Users\6seve\Codelib-severin\2_Business\VidSift\dist\VidSift-5.0.0-standalone`，目录名为历史名称，磁盘内容已更新5.2.4扩展，日常浏览器运行时需手动重新加载；后续版本按manifest核对。
 
 ## 实际安装位置
 
 - 运行资源：`C:\Users\6seve\AppData\Local\VidSift\runtime`。
 - 当前激活配置：`C:\Users\6seve\AppData\Local\VidSift\runtime\current.json`。
-- 当前Native版本目录：`C:\Users\6seve\AppData\Local\VidSift\releases\5.1.0\native\a1c403191fcb4333b5289d86307d5d15`。
+- 当前Native版本目录：`C:\Users\6seve\AppData\Local\VidSift\releases\5.2.4\native\4dd79087d3ab4c82854f95b28299e4f8`。
 - Native清单：上述版本目录中的 `com.vidsift.media.json`；启动器 `native-launcher.exe`；实现 `host.py`。
-- Python：`C:\Users\6seve\AppData\Local\VidSift\runtime\envs\py312-8fcf034b7a7f5b01-a1c403191fcb4333b5289d86307d5d15\Scripts\python.exe`。
+- Python：`C:\Users\6seve\AppData\Local\VidSift\runtime\envs\py312-7b06f15a787dbfc5-4dd79087d3ab4c82854f95b28299e4f8\Scripts\python.exe`。
 - FFmpeg：`C:\Users\6seve\AppData\Local\VidSift\runtime\bin\ffmpeg.exe`；来源、哈希及许可保存在同目录安装回执中。
-- 最近一次Native回退：`C:\Users\6seve\AppData\Local\VidSift\backups\native-20261109-135933-85742f3bc7e44263905f4beba922d8ea\rollback.json`；若要回到更新前5.0.6，使用`C:\Users\6seve\AppData\Local\VidSift\backups\native-20261109-134908-14c49e158082420e9e13682df6dac11c\rollback.json`。
+- 最近一次Native回退：`C:\Users\6seve\AppData\Local\VidSift\backups\native-20261110-212612-a76636b863fa47a18c542e8f2d60577e\rollback.json`；若要回到更新前5.0.6，使用`C:\Users\6seve\AppData\Local\VidSift\backups\native-20261109-134908-14c49e158082420e9e13682df6dac11c\rollback.json`。
 - Chrome注册：`HKCU\Software\Google\Chrome\NativeMessagingHosts\com.vidsift.media`。
 - Edge注册：`HKCU\Software\Microsoft\Edge\NativeMessagingHosts\com.vidsift.media`。
 
@@ -106,3 +106,13 @@
 - 新取消提示区分扩展取消、来源关闭、作品改变及传输应答异常，本地诊断保留取消原因和作品标识，不保存完整网址或内容。
 - 127项Node、47项Native及受控Edge后台转写接力通过；当前加载目录文件已更新5.1.1，日常Edge仍待重载和实站结果，Native5.1.0继续兼容、无需重装。
 - ZIP SHA256为9C2A759AB113ABA511FD1C992E0FF7B4B55B7E0574E8564CADE4533E40B5E308；保留5.1.0 ZIP回退，源码未视为正式验收完成。
+## 5.2.3–5.2.4排障更新（2026-11-10）
+
+- 5.2.3修复Native子进程继承浏览器消息输入管道的Windows阻塞；日常Edge YouTube已取得442条中文字幕，约28.49秒完成GPT任务，用户确认可用。
+- 5.2.3抖音实际音频与提示词已上传，但日志持续记录附件0个；真实AI Studio已改为ms-prompt-media组件，5.2.4按其处理回执确认附件并保留单次发送保护。
+- 抖音现在汇总同作品完整音轨并比较平台文件大小，保留有限镜像备用；字幕解析支持已有JSON和SRT/VTT/内联数据，有有效字幕才直接交GPT，未取得字幕保持未知。
+- 当前32分37秒抖音样本仅见47,341,751字节独立音轨及三个镜像，尚未证明存在更小完整来源；下载后压缩只减少上传，不冒称降低下载流量。
+- 任务日志存扩展本地vidsiftTaskDiagnostics，分别记录阶段、下载/上传字节和有限结构摘要，不自动上传，不保存提示词、音频、字幕或凭据；无需用户抄错误文字。
+- 5.2.4安装在正常同用户Windows环境完成，FFmpeg/下载缓存复用，无ASR模型或新增权限；扩展加载目录和ID不变，5.2.3 ZIP及Native回退保留。
+- 154项扩展测试、55项Native测试、受控Edge附件/接力回归通过；正常Windows已安装5.2.4取得同一YouTube442条字幕，未下载音频。
+- 磁盘更新不等于日常浏览器激活；5.2.4完整抖音AI Studio自动运行和GPT整理仍待真实流程核验，未称正式完成。
