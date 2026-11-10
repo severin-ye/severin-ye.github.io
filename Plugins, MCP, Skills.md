@@ -162,3 +162,5 @@ Plugins, MCP servers, and skills currently installed across all environments.
 ## 浏览器扩展与本机配套程序
 
 - 知行视频总结（VidSift）：独立扩展5.2.7、Native程序5.2.4；YouTube日常Edge已确认可用，补齐抖音处理与GPT总结入书库的多段文本捕获/未确认待办恢复；磁盘与Native已更新，真实抖音自动交GPT尚待验收。详见[安装记录](安装流程/VidSift.md)。
+
+- 知行批注：3.5.0视频书库单卡删除入口，原dist程序已更新；删除保留GPT对话和批注，日常页面激活待刷新。详见[安装记录](安装流程/知行批注.md)。
