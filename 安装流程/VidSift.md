@@ -2,7 +2,7 @@
 
 - 首次安装：2026-11-09；最近更新：2026-11-11（KST）；Windows，Edge日常环境，同一普通用户安装，不写HKLM。
 - 独立扩展：5.6.0；本机程序复用5.5.0；独立扩展ID：`kggdkncbamdlhhihfkeldbbkppkgihad`，与原版独立。
-- 扩展当前加载目录：`C:\Users\6seve\Codelib-severin\2_Business\VidSift\dist\VidSift-5.0.0-standalone`，目录名为历史名称，85文件已更新5.6.0；日常浏览器重载待用户操作及日志核验，先前已确认运行5.5.0。
+- 扩展当前加载目录：`C:\Users\6seve\Codelib-severin\2_Business\VidSift\dist\VidSift-5.0.0-standalone`，目录名为历史名称，85文件已更新5.6.0；用户已重载并打开弹窗，日常新日志确认运行版本5.6.0。
 
 ## 实际安装位置
 
@@ -37,6 +37,8 @@
 ```
 
 ## 已验证与边界
+
+- 2026-11-11用户确认重载后，新日常Edge popup.opened/source日志实际运行版本5.6.0；未重新运行视频，此激活检查不冒充真实站点新改名实测。
 
 - 5.6.0：260项Node检查、隔离真实MV3/Edge改名及错误捕获回归、确定性打包通过；GPT接口为合成依赖，覆盖抖音/旧B站/YouTube平台前缀、原题清理、书库原题保持、临时跳过和仅一次发送，未重新调用真实Groq或重跑日常视频。
 - 新普通会话采用“【平台】＋清理后的原视频标题”，不做语义重写，不批量改历史会话；日常加载目录已核对85文件与候选逐字节相同，5.5.0回退目录为`C:\Users\6seve\Codelib-severin\2_Business\VidSift\dist\VidSift-before-5.6.0-20261111-022708-58a1bd93ef6d49aa9dce8a77fc3c47a9`。
