@@ -1,18 +1,18 @@
 # 知行视频总结（VidSift）与本机程序
 
-- 首次安装：2026-11-09；最近更新：2026-11-10；Windows 11，Edge 157.0.4341.42，同一普通用户安装，不写HKLM。
-- 本机程序：5.2.4；独立扩展ID：`kggdkncbamdlhhihfkeldbbkppkgihad`，与原版独立。
-- 扩展当前加载目录：`C:\Users\6seve\Codelib-severin\2_Business\VidSift\dist\VidSift-5.0.0-standalone`，目录名为历史名称，磁盘内容已更新5.2.7扩展，日常浏览器运行时需手动重新加载；后续版本按manifest核对。
+- 首次安装：2026-11-09；最近更新：2026-11-11（KST）；Windows，Edge日常环境，同一普通用户安装，不写HKLM。
+- 独立扩展与本机程序：5.5.0；独立扩展ID：`kggdkncbamdlhhihfkeldbbkppkgihad`，与原版独立。
+- 扩展当前加载目录：`C:\Users\6seve\Codelib-severin\2_Business\VidSift\dist\VidSift-5.0.0-standalone`，目录名为历史名称，84文件已更新5.5.0；用户已重新加载，日常新弹窗日志确认运行版本5.5.0。
 
 ## 实际安装位置
 
 - 运行资源：`C:\Users\6seve\AppData\Local\VidSift\runtime`。
 - 当前激活配置：`C:\Users\6seve\AppData\Local\VidSift\runtime\current.json`。
-- 当前Native版本目录：`C:\Users\6seve\AppData\Local\VidSift\releases\5.2.4\native\4dd79087d3ab4c82854f95b28299e4f8`。
+- 当前Native版本目录：`C:\Users\6seve\AppData\Local\VidSift\releases\5.5.0\native\8383df34d7f3442288e4b52bebf97f98`。
 - Native清单：上述版本目录中的 `com.vidsift.media.json`；启动器 `native-launcher.exe`；实现 `host.py`。
-- Python：`C:\Users\6seve\AppData\Local\VidSift\runtime\envs\py312-7b06f15a787dbfc5-4dd79087d3ab4c82854f95b28299e4f8\Scripts\python.exe`。
+- Python：`C:\Users\6seve\AppData\Local\VidSift\runtime\envs\py312-7b06f15a787dbfc5-8383df34d7f3442288e4b52bebf97f98\Scripts\python.exe`。
 - FFmpeg：`C:\Users\6seve\AppData\Local\VidSift\runtime\bin\ffmpeg.exe`；来源、哈希及许可保存在同目录安装回执中。
-- 最近一次Native回退：`C:\Users\6seve\AppData\Local\VidSift\backups\native-20261110-212612-a76636b863fa47a18c542e8f2d60577e\rollback.json`；若要回到更新前5.0.6，使用`C:\Users\6seve\AppData\Local\VidSift\backups\native-20261109-134908-14c49e158082420e9e13682df6dac11c\rollback.json`。
+- 最近一次Native回退：`C:\Users\6seve\AppData\Local\VidSift\backups\native-20261111-015057-f6cb7cb92f0e4edd93455979216ab03e\rollback.json`，可回5.4.0；扩展更新前5.4.1目录保留在`C:\Users\6seve\Codelib-severin\2_Business\VidSift\dist\VidSift-before-5.5.0-20261111-015703-3c45a59be64647afa43b80bbfd1609cc`。
 - Chrome注册：`HKCU\Software\Google\Chrome\NativeMessagingHosts\com.vidsift.media`。
 - Edge注册：`HKCU\Software\Microsoft\Edge\NativeMessagingHosts\com.vidsift.media`。
 
@@ -26,7 +26,10 @@
 
 - 安装器需要uv和系统自带.NET Framework C#编译器，安装yt-dlp、youtube-transcript-api、Pillow，复用或获取FFmpeg，不新增转写模型。
 - 安装后在VidSift设置页检测本机程序；主机按需启动，任务后退出，没有常驻HTTP或开机启动项。
-- 可用 `VIDSIFT_FFMPEG` 指向已有FFmpeg；本机程序不需要API Key，自建转写服务的地址和令牌只在扩展设置中填写。
+- 可用 `VIDSIFT_FFMPEG` 指向已有FFmpeg；媒体提取不需要API Key，抖音缺省Groq转写需要Groq API Key；自建服务地址和令牌沿原设置入口。
+- 需要Groq音频转写但缺少Key时自动弹出密码输入窗口，底部小按钮打开[官方申请页](https://console.groq.com/keys)，保存并验证后继续原任务；有字幕或已有Key时不弹窗，设置页也可打开填写入口。
+- 新输入由Native固定Groq模型列表接口验证后，以当前Windows用户DPAPI加密保存到`C:\Users\6seve\AppData\Local\VidSift\runtime\credentials\groq.dpapi`；不写浏览器storage、同步、日志、网址、命令行或安装包。
+- 已有环境变量及`C:\Users\6seve\.env`的`GROQ_API_KEY`优先，不迁移或覆盖现有密钥；旧Native不认识新密文，回退时文件保留，原`.env`可继续使用，不自动写出明文。
 - 回退命令中的Receipt使用上面的实际回退JSON路径：
 
 ```powershell
@@ -35,6 +38,9 @@
 
 ## 已验证与边界
 
+- 5.5.0：253项Node、103项Native、隔离真实扩展窗口/申请按钮/错误更正/保存继续/取消/来源切换/字幕绕过通过；DPAPI使用合成密钥验证真实Windows加解密，窗口验收的Groq与GPT为合成依赖，不冒充真实新密钥云端调用。
+- 正常Windows隔离Edge已连接已安装Native5.5.0并确认旧密钥存在性，日常Edge新弹窗日志确认扩展5.5.0；原密钥、提示词和截图设置保护核验，未重跑视频。
+- 原5.4.1日常42分钟抖音视频已完成Groq转写→GPT非空总结→书库保存，默认turbo；本次5.5只增加缺失Key的配置与恢复，下面旧版本记录保留为历史。
 - 正常用户进程中的CIM文件核验和当前用户HKU注册表读回均通过，Chrome/Edge指向同一Native清单。
 - 从正常Windows环境启动的隔离Edge成功连接本机程序5.1.0，并检出FFmpeg、yt-dlp与字幕组件；这不代替日常浏览器中每个平台的完整视频上传验收。
 - 用户反馈B站在Edge“好像没有问题了”，保留为初步现场证据；日常浏览器抖音实际上传发送仍待确认。
