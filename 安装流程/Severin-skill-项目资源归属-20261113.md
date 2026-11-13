@@ -1,5 +1,13 @@
 # 知行14.5.3：项目开发资源归属规则安装记录
 
+## 同日后续：看板实际入口已修，正式安装受阻
+
+- 源码候选为插件14.5.4、看板19.1.2，[实现提交be6f005](https://github.com/severin-ye/Severin-skill/commit/be6f005)已整合主线a62a8ab并远端核验。新建执行与验收副本进入所属项目 `.dev/worktrees`；当前运行经独立验收、合入和远端回读后，由既有安全回收器收尾，暂停/在用/未知/独有数据保留并说明原因。
+- Windows原安装器在项目专用 `.dev/test-data/board-project-workspaces-1113/native-install-19.1.2` 演练19.1.2，端口47892、无开机启动；未修改正式端口、注册表或快捷方式。用既有 `SEVERIN_BOARD_RELEASE_ONLY=1` 禁用测试服务的自动发现/调度后稳定响应，程序摘要与源码相同，受控模块链和受认证正常退出通过。仅是隔离演练，临时安装不作为本机正式环境登记。
+- 正式组合安装命令为源码 `py -3 scripts/release.py native-install --revision <当前main提交> --receipt <项目内新回执目录>`，原生状态用 `native-status`。本次a62a8ab调用被旧正式47831服务仍监听的保护检查拒绝，未备份/激活、未执行后续插件更新。正式插件仍是下面的14.5.3，不能把候选号写成已安装。
+- 正式数据继续位于 `C:\Users\6seve\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\SeverinBoard`。旧服务PID35860接口超时，活动未能确认，未强停或改权限。待用户决定怎样处理旧服务，再从安装阶段继续；旧程序、正式数据和回退保留。
+- 本轮无新增API Key、市场、全局配置或系统环境变量。release-only只用于本次测试进程；令牌没有进入文档。私有证据在源码项目 `.dev/receipts/board-project-workspaces-1113`。详细实现、保护与真实缺口见[工程记录](https://github.com/severin-ye/Severin-skill/blob/main/docs/board-project-workspaces-2026-11-13.md)和[验收记录](https://github.com/severin-ye/Severin-skill/blob/main/board/acceptance.md)。
+
 ## 当前结果
 
 - 2026-11-13，在Windows本机安装知行14.5.3，来源为[主线提交d481cf8](https://github.com/severin-ye/Severin-skill/commit/d481cf81d472fbef99d71344a1c338b63978e1b2)。
