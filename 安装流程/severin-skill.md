@@ -1,3 +1,18 @@
+## 2026-11-15 知行14.7.4：开发资源复用与收尾规则
+
+- 平台：Windows 11，日期2026-11-15（Asia/Seoul）；插件为 `severin-skill@personal-opencode-imports`。
+- 正式源码：`C:/Users/6seve/Codelib-severin/2_Business/Severin-skill`；main提交 `12f373a2d337aa71b6bda937a646bada71eaff12` 已推送并核验远端。
+- 安装位置：源 `C:/Users/6seve/plugins/severin-skill`；宿主缓存 `C:/Users/6seve/.codex/plugins/cache/personal-opencode-imports/severin-skill/14.7.4`；市场配置 `C:/Users/6seve/.agents/plugins/marketplace.json`。
+- 相关配置：继续使用 `C:/Users/6seve/.codex/config.toml` 和既有个人插件数据目录；没有新增环境变量、API Key、常驻扫描或后台删除器，没有修改全局AGENTS、科研暂停、正式学习数据和项目状态。
+- 本次内容：在现有编程开发正文中合并必要输入范围、单副本及并行空间预算、后续新增量/收尾验证和共享消费者核验，继续保护在用、暂停、正式/独有数据、科研冻结证据与必要回退。
+- 正式规则：`skills/severin-coding-skill/rules/core.md` 的“本任务测试资源的生命周期”；不表示各项目的复制程序已经全部改造。
+- 安装方式：使用已有 `scripts/implementation/verify-plugin-package.mjs --output-dir <本次payload>` 从干净主线导出，再运行 `node scripts/implementation/native_plugin_install.mjs install --revision <主线SHA> --payload <本次payload> --marketplace <上述配置> --source <上述安装源> --receipt <新私有回执>`；只安装插件，不重装或重启看板/桌面。
+- 常用核验：`node scripts/implementation/native_plugin_install.mjs status --receipt <原安装回执>`；新原生app-server `skills/list`发现编程开发14.7.4，并核对其正式正文SHA256 `32c69cbeff2865b233fc39b52dcba0cbb2d96f770cec47a1e0aa74a443120a3d`。
+- 本次验证：安装流程四例通过，评测器17项与版本历史7项回归通过；装后安装/read/list和缓存/安装源读回通过，新进程发现通过，独立上下文的四类适用/例外/共享在用/失败收尾场景检查通过；未在真实业务目录执行删除，也未声称旧活动聊天已热加载新正文或规则能保证所有项目程序遵守。
+- 首次安装在RPC提交前发现构建HTML换行与源码不同而安全拒绝，原安装未改；保留失败回执，随后从干净主线导出一致运行包并经同一原生接口安装成功，没有放宽校验。
+- 回退：原14.7.3安装源完整保存在 `C:/Users/6seve/plugins/.severin-skill.backup-8cc07553-b100-407d-a74e-ea87b9ad316a`；需要回退时先核对当时最新安装/数据和并行更新，再通过原生安装流程恢复，不直接改缓存名或盲目覆盖后续版本。
+- 私有回执：`C:/Users/6seve/Codelib-severin/2_Business/Severin-skill/.dev/receipts/resource-copy-policy-1115`；原始运行回执留本机，不上传。
+
 ## 2026-11-08 工作副本与清理偏好：全局入口已部署，程序安装待统一发布
 
 平台：Windows，日期2026-11-08（Asia/Seoul）。用户批准五条偏好、72小时兜底和删除受阻集中记录的实现、验证与安装；本条只记录已实际部署的部分，插件与看板尚无本任务的正式安装回执。
